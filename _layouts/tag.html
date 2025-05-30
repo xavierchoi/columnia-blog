@@ -1,0 +1,93 @@
+---
+layout: default
+---
+
+<div class="tag-page">
+  <header class="page-header">
+    <h1>태그: {{ page.tag }}</h1>
+    <p class="tag-description">{{ page.tag }} 태그가 포함된 모든 포스트</p>
+  </header>
+
+  <main class="main-content">
+    <div class="content-area">
+      {% assign tag_posts = site.posts | where: "tags", page.tag %}
+      
+      {% if tag_posts.size > 0 %}
+        <div class="posts-count">
+          <p><strong>{{ tag_posts.size }}개</strong>의 포스트가 있습니다.</p>
+        </div>
+
+        <div class="posts-grid">
+          {% for post in tag_posts %}
+            {% include post-card.html %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="no-posts">
+          <p>이 태그에 해당하는 포스트가 없습니다.</p>
+          <a href="{{ '/' | relative_url }}" class="btn btn-primary">홈으로 돌아가기</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <aside class="sidebar">
+      {% include sidebar.html %}
+    </aside>
+  </main>
+</div>
+
+<style>
+.tag-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-md);
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-header h1 {
+  color: var(--primary-color);
+  margin-bottom: var(--space-sm);
+}
+
+.tag-description {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.posts-count {
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.posts-grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.no-posts {
+  text-align: center;
+  padding: var(--space-xl);
+  color: var(--text-muted);
+}
+
+.btn {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+}
+</style>
