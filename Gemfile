@@ -36,12 +36,6 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 # 개발 및 서버 실행용
 gem "webrick", "~> 1.8"
 
-# GitHub Actions에서 추가로 필요한 gem들
-group :development, :test do
-  # GitHub Actions 환경에서 빌드 최적화
-  gem "html-proofer", "~> 4.0", require: false  # 선택사항: HTML 검증
-end
-
 # 프로덕션 환경 최적화 (GitHub Actions에서 사용)
 group :production do
   # CSS/JS 압축 (선택사항)
