@@ -45,35 +45,54 @@ layout: default
     </aside>
 </div>
 
-<!-- 레이아웃 수정을 위한 최소한의 CSS -->
-<style>
-.page-layout-container {
-    display: flex;
-    gap: var(--space-lg, 2rem);
-    max-width: var(--max-width, 1200px);
-    margin: 0 auto;
-    padding: var(--space-lg, 2rem);
-    min-height: calc(100vh - 200px);
-}
-
-.content-area {
-    flex: 1;
-    max-width: calc(100% - 280px - var(--space-lg, 2rem));
-}
-
-/* 반응형: 모바일에서는 세로 배치 */
-@media (max-width: 768px) {
-    .page-layout-container {
-        flex-direction: column;
-        padding: var(--space-md, 1rem);
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📝 일반 페이지 통일 레이아웃 시스템 적용');
+    
+    // 일반 페이지 전용 body 클래스 추가
+    document.body.classList.add('layout-page');
+    console.log('✅ body.layout-page 클래스 추가됨');
+    
+    // 레이아웃 측정 및 검증
+    function measurePageLayout() {
+        const contentArea = document.querySelector('.content-area');
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (contentArea) {
+            const rect = contentArea.getBoundingClientRect();
+            const windowCenter = window.innerWidth / 2;
+            const contentStart = rect.left;
+            const expectedStart = windowCenter - 400; // 800px의 절반
+            const offset = Math.abs(expectedStart - contentStart);
+            
+            console.log('📐 === 일반 페이지 레이아웃 측정 ===');
+            console.log(`화면 중앙: ${windowCenter}px`);
+            console.log(`콘텐츠 시작점: ${contentStart}px`);
+            console.log(`예상 시작점: ${expectedStart}px`);
+            console.log(`오프셋: ${offset}px`);
+            console.log(`포스트 페이지와 정렬 성공: ${offset <= 5 ? '✅' : '❌'}`);
+            
+            if (sidebar) {
+                const sidebarRect = sidebar.getBoundingClientRect();
+                const sidebarVisible = getComputedStyle(sidebar).display !== 'none';
+                console.log(`사이드바 표시: ${sidebarVisible}`);
+                if (sidebarVisible) {
+                    console.log(`사이드바 시작점: ${sidebarRect.left}px`);
+                }
+            }
+        }
     }
     
-    .content-area {
-        max-width: 100%;
-    }
+    // 초기 측정
+    setTimeout(measurePageLayout, 500);
     
-    .sidebar {
-        order: -1; /* 모바일에서는 사이드바를 위로 */
-    }
-}
-</style>
+    // 창 크기 변경시 재측정
+    let pageResizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(pageResizeTimeout);
+        pageResizeTimeout = setTimeout(measurePageLayout, 200);
+    });
+    
+    console.log('✅ 일반 페이지 통일 레이아웃 시스템 완료');
+});
+</script>

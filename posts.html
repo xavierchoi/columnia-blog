@@ -1,5 +1,7 @@
 ---
 layout: default
+pagination:
+  enabled: true
 permalink: /posts/
 title: "전체 게시물"
 ---
@@ -108,5 +110,57 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = `/search/?q=${encodeURIComponent(tagName)}`;
         });
     });
+});
+
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📄 전체 게시물 페이지 통일 레이아웃 시스템 적용');
+    
+    // 전체 게시물 페이지 전용 body 클래스 추가
+    document.body.classList.add('layout-posts');
+    console.log('✅ body.layout-posts 클래스 추가됨');
+    
+    // 레이아웃 측정 및 검증
+    function measurePostsLayout() {
+        const contentArea = document.querySelector('.content-area');
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (contentArea) {
+            const rect = contentArea.getBoundingClientRect();
+            const windowCenter = window.innerWidth / 2;
+            const contentStart = rect.left;
+            const expectedStart = windowCenter - 400; // 800px의 절반
+            const offset = Math.abs(expectedStart - contentStart);
+            
+            console.log('📐 === 전체 게시물 페이지 레이아웃 측정 ===');
+            console.log(`화면 중앙: ${windowCenter}px`);
+            console.log(`콘텐츠 시작점: ${contentStart}px`);
+            console.log(`예상 시작점: ${expectedStart}px`);
+            console.log(`오프셋: ${offset}px`);
+            console.log(`포스트 페이지와 정렬 성공: ${offset <= 5 ? '✅' : '❌'}`);
+            
+            if (sidebar) {
+                const sidebarRect = sidebar.getBoundingClientRect();
+                const sidebarVisible = getComputedStyle(sidebar).display !== 'none';
+                console.log(`사이드바 표시: ${sidebarVisible}`);
+                if (sidebarVisible) {
+                    console.log(`사이드바 시작점: ${sidebarRect.left}px`);
+                }
+            }
+        }
+    }
+    
+    // 초기 측정
+    setTimeout(measurePostsLayout, 500);
+    
+    // 창 크기 변경시 재측정
+    let postsResizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(postsResizeTimeout);
+        postsResizeTimeout = setTimeout(measurePostsLayout, 200);
+    });
+    
+    console.log('✅ 전체 게시물 페이지 통일 레이아웃 시스템 완료');
 });
 </script>

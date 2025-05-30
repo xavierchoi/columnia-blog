@@ -3332,24 +3332,6 @@ body > .post-layout {
 /* 1. 포스트 페이지 전용 레이아웃 수정                                  */
 /* ================================================================ */
 
-/* 포스트 페이지 메인 콘텐츠 컨테이너 */
-body.post-page .main-content {
-    max-width: 1400px !important; /* 기존 1200px → 1400px로 확장 */
-    margin: 0 auto !important;
-    padding: var(--space-2xl) var(--space-xl) !important; /* 기존 var(--space-lg) → var(--space-xl)로 확장 */
-    display: grid !important;
-    grid-template-columns: 1fr 280px !important; /* 사이드바를 280px로 축소 */
-    gap: var(--space-2xl) !important;
-    align-items: start !important;
-}
-
-/* 포스트 콘텐츠 영역 확장 */
-body.post-page .content-area {
-    min-width: 0 !important;
-    max-width: 900px !important; /* 기존 800px → 900px로 확장 */
-    margin: 0 !important; /* 중앙 정렬 제거하여 전체 너비 활용 */
-}
-
 /* 포스트 단일 콘텐츠 너비 확장 */
 body.post-page .post-single {
     max-width: 100% !important; /* 기존 800px 제한 제거 */
@@ -3369,14 +3351,6 @@ body.post-page .post-content {
 /* ================================================================ */
 /* 2. 사이드바 Sticky 설정 - TOC만 Sticky                           */
 /* ================================================================ */
-
-/* 전체 사이드바는 일반 스크롤 */
-body.post-page .sidebar {
-    position: static !important; /* sticky 제거 */
-    max-height: none !important;
-    overflow-y: visible !important;
-    width: 280px !important; /* 기존 300px → 280px로 축소 */
-}
 
 /* TOC 섹션만 Sticky 적용 */
 body.post-page .toc-section {
@@ -3537,26 +3511,6 @@ body.post-page .sidebar {
 /* 1. 포스트 페이지 전용 레이아웃 개선                                  */
 /* ================================================================ */
 
-/* 포스트 페이지 메인 콘텐츠 컨테이너 */
-body.post-page .main-content {
-    max-width: 1400px !important; /* 1200px → 1400px로 확장 */
-    margin: 0 auto !important;
-    padding: var(--space-2xl) var(--space-xl) !important;
-    display: grid !important;
-    grid-template-columns: 1fr 280px !important; /* 사이드바 280px 고정 */
-    gap: var(--space-2xl) !important;
-    align-items: start !important;
-    justify-content: center !important; /* 중앙 정렬 강화 */
-}
-
-/* 포스트 콘텐츠 영역 확장 및 중앙 정렬 */
-body.post-page .content-area {
-    min-width: 0 !important;
-    max-width: 900px !important; /* 800px → 900px로 확장 */
-    margin: 0 auto !important; /* 중앙 정렬 복원 */
-    width: 100% !important;
-}
-
 /* 포스트 단일 콘텐츠 너비 최적화 */
 body.post-page .post-single {
     max-width: 100% !important;
@@ -3577,17 +3531,6 @@ body.post-page .post-content {
 /* ================================================================ */
 /* 2. 사이드바 최적화 - TOC만 Sticky                                */
 /* ================================================================ */
-
-/* 전체 사이드바 설정 */
-body.post-page .sidebar {
-    position: static !important;
-    max-height: none !important;
-    overflow-y: visible !important;
-    width: 280px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: var(--space-lg) !important;
-}
 
 /* TOC 섹션만 Sticky 적용 */
 body.post-page .toc-section {
@@ -3738,6 +3681,8 @@ body.post-page .related-posts-section {
     body.post-page .sidebar {
         order: -1 !important;
         width: 100% !important;
+        position: static !important;
+        max-height: none !important;
     }
     
     /* 모바일에서는 TOC도 static으로 */
@@ -3848,26 +3793,6 @@ body.post-page .toc-section {
 /* 1. 포스트 페이지 전용 레이아웃 개선                                  */
 /* ================================================================ */
 
-/* 포스트 페이지 메인 콘텐츠 컨테이너 */
-body.post-page .main-content {
-    max-width: 1200px !important; /* 1400px → 1200px로 축소 */
-    margin: 0 auto !important;
-    padding: var(--space-2xl) var(--space-md) !important; /* 좌우 패딩 축소 */
-    display: grid !important;
-    grid-template-columns: 1fr 280px !important; /* 사이드바 280px 고정 */
-    gap: var(--space-xl) !important; /* gap 축소 */
-    align-items: start !important;
-    width: 100% !important; /* 전체 너비 활용 */
-}
-
-/* 포스트 콘텐츠 영역 확장 및 중앙 정렬 */
-body.post-page .content-area {
-    min-width: 0 !important;
-    max-width: 100% !important; /* 900px → 100%로 변경 */
-    margin: 0 !important; /* 중앙 정렬 제거 */
-    width: 100% !important;
-}
-
 /* 포스트 단일 콘텐츠 너비 최적화 */
 body.post-page .post-single {
     max-width: 100% !important;
@@ -3888,17 +3813,6 @@ body.post-page .post-content {
 /* ================================================================ */
 /* 2. 사이드바 최적화 - TOC만 Sticky                                */
 /* ================================================================ */
-
-/* 전체 사이드바 설정 */
-body.post-page .sidebar {
-    position: static !important;
-    max-height: none !important;
-    overflow-y: visible !important;
-    width: 280px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: var(--space-lg) !important;
-}
 
 /* TOC 섹션만 Sticky 적용 */
 body.post-page .toc-section {
@@ -4151,31 +4065,6 @@ body.post-page .toc-section {
 /* 포스트 페이지 레이아웃 수정 - 콘텐츠 너비 확장, 간격 최소화           */
 /* ================================================================ */
 
-body.post-page .main-content {
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: var(--space-xl) var(--space-lg) var(--space-xl) var(--space-md) !important;
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-    gap: var(--space-lg) !important; /* 간격을 2xl → lg로 대폭 축소 */
-}
-
-body.post-page .content-area {
-    max-width: none !important; /* 최대 너비 제한 해제 */
-    width: calc(100% - 280px - var(--space-lg)) !important; /* 사이드바와 간격 빼고 나머지 전부 */
-    margin: 0 !important;
-    padding: 0 !important;
-    flex-shrink: 0 !important;
-}
-
-body.post-page .sidebar {
-    width: 280px !important;
-    flex-shrink: 0 !important;
-    margin: 0 !important;
-}
-
 body.post-page .post-single {
     max-width: 100% !important;
     width: 100% !important;
@@ -4343,3 +4232,1801 @@ body.post-page .post-content {
     border-bottom-color: var(--primary-color);
   }
 }
+
+/* 스크롤바 스타일링 */
+body.post-page .sidebar::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+body.post-page .sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color) !important;
+    border-radius: 2px !important;
+}
+
+/* 모바일/태블릿 사이드바 완전 제거 - 최종 설정 */
+@media (max-width: 1024px) {
+    /* 모든 사이드바 숨김 */
+    .sidebar,
+    .category-sidebar,
+    aside {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    
+    /* 메인 콘텐츠 전체 너비 활용 */
+    .main-content,
+    .category-main,
+    .post-layout {
+        display: block !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        padding: var(--space-lg) var(--space-md) !important;
+    }
+    
+    .content-area,
+    .category-content {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+}
+
+/* 작은 모바일 (480px 이하) */
+@media (max-width: 480px) {
+    .main-content,
+    .category-main,
+    .post-layout {
+        padding: var(--space-md) var(--space-sm) !important;
+    }
+}
+
+/* 모든 페이지에 동일한 중앙 정렬 적용 */
+.main-content {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: var(--space-2xl) var(--space-lg) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: var(--space-2xl) !important;
+}
+
+.content-area {
+    width: 800px !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    flex-shrink: 0 !important;
+}
+
+.sidebar {
+    width: 280px !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+}
+
+.category-main {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: var(--space-2xl) var(--space-lg) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: var(--space-2xl) !important;
+}
+
+.category-content {
+    width: 800px !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    flex-shrink: 0 !important;
+}
+
+.category-sidebar {
+    width: 280px !important;
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+}
+
+/* 포스트 내용 최적화 */
+body.post-page .post-content {
+    max-width: 100% !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    padding: 0 var(--space-md) !important; /* 좌우 여백 */
+}
+
+/* 포스트 요소들 중앙 정렬 유지 */
+body.post-page .post-header,
+body.post-page .post-content,
+body.post-page .post-tags,
+body.post-page .post-share,
+body.post-page .post-nav,
+body.post-page .related-posts-section {
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* 태블릿/모바일에서는 기존 설정 유지 */
+@media (max-width: 1024px) {
+    body.post-page .main-content,
+    .main-content,
+    .category-main {
+        display: block !important;
+        max-width: 100% !important;
+        padding: var(--space-lg) var(--space-md) !important;
+    }
+    
+    body.post-page .content-area,
+    .content-area,
+    .category-content {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    body.post-page .sidebar,
+    .sidebar,
+    .category-sidebar {
+        display: none !important;
+    }
+}
+
+/* ================================================================ */
+/* 📏 조건부 사이드바 표시 (미디어 쿼리 기반)                        */
+/* ================================================================ */
+
+/* 사이드바 표시 최소 조건: 메인 콘텐츠(800px) + 간격(24px) + 사이드바(220px) + 여백(100px) = 1144px */
+@media (max-width: 1200px) {
+    body.post-page .sidebar {
+        display: none !important; /* 공간 부족시 사이드바 숨김 */
+    }
+    
+    body.post-page .main-content {
+        justify-content: center !important; /* 중앙 정렬 유지 */
+    }
+}
+
+/* 충분한 공간이 있을 때만 사이드바 표시 */
+@media (min-width: 1201px) {
+    body.post-page .sidebar {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: var(--space-lg) !important;
+    }
+}
+
+/* ================================================================ */
+/* 🔍 더 정교한 조건부 표시 (컨테이너 쿼리 대안)                      */
+/* ================================================================ */
+
+/* 대형 화면에서 더 넉넉한 레이아웃 */
+@media (min-width: 1400px) {
+    body.post-page .content-area {
+        width: 900px !important; /* 콘텐츠 확장 */
+        max-width: 900px !important;
+    }
+    
+    body.post-page .sidebar {
+        width: 240px !important; /* 사이드바 확장 */
+    }
+}
+
+/* 초대형 화면 */
+@media (min-width: 1600px) {
+    body.post-page .content-area {
+        width: 1000px !important;
+    }
+    
+    body.post-page .sidebar {
+        width: 260px !important;
+    }
+}
+
+/* ================================================================ */
+/* 📱 태블릿/모바일 대응                                            */
+/* ================================================================ */
+
+@media (max-width: 1024px) {
+    body.post-page .main-content {
+        display: block !important;
+        max-width: 100% !important;
+        padding: var(--space-lg) var(--space-md) !important;
+    }
+    
+    body.post-page .content-area {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    body.post-page .sidebar {
+        display: none !important;
+    }
+}
+
+/* ================================================================ */
+/* 🎨 시각적 개선                                                  */
+/* ================================================================ */
+
+/* 사이드바 스크롤바 스타일링 */
+body.post-page .sidebar::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+body.post-page .sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color) !important;
+    border-radius: 2px !important;
+}
+
+/* 사이드바 간격 최적화 */
+body.post-page .sidebar-section {
+    margin-bottom: var(--space-md) !important;
+}
+
+body.post-page .sidebar-section:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* ================================================================ */
+/* 🔧 JavaScript 기반 동적 조건 체크 (선택사항)                      */
+/* ================================================================ */
+
+/* JavaScript가 제어할 클래스들 */
+body.post-page .sidebar.hidden {
+    display: none !important;
+}
+
+body.post-page .sidebar.visible {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-lg) !important;
+}
+
+/* 모바일에서는 강제 숨김 */
+@media (max-width: 1024px) {
+    body.post-page .main-content {
+        display: block !important;
+        max-width: 100% !important;
+        padding: var(--space-lg) var(--space-md) !important;
+    }
+    
+    body.post-page .content-area {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    body.post-page .sidebar {
+        display: none !important;
+    }
+}
+
+/* 모든 기존 body.post-page 코드 삭제 후 이것만 사용 */
+body.post-page {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Flex 레이아웃이지만 중앙 정렬 보장 */
+body.post-page .main-content {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important; /* 중앙 정렬 강화 */
+    align-items: flex-start !important;
+    gap: var(--space-lg) !important;
+    position: relative !important;
+    background: rgba(255, 0, 0, 0.1) !important;
+    min-height: 100vh !important;
+}
+
+/* 콘텐츠 고정 너비 중앙 배치 */
+body.post-page .content-area {
+    width: 800px !important;
+    max-width: 800px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important; /* auto 제거 */
+    padding: var(--space-lg) !important;
+    background: rgba(0, 0, 255, 0.1) !important;
+    order: 1 !important; /* 순서 명시 */
+}
+
+/* 사이드바 우측 배치 */
+body.post-page .sidebar {
+    width: 220px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important; /* margin-left 제거 */
+    padding: var(--space-lg) !important;
+    position: sticky !important;
+    top: calc(80px + var(--space-lg)) !important;
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto !important;
+    background: rgba(0, 255, 0, 0.1) !important;
+    order: 2 !important; /* 순서 명시 */
+}
+
+/* 모바일에서 강제 숨김 */
+@media (max-width: 768px) {
+    body.post-page .sidebar {
+        display: none !important;
+    }
+    
+    body.post-page .main-content {
+        justify-content: center !important;
+    }
+}
+
+/* ================================================================ */
+/* 🎯 CSS Grid 기반 완전한 중앙 정렬 솔루션                           */
+/* ================================================================ */
+
+/* 모든 기존 body.post-page 코드 삭제 후 이것만 사용 */
+body.post-page {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Grid 컨테이너 - 완벽한 중앙 정렬 */
+body.post-page .main-content {
+    display: grid !important;
+    grid-template-columns: 1fr min-content 1fr !important; /* 좌여백 콘텐츠 우여백 */
+    grid-template-areas: ". content ." !important;
+    width: 100vw !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: var(--space-xl) 0 !important;
+    box-sizing: border-box !important;
+    background: rgba(255, 0, 0, 0.1) !important; /* 디버깅용 */
+}
+
+/* 콘텐츠 영역 - Grid 중앙에 고정 */
+body.post-page .content-area {
+    grid-area: content !important;
+    width: 800px !important;
+    max-width: 800px !important;
+    margin: 0 !important;
+    padding: var(--space-lg) !important;
+    background: rgba(0, 0, 255, 0.1) !important; /* 디버깅용 */
+}
+
+/* 사이드바 - 기본적으로 숨김 */
+body.post-page .sidebar {
+    display: none !important;
+    position: fixed !important;
+    right: 20px !important;
+    top: calc(80px + var(--space-lg)) !important;
+    width: 220px !important;
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto !important;
+    background: rgba(0, 255, 0, 0.9) !important; /* 디버깅용 */
+    z-index: 1000 !important;
+    padding: var(--space-lg) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-xl) !important;
+}
+
+/* 사이드바 표시 상태 */
+body.post-page .sidebar.show {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-md) !important;
+}
+
+/* 모든 화면에서 강제 숨김 (일단) */
+@media (max-width: 9999px) {
+    body.post-page .sidebar {
+        display: none !important;
+    }
+}
+
+/* ================================================================ */
+/* 🎯 Columnia v0.1.2 - 포스트 페이지 레이아웃 완전 수정                */
+/* main.scss 파일 맨 끝에 추가하세요                                   */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 1. 기존 충돌하는 스타일 초기화                                     */
+/* ================================================================ */
+
+/* 모든 기존 body.post-page 관련 코드 비활성화 */
+body.post-page .main-content {
+    /* 기존 Grid/Flex 충돌 코드 모두 제거 */
+    display: block !important;
+    grid-template-columns: unset !important;
+    grid-template-areas: unset !important;
+    justify-content: unset !important;
+    width: unset !important;
+    margin: unset !important;
+    padding: unset !important;
+    background: unset !important;
+    min-height: unset !important;
+    position: unset !important;
+}
+
+/* 기존 디버깅 스타일 완전 제거 */
+body.post-page .main-content::before,
+body.post-page .main-content::after,
+body.post-page .content-area::before,
+body.post-page .content-area::after,
+body.post-page .sidebar::before,
+body.post-page .sidebar::after,
+body.post-page::before,
+body.post-page::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* ================================================================ */
+/* 2. 새로운 순수 CSS 레이아웃 시스템                                */
+/* ================================================================ */
+
+/* 포스트 페이지 기본 설정 */
+body.post-page {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 메인 컨테이너 - 중앙 정렬 Flex 시스템 */
+body.post-page .main-content {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: var(--space-2xl) var(--space-lg) !important;
+    
+    /* Flexbox 중앙 정렬 */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: var(--space-2xl) !important;
+    
+    /* 기본 배경 */
+    background: transparent !important;
+    min-height: auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* 콘텐츠 영역 - 고정 너비 중앙 배치 */
+body.post-page .content-area {
+    width: 800px !important;
+    max-width: 800px !important;
+    min-width: 800px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    order: 1 !important;
+}
+
+/* 사이드바 - 조건부 표시 */
+body.post-page .sidebar {
+    width: 280px !important;
+    max-width: 280px !important;
+    min-width: 280px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    order: 2 !important;
+    
+    /* Sticky 동작 */
+    position: sticky !important;
+    top: calc(80px + var(--space-lg)) !important;
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto !important;
+    
+    /* 스크롤바 스타일링 */
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--border-color) transparent !important;
+}
+
+body.post-page .sidebar::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+body.post-page .sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color) !important;
+    border-radius: 2px !important;
+}
+
+/* ================================================================ */
+/* 3. 반응형 브레이크포인트 - 미디어 쿼리 기반                       */
+/* ================================================================ */
+
+/* 사이드바 표시 임계점: 콘텐츠(800px) + 간격(48px) + 사이드바(280px) + 여백(200px) = 1328px */
+@media (max-width: 1300px) {
+    /* 공간 부족시 사이드바 숨김 */
+    body.post-page .sidebar {
+        display: none !important;
+    }
+    
+    /* 콘텐츠만 표시시 완벽한 중앙 정렬 */
+    body.post-page .main-content {
+        justify-content: center !important;
+        padding: var(--space-2xl) var(--space-xl) !important;
+    }
+    
+    body.post-page .content-area {
+        width: 100% !important;
+        max-width: 800px !important;
+        min-width: auto !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* 태블릿 뷰 (1024px 이하) */
+@media (max-width: 1024px) {
+    body.post-page .main-content {
+        padding: var(--space-xl) var(--space-lg) !important;
+    }
+    
+    body.post-page .content-area {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* 모바일 뷰 (768px 이하) */
+@media (max-width: 768px) {
+    body.post-page .main-content {
+        padding: var(--space-lg) var(--space-md) !important;
+    }
+    
+    body.post-page .content-area {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* 작은 모바일 (480px 이하) */
+@media (max-width: 480px) {
+    body.post-page .main-content {
+        padding: var(--space-md) var(--space-sm) !important;
+    }
+}
+
+/* ================================================================ */
+/* 4. 포스트 내용 요소들 최적화                                      */
+/* ================================================================ */
+
+/* 포스트 단일 콘텐츠 */
+body.post-page .post-single {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* 포스트 콘텐츠 가독성 */
+body.post-page .post-content {
+    max-width: 100% !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    color: var(--text-primary) !important;
+    padding: 0 !important;
+}
+
+/* 포스트 헤더 중앙 정렬 */
+body.post-page .post-header {
+    text-align: center !important;
+    margin-bottom: var(--space-2xl) !important;
+    padding: var(--space-xl) !important;
+    background: var(--bg-accent) !important;
+    border-radius: var(--radius-xl) !important;
+    border: 1px solid var(--border-light) !important;
+}
+
+/* 포스트 메타 정보 중앙 정렬 */
+body.post-page .post-meta {
+    justify-content: center !important;
+    margin-bottom: var(--space-lg) !important;
+}
+
+/* 포스트 태그 중앙 정렬 */
+body.post-page .post-tags {
+    justify-content: center !important;
+    margin-bottom: var(--space-xl) !important;
+}
+
+/* 공유 버튼 중앙 정렬 */
+body.post-page .post-share {
+    text-align: center !important;
+    margin-top: var(--space-xl) !important;
+}
+
+body.post-page .share-buttons {
+    justify-content: center !important;
+}
+
+/* ================================================================ */
+/* 5. 사이드바 섹션 순서 및 스타일                                   */
+/* ================================================================ */
+
+/* 사이드바 섹션 순서 */
+body.post-page .sidebar-section:has(.categories-list) {
+    order: 1 !important;
+}
+
+body.post-page .sidebar-section.toc-section {
+    order: 2 !important;
+}
+
+body.post-page .sidebar-section:has(.newsletter-form) {
+    order: 3 !important;
+}
+
+/* TOC만 Sticky 동작 (사이드바 내에서) */
+body.post-page .toc-section {
+    position: relative !important; /* 사이드바가 이미 sticky이므로 */
+    margin-bottom: var(--space-lg) !important;
+}
+
+/* ================================================================ */
+/* 6. 관련 글 및 네비게이션 섹션                                     */
+/* ================================================================ */
+
+/* 포스트 네비게이션 */
+body.post-page .post-nav {
+    margin-top: var(--space-2xl) !important;
+    padding-top: var(--space-xl) !important;
+}
+
+/* 관련 글 섹션 */
+body.post-page .related-posts-section {
+    margin-top: var(--space-2xl) !important;
+    padding-top: var(--space-xl) !important;
+}
+
+/* ================================================================ */
+/* 7. 접근성 및 시각적 개선                                          */
+/* ================================================================ */
+
+/* 포스트 콘텐츠 내 이미지 */
+body.post-page .post-content img {
+    display: block !important;
+    margin: var(--space-lg) auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* 포스트 콘텐츠 내 코드 블록 */
+body.post-page .post-content pre {
+    margin: var(--space-xl) 0 !important;
+    padding: var(--space-lg) !important;
+    border-radius: var(--radius-lg) !important;
+    overflow-x: auto !important;
+}
+
+/* 포스트 콘텐츠 내 인용구 */
+body.post-page .post-content blockquote {
+    margin: var(--space-xl) 0 !important;
+    padding: var(--space-lg) !important;
+    border-left: 4px solid var(--accent-primary) !important;
+    background: var(--bg-accent) !important;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0 !important;
+}
+
+/* ================================================================ */
+/* 8. 성능 최적화                                                   */
+/* ================================================================ */
+
+/* GPU 가속화 */
+body.post-page .sidebar {
+    will-change: transform !important;
+    transform: translateZ(0) !important;
+}
+
+/* 부드러운 스크롤 */
+body.post-page .sidebar {
+    scroll-behavior: smooth !important;
+}
+
+/* ================================================================ */
+/* 9. 포커스 및 접근성                                              */
+/* ================================================================ */
+
+/* 포커스 스타일 */
+body.post-page .toc-link:focus {
+    outline: 2px solid var(--accent-primary) !important;
+    outline-offset: 2px !important;
+}
+
+/* ================================================================ */
+/* 10. 디버깅 완료 - 모든 시각적 가이드 제거                          */
+/* ================================================================ */
+
+/* 디버깅용 보더 및 배경 모두 제거 */
+body.post-page .main-content,
+body.post-page .content-area,
+body.post-page .sidebar {
+    border: none !important;
+    background: transparent !important;
+}
+
+/* ================================================================ */
+/* 🎉 v0.1.2 완료 - 순수 CSS 기반 완벽한 중앙 정렬 시스템              */
+/* ================================================================ */
+
+/* 추가 안정성을 위한 최종 설정 */
+body.post-page .main-content {
+    /* 중앙 정렬 보장 */
+    justify-content: center !important;
+    align-items: flex-start !important;
+    
+    /* 레이아웃 안정성 */
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+}
+
+/* 콘텐츠 영역 안정성 */
+body.post-page .content-area {
+    /* 고정 너비 보장 */
+    flex: 0 0 800px !important;
+    
+    /* 넘침 방지 */
+    overflow-x: hidden !important;
+    word-wrap: break-word !important;
+}
+
+/* 사이드바 안정성 */
+body.post-page .sidebar {
+    /* 고정 너비 보장 */
+    flex: 0 0 280px !important;
+    
+    /* 스크롤 안정성 */
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+/* ================================================================ */
+/* 🎉 v0.1.2 완료 - 순수 CSS 기반 완벽한 중앙 정렬 시스템              */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 🚨 긴급 수정 - Columnia v0.1.2 포스트 페이지 강제 중앙 정렬          */
+/* main.scss 파일 맨 끝에 추가 (기존 코드 위에 덮어쓰기)                */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 1. 기존 모든 main-content 스타일 강제 재정의                       */
+/* ================================================================ */
+
+/* 모든 페이지의 기본 main-content 재설정 */
+.main-content {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: var(--space-2xl) var(--space-lg) !important;
+    display: grid !important;
+    grid-template-columns: 1fr 300px !important;
+    gap: var(--space-2xl) !important;
+}
+
+/* ================================================================ */
+/* 2. 포스트 페이지 전용 완전 재정의                                  */
+/* ================================================================ */
+
+/* 포스트 페이지 body 클래스 적용 */
+body.post-page {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 포스트 페이지 메인 컨테이너 - 완전한 새 레이아웃 */
+body.post-page .main-content {
+    /* 기존 모든 스타일 완전 재정의 */
+    max-width: none !important;
+    width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    
+    /* 새로운 Grid 시스템 */
+    display: grid !important;
+    grid-template-columns: 1fr minmax(800px, 800px) 1fr !important;
+    grid-template-areas: ". content sidebar" !important;
+    gap: 0 var(--space-2xl) !important;
+    
+    /* 전체 화면 활용 */
+    min-height: 100vh !important;
+    box-sizing: border-box !important;
+    
+    /* 상하 패딩만 적용 */
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
+}
+
+/* 콘텐츠 영역 - Grid Area 할당 */
+body.post-page .content-area {
+    grid-area: content !important;
+    width: 800px !important;
+    max-width: 800px !important;
+    min-width: 800px !important;
+    margin: 0 !important;
+    padding: 0 var(--space-lg) !important;
+    
+    /* 콘텐츠 오버플로 처리 */
+    overflow-x: hidden !important;
+    word-wrap: break-word !important;
+}
+
+/* 사이드바 - Grid Area 할당 */
+body.post-page .sidebar {
+    grid-area: sidebar !important;
+    width: 280px !important;
+    max-width: 280px !important;
+    min-width: 280px !important;
+    margin: 0 !important;
+    padding: 0 var(--space-lg) !important;
+    
+    /* Sticky 동작 */
+    position: sticky !important;
+    top: calc(80px + var(--space-lg)) !important;
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto !important;
+    align-self: start !important;
+    
+    /* 스크롤바 스타일링 */
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--border-color) transparent !important;
+}
+
+body.post-page .sidebar::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+body.post-page .sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color) !important;
+    border-radius: 2px !important;
+}
+
+/* ================================================================ */
+/* 3. 반응형 브레이크포인트 - 더 명확한 조건                          */
+/* ================================================================ */
+
+/* 사이드바 숨김 조건: 콘텐츠(800px) + 간격(48px) + 사이드바(280px) + 여백(200px) = 1328px */
+@media (max-width: 1400px) {
+    body.post-page .main-content {
+        grid-template-columns: 1fr minmax(800px, 800px) 1fr !important;
+        grid-template-areas: ". content ." !important;
+    }
+    
+    body.post-page .sidebar {
+        display: none !important;
+    }
+}
+
+/* 중간 화면에서 콘텐츠 너비 조정 */
+@media (max-width: 1000px) {
+    body.post-page .main-content {
+        grid-template-columns: 1fr minmax(300px, 800px) 1fr !important;
+        padding-left: var(--space-lg) !important;
+        padding-right: var(--space-lg) !important;
+    }
+    
+    body.post-page .content-area {
+        width: 100% !important;
+        max-width: 800px !important;
+        min-width: 300px !important;
+    }
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+    body.post-page .main-content {
+        grid-template-columns: 1fr !important;
+        grid-template-areas: "content" !important;
+        padding-left: var(--space-md) !important;
+        padding-right: var(--space-md) !important;
+    }
+    
+    body.post-page .content-area {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+        padding: 0 var(--space-sm) !important;
+    }
+}
+
+/* 모바일 */
+@media (max-width: 480px) {
+    body.post-page .main-content {
+        padding-left: var(--space-sm) !important;
+        padding-right: var(--space-sm) !important;
+    }
+    
+    body.post-page .content-area {
+        padding: 0 !important;
+    }
+}
+
+/* ================================================================ */
+/* 4. 포스트 내용 요소들 최적화                                      */
+/* ================================================================ */
+
+/* 포스트 단일 콘텐츠 */
+body.post-page .post-single {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* 포스트 콘텐츠 */
+body.post-page .post-content {
+    max-width: 100% !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    color: var(--text-primary) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 포스트 헤더 */
+body.post-page .post-header {
+    text-align: center !important;
+    margin-bottom: var(--space-2xl) !important;
+    padding: var(--space-xl) !important;
+    background: var(--bg-accent) !important;
+    border-radius: var(--radius-xl) !important;
+    border: 1px solid var(--border-light) !important;
+}
+
+/* 포스트 메타 정보 */
+body.post-page .post-meta {
+    justify-content: center !important;
+    margin-bottom: var(--space-lg) !important;
+}
+
+/* 포스트 태그 */
+body.post-page .post-tags {
+    justify-content: center !important;
+    margin-bottom: var(--space-xl) !important;
+}
+
+/* 공유 버튼 */
+body.post-page .post-share {
+    text-align: center !important;
+    margin-top: var(--space-xl) !important;
+}
+
+body.post-page .share-buttons {
+    justify-content: center !important;
+}
+
+/* ================================================================ */
+/* 5. 사이드바 섹션 최적화                                          */
+/* ================================================================ */
+
+/* 사이드바 섹션 간격 */
+body.post-page .sidebar-section {
+    margin-bottom: var(--space-lg) !important;
+}
+
+body.post-page .sidebar-section:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* 사이드바 섹션 순서 */
+body.post-page .sidebar-section:has(.categories-list) {
+    order: 1 !important;
+}
+
+body.post-page .sidebar-section.toc-section {
+    order: 2 !important;
+}
+
+body.post-page .sidebar-section:has(.newsletter-form) {
+    order: 3 !important;
+}
+
+/* TOC 섹션 */
+body.post-page .toc-section {
+    position: relative !important;
+}
+
+/* ================================================================ */
+/* 6. 추가 안정성 보장                                              */
+/* ================================================================ */
+
+/* 브레드크럼 */
+body.post-page .breadcrumbs {
+    margin-bottom: var(--space-xl) !important;
+}
+
+/* 포스트 네비게이션 */
+body.post-page .post-nav {
+    margin-top: var(--space-2xl) !important;
+    padding-top: var(--space-xl) !important;
+}
+
+/* 관련 글 섹션 */
+body.post-page .related-posts-section {
+    margin-top: var(--space-2xl) !important;
+    padding-top: var(--space-xl) !important;
+}
+
+/* 이미지 최적화 */
+body.post-page .post-content img {
+    display: block !important;
+    margin: var(--space-lg) auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* 코드 블록 */
+body.post-page .post-content pre {
+    margin: var(--space-xl) 0 !important;
+    padding: var(--space-lg) !important;
+    border-radius: var(--radius-lg) !important;
+    overflow-x: auto !important;
+}
+
+/* 인용구 */
+body.post-page .post-content blockquote {
+    margin: var(--space-xl) 0 !important;
+    padding: var(--space-lg) !important;
+    border-left: 4px solid var(--accent-primary) !important;
+    background: var(--bg-accent) !important;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0 !important;
+}
+
+/* ================================================================ */
+/* 7. 성능 및 접근성                                                */
+/* ================================================================ */
+
+/* GPU 가속화 */
+body.post-page .sidebar {
+    will-change: transform !important;
+    transform: translateZ(0) !important;
+}
+
+/* 부드러운 스크롤 */
+body.post-page .sidebar {
+    scroll-behavior: smooth !important;
+}
+
+/* 포커스 스타일 */
+body.post-page .toc-link:focus {
+    outline: 2px solid var(--accent-primary) !important;
+    outline-offset: 2px !important;
+}
+
+/* ================================================================ */
+/* 🎯 최종 강제 적용 - 중앙 정렬 보장                                */
+/* ================================================================ */
+
+/* 모든 다른 스타일보다 우선 적용 */
+body.post-page .main-content {
+    justify-items: center !important;
+    align-content: start !important;
+}
+
+body.post-page .content-area {
+    justify-self: center !important;
+    align-self: start !important;
+}
+
+/* JavaScript가 추가한 모든 인라인 스타일 무시 */
+body.post-page .main-content[style] {
+    display: grid !important;
+    grid-template-columns: 1fr minmax(800px, 800px) 1fr !important;
+    grid-template-areas: ". content sidebar" !important;
+}
+
+/* ================================================================ */
+/* 🚀 긴급 수정 완료 - 강제 중앙 정렬 시스템                          */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 🎯 Columnia 통합 레이아웃 시스템 v0.1.3                            */
+/* 모든 페이지의 메인 콘텐츠를 통일된 시작점으로 정렬                    */
+/* 2025.05.30 - v0.1.3 업데이트                                     */
+/* ================================================================ */
+
+/* CSS 변수로 통일된 레이아웃 기준점 정의 */
+:root {
+    /* 🎯 통일된 레이아웃 변수들 */
+    --unified-content-width: 800px;          /* 메인 콘텐츠 표준 너비 */
+    --unified-sidebar-width: 280px;          /* 사이드바 표준 너비 */
+    --unified-gap: 2rem;                     /* 콘텐츠-사이드바 간격 */
+    --unified-padding: 1rem;                 /* 기본 패딩 */
+    
+    /* 🎯 통일된 시작점 계산 */
+    --unified-content-start: calc(50% - var(--unified-content-width) / 2);
+    --unified-sidebar-start: calc(50% + var(--unified-content-width) / 2 + var(--unified-gap));
+    
+    /* 🎯 반응형 브레이크포인트 */
+    --layout-breakpoint-sidebar: 1350px;    /* 사이드바 숨김 기준점 */
+    --layout-breakpoint-tablet: 1000px;     /* 태블릿 뷰 */
+    --layout-breakpoint-mobile: 768px;      /* 모바일 뷰 */
+}
+
+/* ================================================================ */
+/* 🏠 홈페이지 통일 레이아웃 시스템                                   */
+/* ================================================================ */
+
+/* 홈페이지 전용 클래스 */
+body.layout-home {
+    margin: 0;
+    padding: 0;
+}
+
+/* 홈페이지 메인 콘텐츠 컨테이너 리셋 */
+body.layout-home .main-content {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    position: relative !important;
+    min-height: 100vh !important;
+    padding-top: var(--space-2xl, 3rem) !important;
+    padding-bottom: var(--space-2xl, 3rem) !important;
+}
+
+/* 홈페이지 콘텐츠 영역 - 포스트와 동일한 시작점 */
+body.layout-home .content-area {
+    position: absolute !important;
+    left: var(--unified-content-start) !important;
+    top: var(--space-2xl, 3rem) !important;
+    width: var(--unified-content-width) !important;
+    max-width: var(--unified-content-width) !important;
+    margin: 0 !important;
+    padding: 0 var(--unified-padding) !important;
+    z-index: 1 !important;
+}
+
+/* 홈페이지 사이드바 - 포스트와 동일한 위치 */
+body.layout-home .sidebar {
+    position: absolute !important;
+    left: var(--unified-sidebar-start) !important;
+    top: var(--space-2xl, 3rem) !important;
+    width: var(--unified-sidebar-width) !important;
+    margin: 0 !important;
+    padding: 0 var(--unified-padding) !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-lg, 1.5rem) !important;
+}
+
+/* ================================================================ */
+/* 🔍 검색 페이지 통일 레이아웃 시스템                               */
+/* ================================================================ */
+
+/* 검색 페이지 전용 클래스 */
+body.layout-search {
+    margin: 0;
+    padding: 0;
+}
+
+/* 검색 페이지 메인 콘텐츠 컨테이너 리셋 */
+body.layout-search .main-content {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    position: relative !important;
+    min-height: 100vh !important;
+    padding-top: var(--space-2xl, 3rem) !important;
+    padding-bottom: var(--space-2xl, 3rem) !important;
+}
+
+/* 검색 페이지 콘텐츠 영역 - 포스트와 동일한 시작점 */
+body.layout-search .content-area {
+    position: absolute !important;
+    left: var(--unified-content-start) !important;
+    top: var(--space-2xl, 3rem) !important;
+    width: var(--unified-content-width) !important;
+    max-width: var(--unified-content-width) !important;
+    margin: 0 !important;
+    padding: 0 var(--unified-padding) !important;
+    z-index: 1 !important;
+}
+
+/* 검색 페이지 사이드바 - 포스트와 동일한 위치 */
+body.layout-search .sidebar {
+    position: absolute !important;
+    left: var(--unified-sidebar-start) !important;
+    top: var(--space-2xl, 3rem) !important;
+    width: var(--unified-sidebar-width) !important;
+    margin: 0 !important;
+    padding: 0 var(--unified-padding) !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-lg, 1.5rem) !important;
+}
+
+/* ================================================================ */
+/* 📄 전체 게시물 페이지 통일 레이아웃 시스템                         */
+/* ================================================================ */
+
+/* 전체 게시물 페이지 전용 클래스 */
+body.layout-posts {
+    margin: 0;
+    padding: 0;
+}
+
+/* 전체 게시물 페이지 메인 콘텐츠 컨테이너 리셋 */
+body.layout-posts .main-content {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    position: relative !important;
+    min-height: 100vh !important;
+    padding-top: var(--space-2xl, 3rem) !important;
+    padding-bottom: var(--space-2xl, 3rem) !important;
+}
+
+/* 전체 게시물 페이지 콘텐츠 영역 - 포스트와 동일한 시작점 */
+body.layout-posts .content-area {
+    position: absolute !important;
+    left: var(--unified-content-start) !important;
+    top: var(--space-2xl, 3rem) !important;
+    width: var(--unified-content-width) !important;
+    max-width: var(--unified-content-width) !important;
+    margin: 0 !important;
+    padding: 0 var(--unified-padding) !important;
+    z-index: 1 !important;
+}
+
+/* 전체 게시물 페이지 사이드바 - 포스트와 동일한 위치 */
+body.layout-posts .sidebar {
+    position: absolute !important;
+    left: var(--unified-sidebar-start) !important;
+    top: var(--space-2xl, 3rem) !important;
+    width: var(--unified-sidebar-width) !important;
+    margin: 0 !important;
+    padding: 0 var(--unified-padding) !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-lg, 1.5rem) !important;
+}
+
+/* ================================================================ */
+/* 📝 일반 페이지 통일 레이아웃 시스템                               */
+/* ================================================================ */
+
+/* 일반 페이지 전용 클래스 */
+body.layout-page {
+    margin: 0;
+    padding: 0;
+}
+
+/* 일반 페이지 메인 콘텐츠 컨테이너 리셋 */
+body.layout-page .main-content {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    position: relative !important;
+    min-height: 100vh !important;
+    padding-top: var(--space-2xl, 3rem) !important;
+    padding-bottom: var(--space-2xl, 3rem) !important;
+}
+
+/* 일반 페이지 콘텐츠 영역 - 포스트와 동일한 시작점 */
+body.layout-page .content-area {
+    position: absolute !important;
+    left: var(--unified-content-start) !important;
+    top: var(--space-2xl, 3rem) !important;
+    width: var(--unified-content-width) !important;
+    max-width: var(--unified-content-width) !important;
+    margin: 0 !important;
+    padding: 0 var(--unified-padding) !important;
+    z-index: 1 !important;
+}
+
+/* 일반 페이지 사이드바 - 포스트와 동일한 위치 */
+body.layout-page .sidebar {
+    position: absolute !important;
+    left: var(--unified-sidebar-start) !important;
+    top: var(--space-2xl, 3rem) !important;
+    width: var(--unified-sidebar-width) !important;
+    margin: 0 !important;
+    padding: 0 var(--unified-padding) !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-lg, 1.5rem) !important;
+}
+
+/* ================================================================ */
+/* 📱 통일된 반응형 시스템                                          */
+/* ================================================================ */
+
+/* 사이드바 숨김 조건 - 모든 페이지 공통 */
+@media (max-width: 1350px) {
+    body.layout-home .sidebar,
+    body.layout-search .sidebar,
+    body.layout-posts .sidebar,
+    body.layout-page .sidebar {
+        display: none !important;
+    }
+    
+    /* 사이드바 없을 때도 메인 콘텐츠는 여전히 동일한 시작점 유지 */
+    body.layout-home .content-area,
+    body.layout-search .content-area,
+    body.layout-posts .content-area,
+    body.layout-page .content-area {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+}
+
+/* 중간 화면에서 너비 조정 */
+@media (max-width: 1000px) {
+    body.layout-home .content-area,
+    body.layout-search .content-area,
+    body.layout-posts .content-area,
+    body.layout-page .content-area {
+        width: 90% !important;
+        max-width: var(--unified-content-width) !important;
+        min-width: 300px !important;
+    }
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+    body.layout-home .content-area,
+    body.layout-search .content-area,
+    body.layout-posts .content-area,
+    body.layout-page .content-area {
+        width: 95% !important;
+        max-width: 100% !important;
+        padding: 0 var(--space-sm, 0.5rem) !important;
+    }
+}
+
+/* 모바일 */
+@media (max-width: 480px) {
+    body.layout-home .content-area,
+    body.layout-search .content-area,
+    body.layout-posts .content-area,
+    body.layout-page .content-area {
+        width: 98% !important;
+        padding: 0 var(--space-xs, 0.25rem) !important;
+    }
+}
+
+/* ================================================================ */
+/* 🎯 포스트 페이지는 기존 시스템 완전 보존                           */
+/* ================================================================ */
+
+/* 포스트 페이지 (perfect-center-layout)는 기존 CSS 그대로 유지 */
+/* 이 통합 시스템과 충돌하지 않도록 더 높은 우선순위 유지 */
+body.perfect-center-layout .main-content,
+body.perfect-center-layout .content-area,
+body.perfect-center-layout .sidebar {
+    /* 포스트 페이지의 기존 스타일이 우선 적용되도록 함 */
+    /* 별도의 오버라이드 없음 - 기존 !important가 우선순위 가져감 */
+}
+
+/* ================================================================ */
+/* 🎉 통합 레이아웃 시스템 완료                                      */
+/* 모든 페이지의 메인 콘텐츠가 동일한 시작점에서 시작됩니다            */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 🎯 Columnia 개선된 통합 레이아웃 시스템 v0.1.3.1                   */
+/* Footer 문제 해결 및 UI 깨짐 방지                                   */
+/* 2025.05.30 - v0.1.3.1 업데이트                                   */
+/* ================================================================ */
+
+/* CSS 변수로 통일된 레이아웃 기준점 정의 */
+:root {
+    /* 🎯 통일된 레이아웃 변수들 */
+    --unified-content-width: 800px;          /* 메인 콘텐츠 표준 너비 */
+    --unified-sidebar-width: 280px;          /* 사이드바 표준 너비 */
+    --unified-gap: 2rem;                     /* 콘텐츠-사이드바 간격 */
+    --unified-padding: 1rem;                 /* 기본 패딩 */
+    
+    /* 🎯 통일된 시작점 계산 */
+    --unified-content-start: calc(50% - var(--unified-content-width) / 2);
+    --unified-sidebar-start: calc(50% + var(--unified-content-width) / 2 + var(--unified-gap));
+    
+    /* 🎯 반응형 브레이크포인트 */
+    --layout-breakpoint-sidebar: 1350px;    /* 사이드바 숨김 기준점 */
+    --layout-breakpoint-tablet: 1000px;     /* 태블릿 뷰 */
+    --layout-breakpoint-mobile: 768px;      /* 모바일 뷰 */
+}
+
+/* ================================================================ */
+/* 🏠 홈페이지 개선된 레이아웃 시스템                                 */
+/* ================================================================ */
+
+/* 홈페이지 전용 클래스 */
+body.layout-home {
+    margin: 0;
+    padding: 0;
+}
+
+/* 홈페이지 메인 콘텐츠 컨테이너 - 부드러운 접근 */
+body.layout-home .main-content {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: calc(100vh - 200px); /* Footer 공간 확보 */
+    padding-top: var(--space-2xl, 3rem);
+    padding-bottom: var(--space-2xl, 3rem);
+}
+
+/* 홈페이지 콘텐츠 영역 - 포스트와 동일한 시작점 */
+body.layout-home .content-area {
+    position: absolute;
+    left: var(--unified-content-start);
+    top: var(--space-2xl, 3rem);
+    width: var(--unified-content-width);
+    max-width: var(--unified-content-width);
+    margin: 0;
+    padding: 0 var(--unified-padding);
+    z-index: 1;
+    /* 기존 flex/grid 속성 보존 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg, 1.5rem);
+}
+
+/* 홈페이지 사이드바 - 포스트와 동일한 위치 */
+body.layout-home .sidebar {
+    position: absolute;
+    left: var(--unified-sidebar-start);
+    top: var(--space-2xl, 3rem);
+    width: var(--unified-sidebar-width);
+    margin: 0;
+    padding: 0 var(--unified-padding);
+    z-index: 2;
+    /* 기존 사이드바 속성 보존 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg, 1.5rem);
+}
+
+/* ================================================================ */
+/* 🔍 검색 페이지 개선된 레이아웃 시스템                             */
+/* ================================================================ */
+
+/* 검색 페이지 전용 클래스 */
+body.layout-search {
+    margin: 0;
+    padding: 0;
+}
+
+/* 검색 페이지 메인 콘텐츠 컨테이너 - 부드러운 접근 */
+body.layout-search .main-content {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: calc(100vh - 200px); /* Footer 공간 확보 */
+    padding-top: var(--space-2xl, 3rem);
+    padding-bottom: var(--space-2xl, 3rem);
+}
+
+/* 검색 페이지 콘텐츠 영역 - 포스트와 동일한 시작점 */
+body.layout-search .content-area {
+    position: absolute;
+    left: var(--unified-content-start);
+    top: var(--space-2xl, 3rem);
+    width: var(--unified-content-width);
+    max-width: var(--unified-content-width);
+    margin: 0;
+    padding: 0 var(--unified-padding);
+    z-index: 1;
+    /* 기존 속성 보존 */
+    display: block;
+}
+
+/* 검색 페이지 사이드바 - 포스트와 동일한 위치 */
+body.layout-search .sidebar {
+    position: absolute;
+    left: var(--unified-sidebar-start);
+    top: var(--space-2xl, 3rem);
+    width: var(--unified-sidebar-width);
+    margin: 0;
+    padding: 0 var(--unified-padding);
+    z-index: 2;
+    /* 기존 속성 보존 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg, 1.5rem);
+}
+
+/* ================================================================ */
+/* 📄 전체 게시물 페이지 개선된 레이아웃 시스템 (UI 깨짐 방지)         */
+/* ================================================================ */
+
+/* 전체 게시물 페이지 전용 클래스 */
+body.layout-posts {
+    margin: 0;
+    padding: 0;
+}
+
+/* 전체 게시물 페이지 - 기존 스타일 최대한 보존하면서 위치만 조정 */
+body.layout-posts .main-content {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: var(--space-2xl, 3rem) 0;
+    /* display는 기존 그대로 유지 */
+    position: relative;
+    min-height: calc(100vh - 200px);
+}
+
+/* 전체 게시물 콘텐츠 영역 - 기존 구조 유지하면서 위치만 조정 */
+body.layout-posts .content-area {
+    /* 위치 조정 */
+    margin-left: var(--unified-content-start);
+    width: var(--unified-content-width);
+    max-width: var(--unified-content-width);
+    padding: 0 var(--unified-padding);
+    /* 기존 스타일 완전 보존 - !important 사용 안함 */
+}
+
+/* 전체 게시물 사이드바 - 절대 위치로 배치 */
+body.layout-posts .sidebar {
+    position: absolute;
+    left: var(--unified-sidebar-start);
+    top: var(--space-2xl, 3rem);
+    width: var(--unified-sidebar-width);
+    margin: 0;
+    padding: 0 var(--unified-padding);
+    z-index: 2;
+    /* 기존 속성 보존 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg, 1.5rem);
+}
+
+/* ================================================================ */
+/* 📝 일반 페이지 개선된 레이아웃 시스템 (About 페이지 UI 깨짐 방지)  */
+/* ================================================================ */
+
+/* 일반 페이지 전용 클래스 */
+body.layout-page {
+    margin: 0;
+    padding: 0;
+}
+
+/* 일반 페이지 메인 콘텐츠 - 기존 page-layout-container 구조 활용 */
+body.layout-page .main-content {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: var(--space-2xl, 3rem) 0;
+    position: relative;
+    min-height: calc(100vh - 200px);
+}
+
+/* page-layout-container가 있다면 그것을 활용 */
+body.layout-page .page-layout-container {
+    display: flex;
+    gap: var(--unified-gap);
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* 일반 페이지 콘텐츠 영역 - 부드러운 위치 조정 */
+body.layout-page .content-area {
+    margin-left: var(--unified-content-start);
+    width: var(--unified-content-width);
+    max-width: var(--unified-content-width);
+    padding: 0 var(--unified-padding);
+    /* 기존 스타일 보존 */
+    flex: none;
+}
+
+/* 일반 페이지 사이드바 - 절대 위치로 배치 */
+body.layout-page .sidebar {
+    position: absolute;
+    left: var(--unified-sidebar-start);
+    top: 0;
+    width: var(--unified-sidebar-width);
+    margin: 0;
+    padding: 0 var(--unified-padding);
+    z-index: 2;
+    /* 기존 속성 보존 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg, 1.5rem);
+}
+
+/* ================================================================ */
+/* 🏷️ 카테고리 페이지 완전 수정                                      */
+/* ================================================================ */
+
+/* 카테고리 페이지 전용 클래스 */
+body.layout-category {
+    margin: 0;
+    padding: 0;
+}
+
+/* 카테고리 페이지 메인 컨테이너 리셋 */
+body.layout-category .main-content {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: calc(100vh - 200px);
+    padding-top: var(--space-2xl, 3rem);
+    padding-bottom: var(--space-2xl, 3rem);
+}
+
+/* 카테고리 메인 컨테이너 수정 */
+body.layout-category .category-main {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    /* flex 제거하고 절대 위치 시스템으로 변경 */
+}
+
+/* 카테고리 콘텐츠 - 포스트와 동일한 시작점 */
+body.layout-category .category-content {
+    position: absolute;
+    left: var(--unified-content-start);
+    top: 0;
+    width: var(--unified-content-width);
+    max-width: var(--unified-content-width);
+    padding: 0 var(--unified-padding);
+    z-index: 1;
+}
+
+/* 카테고리 사이드바 - 포스트와 동일한 위치 */
+body.layout-category .category-sidebar {
+    position: absolute;
+    left: var(--unified-sidebar-start);
+    top: 0;
+    width: var(--unified-sidebar-width);
+    padding: 0 var(--unified-padding);
+    z-index: 2;
+}
+
+/* ================================================================ */
+/* 🦶 Footer 문제 해결                                              */
+/* ================================================================ */
+
+/* 모든 통합 레이아웃 페이지에서 Footer 위치 보정 */
+body.layout-home .footer,
+body.layout-search .footer,
+body.layout-posts .footer,
+body.layout-page .footer,
+body.layout-category .footer {
+    position: relative;
+    margin-top: auto;
+    clear: both;
+    z-index: 10;
+}
+
+/* Footer가 콘텐츠 아래에 올바르게 위치하도록 */
+body.layout-home,
+body.layout-search,
+body.layout-posts,
+body.layout-page,
+body.layout-category {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body.layout-home .main-content,
+body.layout-search .main-content,
+body.layout-posts .main-content,
+body.layout-page .main-content,
+body.layout-category .main-content {
+    flex: 1;
+}
+
+/* ================================================================ */
+/* 📱 통일된 반응형 시스템 개선                                      */
+/* ================================================================ */
+
+/* 사이드바 숨김 조건 - 모든 페이지 공통 */
+@media (max-width: 1350px) {
+    body.layout-home .sidebar,
+    body.layout-search .sidebar,
+    body.layout-posts .sidebar,
+    body.layout-page .sidebar,
+    body.layout-category .category-sidebar {
+        display: none;
+    }
+    
+    /* 사이드바 없을 때 메인 콘텐츠 중앙 정렬 */
+    body.layout-home .content-area,
+    body.layout-search .content-area {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    /* 전체 게시물과 일반 페이지는 margin 방식으로 */
+    body.layout-posts .content-area,
+    body.layout-page .content-area {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* 카테고리 페이지 */
+    body.layout-category .category-content {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* 중간 화면에서 너비 조정 */
+@media (max-width: 1000px) {
+    body.layout-home .content-area,
+    body.layout-search .content-area,
+    body.layout-posts .content-area,
+    body.layout-page .content-area,
+    body.layout-category .category-content {
+        width: 90%;
+        max-width: var(--unified-content-width);
+        min-width: 300px;
+    }
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+    body.layout-home .content-area,
+    body.layout-search .content-area,
+    body.layout-posts .content-area,
+    body.layout-page .content-area,
+    body.layout-category .category-content {
+        width: 95%;
+        max-width: 100%;
+        padding: 0 var(--space-sm, 0.5rem);
+    }
+}
+
+/* 모바일 */
+@media (max-width: 480px) {
+    body.layout-home .content-area,
+    body.layout-search .content-area,
+    body.layout-posts .content-area,
+    body.layout-page .content-area,
+    body.layout-category .category-content {
+        width: 98%;
+        padding: 0 var(--space-xs, 0.25rem);
+    }
+}
+
+/* ================================================================ */
+/* 🎯 포스트 페이지는 기존 시스템 완전 보존 + Footer 수정             */
+/* ================================================================ */
+
+/* 포스트 페이지 Footer 문제 해결 */
+body.perfect-center-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body.perfect-center-layout .main-content {
+    flex: 1;
+}
+
+body.perfect-center-layout .footer {
+    position: relative;
+    margin-top: auto;
+    z-index: 10;
+}
+
+/* ================================================================ */
+/* 🎉 개선된 통합 레이아웃 시스템 완료 v0.1.3.1                      */
+/* Footer 문제 해결, UI 깨짐 방지, 카테고리 페이지 정렬 완료           */
+/* ================================================================ */

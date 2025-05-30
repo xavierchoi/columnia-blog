@@ -1,0 +1,337 @@
+---
+layout: page
+title: About Columnia
+permalink: /about/
+---
+
+<div class="about-page">
+    <div class="about-hero">
+        <h1 class="about-title">Columnia에 오신 것을 환영합니다</h1>
+        <p class="about-subtitle">현대적이고 빠른 Jekyll 블로그 테마</p>
+    </div>
+    
+    <div class="about-content">
+        <section class="about-section">
+            <h2>🚀 주요 특징</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>반응형 디자인</h3>
+                    <p>모든 기기에서 완벽한 경험을 제공합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3>다크/라이트 모드</h3>
+                    <p>사용자 선호에 따른 테마 변경이 가능합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>다국어 지원</h3>
+                    <p>한국어, 영어, 일본어 지원을 준비하고 있습니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>SEO 최적화</h3>
+                    <p>검색 엔진 최적화가 완벽하게 적용되어 있습니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>빠른 성능</h3>
+                    <p>정적 사이트의 뛰어난 성능을 자랑합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>아름다운 디자인</h3>
+                    <p>Columnia 전용 컬러 팔레트와 모던한 UI</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section">
+            <h2>🛠️ 기술 스택</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <strong>Jekyll</strong>
+                    <span>정적 사이트 생성기</span>
+                </div>
+                <div class="tech-item">
+                    <strong>Liquid</strong>
+                    <span>템플릿 언어</span>
+                </div>
+                <div class="tech-item">
+                    <strong>SCSS</strong>
+                    <span>CSS 전처리기</span>
+                </div>
+                <div class="tech-item">
+                    <strong>JavaScript</strong>
+                    <span>인터랙티브 기능</span>
+                </div>
+                <div class="tech-item">
+                    <strong>GitHub Pages</strong>
+                    <span>자동 배포</span>
+                </div>
+                <div class="tech-item">
+                    <strong>Pretendard</strong>
+                    <span>한글 최적화 폰트</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section">
+            <h2>📊 버전 정보</h2>
+            <div class="version-info">
+                <div class="version-current">
+                    <h3>현재 버전: v0.1.3</h3>
+                    <p>전체 사이트 레이아웃 통일성 완성</p>
+                    <ul>
+                        <li>완벽한 중앙 정렬 시스템</li>
+                        <li>통합 레이아웃 시스템</li>
+                        <li>반응형 디자인 최적화</li>
+                        <li>Columnia 컬러 팔레트 적용</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section">
+            <h2>📬 연락처</h2>
+            <div class="contact-info">
+                <p>궁금한 점이 있으시면 언제든 연락주세요.</p>
+                <div class="contact-links">
+                    <a href="mailto:me@xavier.kr" class="contact-link email">
+                        <span class="contact-icon">📧</span>
+                        <span>me@xavier.kr</span>
+                    </a>
+                    <a href="https://github.com/columnia" target="_blank" rel="noopener noreferrer" class="contact-link github">
+                        <span class="contact-icon">💻</span>
+                        <span>@columnia</span>
+                    </a>
+                    <a href="https://x.com/whereisxavier" target="_blank" rel="noopener noreferrer" class="contact-link twitter">
+                        <span class="contact-icon">🐦</span>
+                        <span>@whereisxavier</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<style>
+/* About 페이지 전용 스타일 */
+.about-page {
+    max-width: 100%;
+    line-height: 1.6;
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: var(--space-2xl, 3rem);
+    padding: var(--space-2xl, 3rem);
+    background: linear-gradient(135deg, var(--accent-primary, #0064FF), var(--accent-secondary, #06b6d4));
+    border-radius: var(--radius-xl, 1rem);
+    color: white;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md, 1rem);
+    font-weight: 800;
+}
+
+.about-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.about-section {
+    margin-bottom: var(--space-2xl, 3rem);
+}
+
+.about-section h2 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg, 1.5rem);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg, 1.5rem);
+    margin-bottom: var(--space-xl, 2rem);
+}
+
+.feature-card {
+    background: var(--bg-secondary, #f8fafc);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-lg, 0.5rem);
+    padding: var(--space-lg, 1.5rem);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.1));
+    border-color: var(--accent-primary, #0064FF);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-md, 1rem);
+}
+
+.feature-card h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm, 0.75rem);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Tech Stack */
+.tech-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md, 1rem);
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs, 0.25rem);
+    padding: var(--space-md, 1rem);
+    background: var(--bg-secondary, #f8fafc);
+    border-radius: var(--radius-md, 0.375rem);
+    border-left: 4px solid var(--accent-primary, #0064FF);
+}
+
+.tech-item strong {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.tech-item span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Version Info */
+.version-info {
+    background: var(--bg-accent, rgba(0, 100, 255, 0.05));
+    border: 1px solid var(--accent-primary, #0064FF);
+    border-radius: var(--radius-lg, 0.5rem);
+    padding: var(--space-lg, 1.5rem);
+}
+
+.version-current h3 {
+    color: var(--accent-primary, #0064FF);
+    margin-bottom: var(--space-sm, 0.75rem);
+    font-size: 1.25rem;
+}
+
+.version-current p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md, 1rem);
+}
+
+.version-current ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.version-current li {
+    padding: var(--space-xs, 0.25rem) 0;
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: var(--space-lg, 1.5rem);
+}
+
+.version-current li::before {
+    content: "✅";
+    position: absolute;
+    left: 0;
+    top: var(--space-xs, 0.25rem);
+}
+
+/* Contact Info */
+.contact-info {
+    text-align: center;
+}
+
+.contact-info p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg, 1.5rem);
+    font-size: 1.1rem;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg, 1.5rem);
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm, 0.75rem);
+    padding: var(--space-md, 1rem) var(--space-lg, 1.5rem);
+    background: var(--bg-secondary, #f8fafc);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-lg, 0.5rem);
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+    background: var(--accent-primary, #0064FF);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md, 0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.contact-icon {
+    font-size: 1.25rem;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 2rem;
+    }
+    
+    .about-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tech-stack {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-link {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+</style>
