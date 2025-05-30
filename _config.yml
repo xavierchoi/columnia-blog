@@ -1,0 +1,94 @@
+# 사이트 기본 정보
+title: "Columnia"
+email: me@xavier.kr
+description: >-
+  A fast and easy markdown Jekyll blog theme with multilingual support.
+
+# GitHub Pages 배포 설정 (중요: 배포 시 반드시 수정 필요)
+# 로컬 개발용
+# baseurl: ""
+# url: "http://localhost:4000"
+
+# GitHub Pages 배포용 (배포 시 아래 주석을 해제하고 위의 로컬 설정은 주석 처리)
+baseurl: "/columnia-blog"  # 저장소 이름으로 변경
+url: "https://xavierchoi.github.io"  # GitHub 사용자명으로 변경
+
+# 소셜 미디어
+twitter_username: whereisxavier
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+safe: false  # GitHub Actions에서는 false, GitHub Pages 기본 빌드에서는 true
+
+# Jekyll 플러그인 (GitHub Pages 호환)
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  # jekyll-paginate-v2는 GitHub Pages에서 지원되지 않으므로 커스텀 플러그인 사용
+
+# 기본 레이아웃 설정
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# 시간 및 지역 설정
+future: true  # 미래 날짜 포스트 허용
+timezone: Asia/Seoul
+
+# 퍼포먼스 설정
+incremental: false  # GitHub Actions에서는 false 권장
+show_drafts: false
+
+# Sass/SCSS 설정
+sass:
+  sass_dir: _sass
+  style: compressed  # 프로덕션에서 CSS 압축
+
+# 보안 설정 (GitHub Pages에서 자동 적용)
+webrick:
+  headers:
+    X-Frame-Options: DENY
+    X-Content-Type-Options: nosniff
+    X-XSS-Protection: "1; mode=block"
+
+# SEO 및 소셜 미디어 설정
+twitter:
+  username: whereisxavier  # Twitter 카드용
+  card: summary_large_image
+
+# 커스텀 페이지네이션 설정 (커스텀 플러그인 사용)
+paginate: 10  # 페이지당 포스트 수
+
+# 빌드에서 제외할 파일들
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - "*.gem"
+  - "*.gemspec"
+  - tools/
+  - README.md
+  - CHANGELOG.md
+  - LICENSE
+  - Rakefile
+  - .github/  # GitHub Actions 워크플로우 파일 제외
+
+# GitHub Pages 환경 감지
+github: [metadata]  # GitHub 메타데이터 플러그인

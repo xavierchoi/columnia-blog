@@ -1,0 +1,70 @@
+# Jekyll 빌드 파일들
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+
+# Ruby Bundler
+vendor
+.bundle/
+Gemfile.lock  # GitHub Actions에서 자동 생성되므로 제외
+
+# Node.js (필요시)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 운영체제 생성 파일들
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE/에디터 설정 파일들
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+
+# 로그 파일들
+*.log
+
+# 백업 및 임시 파일들
+*.bak
+*.tmp
+*.temp
+*.cache
+
+# 환경 변수 파일 (보안상 중요)
+.env
+.env.local
+.env.production
+.env.development
+
+# 테스트 결과
+.nyc_output/
+coverage/
+
+# 개발 중 생성되는 임시 파일들
+.sass-cache/
+.jekyll-cache/
+
+# GitHub Actions 관련 (로컬에서 생성될 수 있는 파일들)
+.github/workflows/*.log
+
+# 압축 파일들
+*.zip
+*.tar.gz
+*.rar
+
+# 이미지 원본 파일들 (용량이 큰 경우)
+# *.psd
+# *.ai
+# *.sketch

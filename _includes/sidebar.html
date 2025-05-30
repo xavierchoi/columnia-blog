@@ -1,0 +1,56 @@
+<aside class="sidebar slide-in">
+    <!-- Categories -->
+    <div class="sidebar-section">
+        <h3 class="sidebar-title">카테고리</h3>
+        <div class="categories-list">
+            {% assign categories = site.categories | sort %}
+            {% for category in categories %}
+            <div class="category-item">
+                <a href="/categories/{{ category[0] | slugify }}" class="category-link">{{ category[0] }}</a>
+                <span class="category-count">{{ category[1].size }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Popular Tags -->
+    <div class="sidebar-section">
+        <h3 class="sidebar-title">인기 태그</h3>
+        <div class="tags-list">
+            {% assign tags = site.tags | sort: 1 | reverse %}
+            {% for tag in tags limit: 10 %}
+            <div class="tag-item">
+                <a href="/tags/{{ tag[0] | slugify }}" class="tag-link">{{ tag[0] }}</a>
+                <span class="tag-count">{{ tag[1].size }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Recent Posts -->
+    <div class="sidebar-section">
+        <h3 class="sidebar-title">최근 글</h3>
+        <div class="recent-posts">
+            {% for post in site.posts limit: 5 %}
+            <div class="recent-post">
+                <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+                <div class="recent-post-meta">
+                    <span>⏰ {{ post.date | date: "%m월 %d일" }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Newsletter -->
+    <div class="sidebar-section">
+        <h3 class="sidebar-title">뉴스레터 구독</h3>
+        <p class="newsletter-description">
+            새로운 포스트를 이메일로 받아보세요.
+        </p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="이메일 주소" class="newsletter-input">
+            <button class="newsletter-button">구독하기</button>
+        </div>
+    </div>
+</aside>

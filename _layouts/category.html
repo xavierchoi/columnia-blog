@@ -1,0 +1,178 @@
+---
+layout: default
+---
+
+<div class="category-main">
+    <div class="category-content">
+        <!-- 카테고리 헤더 -->
+        <header class="category-header">
+            <h1 class="category-title">{{ page.category }}</h1>
+            <p class="category-description">
+                '{{ page.category }}' 카테고리의 모든 글을 확인하세요.
+            </p>
+            <div class="category-stats">
+                <div class="stat-item">
+                    <span class="stat-number">{{ site.categories[page.category].size }}</span>
+                    <span class="stat-label">포스트</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 브레드크럼 -->
+        <nav class="breadcrumbs" aria-label="breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="{{ '/' | relative_url }}" class="breadcrumb-link">홈</a>
+            </div>
+            <span class="breadcrumb-separator">›</span>
+            <div class="breadcrumb-item">
+                <a href="{{ '/categories' | relative_url }}" class="breadcrumb-link">카테고리</a>
+            </div>
+            <span class="breadcrumb-separator">›</span>
+            <div class="breadcrumb-item">
+                <span class="breadcrumb-current">{{ page.category }}</span>
+            </div>
+        </nav>
+
+        <!-- 포스트 목록 -->
+        <div class="category-posts-list">
+            {% assign category_posts = site.categories[page.category] | sort: 'date' | reverse %}
+            {% for post in category_posts %}
+            <article class="category-post-item">
+                <div class="post-meta">
+                    <span class="post-date">{{ post.date | date: "%Y년 %m월 %d일" }}</span>
+                    <span class="reading-time">
+                        📖 {{ post.content | number_of_words | divided_by: 200 | plus: 1 }}분 읽기
+                    </span>
+                    <span class="post-views">👁️ <span class="post-views">0</span> views</span>
+                </div>
+                
+                <h2 class="post-title">
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h2>
+                
+                <p class="post-excerpt">
+                    {{ post.excerpt | strip_html | truncatewords: 30 }}
+                </p>
+                
+                {% if post.tags.size > 0 %}
+                <div class="post-tags">
+                    {% for tag in post.tags %}
+                    <span class="post-tag tag-clickable" data-tag="{{ tag }}">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <div class="post-footer">
+                    <a href="{{ post.url | relative_url }}" class="read-more">
+                        자세히 읽기 <span class="btn-arrow">→</span>
+                    </a>
+                    
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn" onclick="sharePost('{{ post.title }}', '{{ site.url }}{{ post.url }}'); return false;" title="공유">
+                            📤
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        
+        {% if category_posts.size == 0 %}
+        <div class="no-posts">
+            <div class="no-posts-content">
+                <div class="no-posts-icon">📝</div>
+                <h3>아직 포스트가 없습니다</h3>
+                <p>이 카테고리에는 아직 작성된 글이 없습니다.</p>
+                <a href="{{ '/' | relative_url }}" class="btn-primary">홈으로 돌아가기</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- 사이드바 -->
+    <aside class="category-sidebar">
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">다른 카테고리</h3>
+            <div class="categories-list">
+                {% for category in site.categories %}
+                <div class="category-item">
+                    <a href="{{ '/categories/' | append: category[0] | relative_url }}" 
+                       class="category-link {% if category[0] == page.category %}active{% endif %}">
+                        {{ category[0] }}
+                    </a>
+                    <span class="category-count">{{ category[1].size }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- 뉴스레터 구독 (선택사항) -->
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">뉴스레터 구독</h3>
+            <p class="newsletter-description">새로운 글을 이메일로 받아보세요.</p>
+            <form class="newsletter-form" action="#" method="post">
+                <input type="email" class="newsletter-input" placeholder="이메일 주소" required>
+                <button type="submit" class="newsletter-button">구독하기</button>
+            </form>
+        </div>
+    </aside>
+</div>
+
+<style>
+/* 카테고리별 액티브 상태 */
+.category-link.active {
+    color: var(--accent-primary) !important;
+    font-weight: 600;
+    background: var(--bg-accent);
+}
+
+/* 포스트 없음 상태 */
+.no-posts {
+    text-align: center;
+    padding: var(--space-2xl);
+    margin: var(--space-xl) 0;
+}
+
+.no-posts-content {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    border: 1px solid var(--border-color);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.no-posts-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-md);
+}
+
+.no-posts-content h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    font-size: 1.25rem;
+}
+
+.no-posts-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-inverse);
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+</style>

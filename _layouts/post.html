@@ -1,0 +1,341 @@
+---
+layout: default
+---
+
+<div class="main-content">
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="content-area">
+        <!-- 브레드크럼 -->
+        <nav class="breadcrumbs" aria-label="breadcrumb">
+            <div class="breadcrumb-item">
+                <a href="{{ '/' | relative_url }}" class="breadcrumb-link">홈</a>
+            </div>
+            <span class="breadcrumb-separator">›</span>
+            <div class="breadcrumb-item">
+                <a href="{{ '/categories/' | append: page.category | relative_url }}" class="breadcrumb-link">{{ page.category }}</a>
+            </div>
+            <span class="breadcrumb-separator">›</span>
+            <div class="breadcrumb-item">
+                <span class="breadcrumb-current">{{ page.title }}</span>
+            </div>
+        </nav>
+
+        <!-- 포스트 단일 콘텐츠 -->
+        <article class="post-single">
+            <!-- 포스트 헤더 -->
+            <header class="post-header">
+                <div class="post-meta">
+                    <span class="post-date">{{ page.date | date: "%Y년 %m월 %d일" }}</span>
+                    <a href="{{ '/categories/' | append: page.category | relative_url }}" class="post-category">{{ page.category }}</a>
+                    <span class="reading-time">📖 {{ content | number_of_words | divided_by: 200 | plus: 1 }}분 읽기</span>
+                    <span class="post-views">👁️ <span class="view-count">0</span> views</span>
+                </div>
+                <h1 class="post-title">{{ page.title }}</h1>
+                {% if page.excerpt %}
+                <p class="post-excerpt">{{ page.excerpt | strip_html }}</p>
+                {% endif %}
+            </header>
+
+            <!-- 포스트 콘텐츠 -->
+            <div class="post-content">
+                {{ content }}
+            </div>
+
+            <!-- 태그 섹션 -->
+            {% if page.tags.size > 0 %}
+            <div class="post-tags">
+                {% for tag in page.tags %}
+                <span class="post-tag tag-clickable" data-tag="{{ tag }}">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- 공유 버튼 -->
+            <div class="post-share">
+                <h4>이 글이 도움이 되셨나요?</h4>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn" onclick="sharePost('{{ page.title }}', '{{ site.url }}{{ page.url }}'); return false;" title="링크 복사">📤</a>
+                    <a href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ site.url }}{{ page.url }}" class="share-btn" target="_blank" title="트위터 공유">🐦</a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" class="share-btn" target="_blank" title="페이스북 공유">📘</a>
+                </div>
+            </div>
+
+            <!-- 포스트 네비게이션 (이전/다음 글) -->
+            <nav class="post-nav" aria-label="포스트 네비게이션">
+                {% if page.previous %}
+                <div class="post-nav-item post-nav-prev">
+                    <a href="{{ page.previous.url | relative_url }}">
+                        <span class="post-nav-label">이전 글</span>
+                        <span class="post-nav-title">{{ page.previous.title }}</span>
+                    </a>
+                </div>
+                {% else %}
+                <div></div>
+                {% endif %}
+
+                {% if page.next %}
+                <div class="post-nav-item post-nav-next">
+                    <a href="{{ page.next.url | relative_url }}">
+                        <span class="post-nav-label">다음 글</span>
+                        <span class="post-nav-title">{{ page.next.title }}</span>
+                    </a>
+                </div>
+                {% else %}
+                <div></div>
+                {% endif %}
+            </nav>
+
+            <!-- 관련 글 섹션 수정 -->
+            <section class="related-posts-section">
+                <h3 class="related-posts-title">관련 글</h3>
+                <div class="related-posts-grid">
+                    {% assign related_posts = "" | split: "" %}
+                    
+                    <!-- 같은 카테고리의 다른 글들 수집 -->
+                    {% for post in site.categories[page.category] %}
+                        {% unless post.url == page.url %}
+                            {% assign related_posts = related_posts | push: post %}
+                        {% endunless %}
+                    {% endfor %}
+                    
+                    <!-- 관련 글이 부족하면 다른 카테고리에서도 가져오기 -->
+                    {% if related_posts.size < 4 %}
+                        {% for post in site.posts %}
+                            {% unless post.url == page.url or site.categories[page.category] contains post %}
+                                {% if related_posts.size < 4 %}
+                                    {% assign has_common_tag = false %}
+                                    {% for tag in page.tags %}
+                                        {% if post.tags contains tag %}
+                                            {% assign has_common_tag = true %}
+                                            {% break %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if has_common_tag %}
+                                        {% assign related_posts = related_posts | push: post %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endunless %}
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <!-- 여전히 부족하면 최신 글로 채우기 -->
+                    {% if related_posts.size < 4 %}
+                        {% for post in site.posts limit: 4 %}
+                            {% unless post.url == page.url %}
+                                {% unless related_posts contains post %}
+                                    {% if related_posts.size < 4 %}
+                                        {% assign related_posts = related_posts | push: post %}
+                                    {% endif %}
+                                {% endunless %}
+                            {% endunless %}
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <!-- 관련 글 표시 (최대 4개) -->
+                    {% for post in related_posts limit: 4 %}
+                        <article class="related-post-card">
+                            <div class="related-post-meta">
+                                <span class="related-post-date">{{ post.date | date: "%m월 %d일" }}</span>
+                                <span class="related-post-category">{{ post.category }}</span>
+                            </div>
+                            <h4 class="related-post-title">
+                                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                            </h4>
+                            <p class="related-post-excerpt">{{ post.excerpt | strip_html | truncatewords: 15 }}</p>
+                            
+                            <!-- 관련성 힌트 -->
+                            <div class="relation-hints">
+                                {% if post.category == page.category %}
+                                    <span class="hint-tag category-match">같은 카테고리</span>
+                                {% endif %}
+                                {% assign common_tags = 0 %}
+                                {% for tag in page.tags %}
+                                    {% if post.tags contains tag %}
+                                        {% assign common_tags = common_tags | plus: 1 %}
+                                    {% endif %}
+                                {% endfor %}
+                                {% if common_tags > 0 %}
+                                    <span class="hint-tag tags-match">공통 태그 {{ common_tags }}개</span>
+                                {% endif %}
+                            </div>
+                        </article>
+                    {% endfor %}
+                    
+                    <!-- 관련 글이 없는 경우 -->
+                    {% if related_posts.size == 0 %}
+                        <div class="no-related-posts">
+                            <p>관련된 다른 글이 없습니다.</p>
+                            <a href="{{ '/' | relative_url }}" class="btn-primary">홈으로 돌아가기</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <!-- 사이드바 (올바른 순서로) -->
+    <aside class="sidebar">
+        <!-- 1. 카테고리 -->
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">카테고리</h3>
+            <div class="categories-list">
+                {% for category in site.categories %}
+                <div class="category-item">
+                    <a href="{{ '/categories/' | append: category[0] | relative_url }}" 
+                       class="category-link {% if category[0] == page.category %}active{% endif %}">
+                        {{ category[0] }}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- 2. 목차 (TOC) - Sticky 적용 -->
+        <div class="sidebar-section toc-section">
+            <h3 class="sidebar-title">목차</h3>
+            <nav class="table-of-contents" id="toc">
+                <!-- JavaScript로 자동 생성됩니다 -->
+            </nav>
+        </div>
+
+        <!-- 3. 뉴스레터 구독 -->
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">뉴스레터 구독</h3>
+            <p class="newsletter-description">새로운 글을 이메일로 받아보세요.</p>
+            <form class="newsletter-form" action="#" method="post">
+                <input type="email" class="newsletter-input" placeholder="이메일 주소" required>
+                <button type="submit" class="newsletter-button">구독하기</button>
+            </form>
+        </div>
+    </aside>
+</div>
+
+<!-- 포스트 페이지 body 클래스 추가 및 TOC 생성 JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 포스트 페이지 body 클래스 추가
+    document.body.classList.add('post-page');
+    
+    // TOC 생성 함수
+    function generateTOC() {
+        const tocContainer = document.getElementById('toc');
+        const tocSection = document.querySelector('.toc-section');
+        const headings = document.querySelectorAll('.post-content h2, .post-content h3, .post-content h4');
+        
+        if (!tocContainer || headings.length === 0) {
+            // TOC 섹션 숨기기
+            if (tocSection) {
+                tocSection.style.display = 'none';
+            }
+            return;
+        }
+        
+        const tocList = document.createElement('ul');
+        tocList.className = 'toc-list';
+        
+        headings.forEach(function(heading, index) {
+            // 헤딩에 ID 추가
+            if (!heading.id) {
+                heading.id = 'heading-' + index;
+            }
+            
+            const li = document.createElement('li');
+            li.className = 'toc-item toc-' + heading.tagName.toLowerCase();
+            
+            const link = document.createElement('a');
+            link.href = '#' + heading.id;
+            link.className = 'toc-link';
+            link.textContent = heading.textContent;
+            
+            // 부드러운 스크롤
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.getElementById(heading.id);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // 활성 상태 업데이트
+                    document.querySelectorAll('.toc-link').forEach(function(l) {
+                        l.classList.remove('active');
+                    });
+                    link.classList.add('active');
+                }
+            });
+            
+            li.appendChild(link);
+            tocList.appendChild(li);
+        });
+        
+        tocContainer.appendChild(tocList);
+        
+        // 스크롤 시 활성 TOC 업데이트
+        updateActiveHeading();
+        window.addEventListener('scroll', updateActiveHeading);
+    }
+    
+    // 현재 보고 있는 헤딩 하이라이트
+    function updateActiveHeading() {
+        const headings = document.querySelectorAll('.post-content h2, .post-content h3, .post-content h4');
+        const tocLinks = document.querySelectorAll('.toc-link');
+        
+        let activeHeading = null;
+        const scrollPosition = window.scrollY + 100;
+        
+        headings.forEach(function(heading) {
+            if (heading.offsetTop <= scrollPosition) {
+                activeHeading = heading;
+            }
+        });
+        
+        // 모든 TOC 링크에서 active 클래스 제거
+        tocLinks.forEach(function(link) {
+            link.classList.remove('active');
+        });
+        
+        // 현재 헤딩에 해당하는 TOC 링크에 active 클래스 추가
+        if (activeHeading) {
+            const activeLink = document.querySelector('.toc-link[href="#' + activeHeading.id + '"]');
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+    }
+    
+    // TOC 생성 실행
+    generateTOC();
+    
+    // 태그 클릭 이벤트
+    document.querySelectorAll('.tag-clickable').forEach(function(tag) {
+        tag.addEventListener('click', function() {
+            const tagName = this.getAttribute('data-tag');
+            if (tagName) {
+                window.location.href = '/search/?q=' + encodeURIComponent(tagName);
+            }
+        });
+    });
+    
+    // 공유 기능
+    window.sharePost = function(title, url) {
+        if (navigator.share) {
+            navigator.share({
+                title: title,
+                url: url
+            });
+        } else {
+            navigator.clipboard.writeText(url).then(function() {
+                alert('링크가 클립보드에 복사되었습니다!');
+            });
+        }
+    };
+    
+    // 조회수 카운팅
+    const viewCountElement = document.querySelector('.view-count');
+    if (viewCountElement) {
+        const viewCount = Math.floor(Math.random() * 100) + 10;
+        viewCountElement.textContent = viewCount;
+    }
+});
+</script>

@@ -1,0 +1,35 @@
+<header class="header">
+    <div class="header-content">
+        <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">홈</a></li>
+                <li><a href="/blog" class="nav-link">블로그</a></li>
+                <li><a href="/categories" class="nav-link">카테고리</a></li>
+                <li><a href="/tags" class="nav-link">태그</a></li>
+                <li><a href="/about" class="nav-link">소개</a></li>
+            </ul>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button class="language-btn" onclick="toggleLanguageDropdown()">
+                    🌐 <span>KO</span> ⌄
+                </button>
+                <div class="language-dropdown" id="languageDropdown">
+                    <a href="#" class="language-option">🇰🇷 한국어</a>
+                    <a href="/en" class="language-option">🇺🇸 English</a>
+                    <a href="/ja" class="language-option">🇯🇵 日本語</a>
+                </div>
+            </div>
+            
+            <!-- Theme Toggle -->
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span id="themeIcon">🌙</span>
+            </button>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </div>
+</header>

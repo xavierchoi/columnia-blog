@@ -1,0 +1,16 @@
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="/about" class="footer-link">소개</a>
+            <a href="/contact" class="footer-link">연락처</a>
+            <a href="/privacy" class="footer-link">개인정보처리방침</a>
+            <a href="{{ '/feed.xml' | relative_url }}" class="footer-link">RSS</a>
+            <a href="/sitemap.xml" class="footer-link">Sitemap</a>
+        </div>
+        <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+            📧 {{ site.email }} &nbsp;&nbsp;
+            🐦 @yourhandle
+        </p>
+    </div>
+</footer>

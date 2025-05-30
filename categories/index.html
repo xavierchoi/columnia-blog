@@ -1,0 +1,97 @@
+---
+layout: default
+title: "카테고리"
+permalink: /categories/
+---
+
+<div class="content-area">
+    <div class="page-header">
+        <h1 class="page-title">디버그 정보</h1>
+        <p>Jekyll 카테고리 시스템 진단</p>
+    </div>
+    
+    <!-- 포스트 디버그 정보 -->
+    <div style="background: #f0f0f0; padding: 20px; margin: 20px 0; border-radius: 8px; font-family: monospace;">
+        <h3 style="color: #333; margin-bottom: 15px;">📋 포스트 디버그:</h3>
+        <p><strong>전체 포스트 수:</strong> {{ site.posts.docs.size }}</p>
+        
+        <h4 style="margin-top: 20px; color: #555;">📝 모든 포스트 정보:</h4>
+        {% for post in site.posts %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin: 5px 0; background: white; border-radius: 4px;">
+            <strong>제목:</strong> {{ post.title }}<br>
+            <strong>파일명:</strong> {{ post.path }}<br>
+            <strong>카테고리:</strong> "{{ post.category }}"<br>
+            <strong>카테고리들:</strong> {{ post.categories | join: ', ' }}<br>
+            <strong>태그:</strong> {{ post.tags | join: ', ' }}<br>
+            <strong>날짜:</strong> {{ post.date }}<br>
+            <strong>레이아웃:</strong> {{ post.layout }}<br>
+        </div>
+        {% endfor %}
+        
+        <h4 style="margin-top: 20px; color: #555;">🗂️ 카테고리 정보:</h4>
+        <p><strong>카테고리 수:</strong> {{ site.categories.size }}</p>
+        {% if site.categories.size > 0 %}
+            {% for category in site.categories %}
+            <div style="background: #e8f4fd; padding: 8px; margin: 4px 0; border-radius: 4px;">
+                <strong>{{ category[0] }}</strong> ({{ category[1].size }}개 포스트)
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="color: red; font-weight: bold;">⚠️ 카테고리가 하나도 감지되지 않았습니다!</p>
+        {% endif %}
+        
+        <h4 style="margin-top: 20px; color: #555;">🏷️ 태그 정보:</h4>
+        <p><strong>태그 수:</strong> {{ site.tags.size }}</p>
+        {% if site.tags.size > 0 %}
+            {% for tag in site.tags limit: 10 %}
+            <span style="background: #f0f8ff; padding: 4px 8px; margin: 2px; border-radius: 12px; display: inline-block;">
+                {{ tag[0] }} ({{ tag[1].size }})
+            </span>
+            {% endfor %}
+        {% endif %}
+        
+        <h4 style="margin-top: 20px; color: #555;">⚙️ Jekyll 설정:</h4>
+        <p><strong>사이트 제목:</strong> {{ site.title }}</p>
+        <p><strong>베이스 URL:</strong> {{ site.baseurl }}</p>
+        <p><strong>URL:</strong> {{ site.url }}</p>
+        <p><strong>소스:</strong> {{ site.source }}</p>
+        <p><strong>빌드 시간:</strong> {{ site.time }}</p>
+    </div>
+    
+    <!-- 원본 카테고리 그리드 (디버그 완료 후 복원용) -->
+    <div style="display: none;">
+        <div class="categories-grid">
+            {% for category in site.categories %}
+            <div class="category-card">
+                <h2 class="category-title">
+                    <a href="{{ '/categories/' | append: category[0] | relative_url }}">{{ category[0] }}</a>
+                </h2>
+                <p class="category-count">{{ category[1].size }}개의 포스트</p>
+                <div class="category-posts">
+                    {% for post in category[1] limit: 3 %}
+                    <div class="category-post-item">
+                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                        <span class="post-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- 사이드바도 숨김 처리 -->
+<aside class="sidebar slide-in" style="display: none;">
+    <div class="sidebar-section">
+        <h3 class="sidebar-title">전체 카테고리</h3>
+        <div class="categories-list">
+            {% for category in site.categories %}
+            <div class="category-item">
+                <a href="{{ '/categories/' | append: category[0] | relative_url }}" class="category-link">{{ category[0] }}</a>
+                <span class="category-count">{{ category[1].size }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</aside>

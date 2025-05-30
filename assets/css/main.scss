@@ -1,0 +1,4345 @@
+---
+---
+
+/* ================================================================ */
+/* Columnia 테마 컬러 팔레트 - 라이트/다크 모드 완전 지원                */
+/* ================================================================ */
+
+:root {
+  /* ====== Columnia 테마 메인 컬러 ====== */
+  --columnia-blue: #0064FF;        /* Columnia Blue (메인 브랜드 컬러) */
+  --columnia-blue-light: #3385FF;  /* 밝은 블루 (호버 효과용) */
+  --columnia-blue-dark: #0052D6;   /* 어두운 블루 (액티브 상태용) */
+  --columnia-gray: #202632;        /* Columnia Gray (메인 그레이) */
+  
+  /* ====== 확장 컬러 팔레트 ====== */
+  --columnia-indigo: #4F46E5;      /* 인디고 (보조 액센트) */
+  --columnia-purple: #7C3AED;      /* 퍼플 (특별 강조용) */
+  --columnia-emerald: #10B981;     /* 에메랄드 (성공/긍정) */
+  --columnia-orange: #F59E0B;      /* 오렌지 (경고/주의) */
+  --columnia-red: #EF4444;         /* 레드 (에러/중요) */
+  
+  /* ====== 라이트 모드 컬러 시스템 ====== */
+  --bg-primary: #FFFFFF;           /* 메인 배경 */
+  --bg-secondary: #F8FAFC;         /* 카드/섹션 배경 */
+  --bg-tertiary: #F1F5F9;          /* 서브 요소 배경 */
+  --bg-accent: rgba(0, 100, 255, 0.05); /* 액센트 배경 */
+  
+  --text-primary: #1E293B;         /* 메인 텍스트 */
+  --text-secondary: #64748B;       /* 보조 텍스트 */
+  --text-muted: #94A3B8;           /* 연한 텍스트 */
+  --text-inverse: #FFFFFF;         /* 반전 텍스트 */
+  
+  --accent-primary: var(--columnia-blue);    /* 메인 액센트 */
+  --accent-secondary: var(--columnia-indigo); /* 보조 액센트 */
+  --accent-success: var(--columnia-emerald); /* 성공 색상 */
+  --accent-warning: var(--columnia-orange);  /* 경고 색상 */
+  --accent-error: var(--columnia-red);       /* 에러 색상 */
+  
+  --border-color: #E2E8F0;         /* 기본 테두리 */
+  --border-light: #F1F5F9;         /* 연한 테두리 */
+  --border-accent: var(--columnia-blue); /* 액센트 테두리 */
+  
+  /* ====== 그림자 시스템 ====== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-accent: 0 4px 12px rgba(0, 100, 255, 0.15);
+  
+  /* ====== 기존 변수들 유지 ====== */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+/* ================================================================ */
+/* 다크 모드 컬러 시스템 - Columnia Dark Theme                       */
+/* ================================================================ */
+
+[data-theme="dark"] {
+  /* ====== 다크 모드 베이스 컬러 ====== */
+  --bg-primary: #0F1419;           /* 깊은 다크 배경 */
+  --bg-secondary: #1A1F2E;         /* 카드/섹션 배경 */
+  --bg-tertiary: #252A3A;          /* 서브 요소 배경 */
+  --bg-accent: rgba(51, 133, 255, 0.1); /* 다크 액센트 배경 */
+  
+  --text-primary: #F8FAFC;         /* 메인 텍스트 (밝은 흰색) */
+  --text-secondary: #CBD5E1;       /* 보조 텍스트 */
+  --text-muted: #94A3B8;           /* 연한 텍스트 */
+  --text-inverse: #1E293B;         /* 반전 텍스트 */
+  
+  /* ====== 다크 모드 액센트 컬러 (더 밝고 생동감 있게) ====== */
+  --accent-primary: var(--columnia-blue-light);  /* 밝은 블루 */
+  --accent-secondary: #6366F1;     /* 밝은 인디고 */
+  --accent-success: #34D399;       /* 밝은 에메랄드 */
+  --accent-warning: #FBBF24;       /* 밝은 오렌지 */
+  --accent-error: #F87171;         /* 밝은 레드 */
+  
+  --border-color: #374151;         /* 다크 테두리 */
+  --border-light: #4B5563;         /* 연한 다크 테두리 */
+  --border-accent: var(--columnia-blue-light); /* 다크 액센트 테두리 */
+  
+  /* ====== 다크 모드 그림자 ====== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  --shadow-accent: 0 4px 12px rgba(51, 133, 255, 0.3);
+}
+
+/* ================================================================ */
+/* 기본 요소 스타일링 - Pretendard 폰트 시스템                        */
+/* ================================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    /* Pretendard 우선 적용 */
+    "PretendardVariable", Pretendard,
+    /* 기존 시스템·웹폰트 폴백 */
+    var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-display: swap;
+  /* 기본 weight 400, 기울기 0도로 세팅 */
+  font-variation-settings: 'wght' 400, 'slnt' 0;
+  /* 텍스트 렌더링 품질 개선 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  /* 헤딩에도 Pretendard 적용 */
+  font-family: "PretendardVariable", Pretendard, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  /* 헤딩은 좀 더 두꺼운 weight로 */
+  font-variation-settings: 'wght' 700, 'slnt' 0;
+}
+
+/* ================================================================ */
+/* 헤더 스타일링 - Columnia 테마                                      */
+/* ================================================================ */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .header {
+    background: rgba(15, 20, 25, 0.95);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+}
+
+/* ================================================================ */
+/* 로고 스타일링 - Columnia 브랜드                                   */
+/* ================================================================ */
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-variation-settings: 'wght' 700, 'slnt' 0;
+    position: relative;
+}
+
+.logo:hover {
+    color: var(--accent-primary);
+    transform: translateY(-1px);
+}
+
+/* 로고에 Columnia 브랜드 강조 효과 */
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    transition: width 0.3s ease;
+}
+
+.logo:hover::after {
+    width: 100%;
+}
+
+/* ================================================================ */
+/* 검색 시스템 - Columnia 디자인                                     */
+/* ================================================================ */
+
+.header-search {
+    flex: 1;
+    max-width: 400px;
+    margin: 0 var(--space-lg);
+}
+
+.header-search .search-container {
+    position: relative;
+    margin: 0;
+}
+
+.header-search .search-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md) var(--space-sm) 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.header-search .search-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-accent);
+    background: var(--bg-primary);
+    transform: scale(1.02);
+}
+
+.header-search .search-icon {
+    position: absolute;
+    left: var(--space-sm);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.header-search .search-icon:hover {
+    color: var(--accent-primary);
+}
+
+/* ================================================================ */
+/* 헤더 컨트롤 - 테마 토글 & 모바일 메뉴                               */
+/* ================================================================ */
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-shrink: 0;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-secondary);
+    color: var(--accent-primary);
+    transform: scale(1.1);
+}
+
+/* ================================================================ */
+/* 다크/라이트 모드 토글 버튼 - Columnia 스타일                        */
+/* ================================================================ */
+
+.dark-light-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.dark-light-toggle:hover {
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-accent));
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-accent);
+    transform: translateY(-2px);
+}
+
+.icon30 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* 라이트 모드에서의 표시 */
+.sun {
+    display: flex;
+    animation: rise-animation 0.5s forwards;
+    transform-origin: 50% 200%;
+}
+
+.moon {
+    display: none;
+    animation: set-animation 0.5s forwards;
+    transform-origin: 50% 200%;
+}
+
+/* 다크 모드에서의 표시 */
+[data-theme='dark'] .dark-light-toggle .sun {
+    display: none;
+    animation: set-animation 0.5s forwards;
+}
+
+[data-theme='dark'] .dark-light-toggle .moon {
+    display: flex;
+    animation: rise-animation 0.5s forwards;
+}
+
+/* 해/달 색상 - Columnia 테마 */
+.dark-light-toggle .sun svg {
+    fill: var(--columnia-orange);
+}
+
+.dark-light-toggle .moon svg {
+    fill: var(--columnia-blue-light);
+}
+
+.dark-light-toggle:hover .sun svg {
+    fill: #F97316;
+}
+
+.dark-light-toggle:hover .moon svg {
+    fill: var(--columnia-blue);
+}
+
+@keyframes rise-animation {
+    from {
+        transform: rotate(180deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(360deg);
+        opacity: 1;
+    }
+}
+
+@keyframes set-animation {
+    from {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: rotate(180deg);
+        opacity: 0;
+    }
+}
+
+/* ================================================================ */
+/* 모바일 메뉴 - Columnia 디자인                                     */
+/* ================================================================ */
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    background: var(--bg-secondary);
+    color: var(--accent-primary);
+}
+
+.mobile-nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--bg-primary);
+    border-left: 1px solid var(--border-color);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
+    box-shadow: var(--shadow-xl);
+    padding-top: 80px;
+}
+
+.mobile-nav-menu.show {
+    transform: translateX(0);
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg);
+    gap: var(--space-xs);
+}
+
+.mobile-nav-link {
+    display: block;
+    padding: var(--space-md) var(--space-lg);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus {
+    background: var(--bg-secondary);
+    color: var(--accent-primary);
+    transform: translateX(4px);
+}
+
+.mobile-nav-link.active {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+}
+
+/* ================================================================ */
+/* 메인 콘텐츠 레이아웃                                               */
+/* ================================================================ */
+
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-lg);
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-2xl);
+}
+
+.content-area {
+    min-width: 0;
+}
+
+/* ================================================================ */
+/* 히어로 섹션 - Columnia 브랜딩                                     */
+/* ================================================================ */
+
+.hero {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+    margin-bottom: var(--space-2xl);
+    background: linear-gradient(135deg, var(--bg-accent), transparent);
+    border-radius: var(--radius-xl);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(10deg); }
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ================================================================ */
+/* 포스트 카드 - Columnia 디자인                                     */
+/* ================================================================ */
+
+.posts-grid {
+    display: grid;
+    gap: var(--space-xl);
+}
+
+.post-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--accent-primary);
+}
+
+.post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+}
+
+/* 카드 호버 시 빛 효과 */
+.post-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 100, 255, 0.05),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.post-card:hover::after {
+    left: 100%;
+}
+
+/* ================================================================ */
+/* 포스트 메타 정보 - Columnia 스타일                                */
+/* ================================================================ */
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.post-category {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-inverse);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.post-category:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-accent);
+}
+
+.post-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    line-height: 1.3;
+}
+
+.post-title a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-title a:hover {
+    color: var(--accent-primary);
+}
+
+.post-excerpt {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    line-height: 1.6;
+}
+
+/* ================================================================ */
+/* 태그 시스템 - Columnia 디자인                                     */
+/* ================================================================ */
+
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.post-tag {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.post-tag:hover {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ================================================================ */
+/* 공유 버튼 - Columnia 스타일                                       */
+/* ================================================================ */
+
+.post-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.read-more {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: all 0.3s ease;
+}
+
+.read-more:hover {
+    color: var(--accent-secondary);
+    transform: translateX(4px);
+}
+
+.share-buttons {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.share-btn:hover {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    transform: scale(1.1);
+}
+
+/* 공유 버튼 파동 효과 */
+.share-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.share-btn:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+/* ================================================================ */
+/* 사이드바 - Columnia 컴팩트 디자인                                  */
+/* ================================================================ */
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    width: 240px;
+}
+
+.sidebar-section {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    padding: 0;
+    border: 1px solid var(--border-color);
+    margin-bottom: var(--space-lg);
+    transition: all 0.3s ease;
+}
+
+.sidebar-section:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-accent);
+}
+
+.sidebar-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+    padding: var(--space-lg) var(--space-lg) var(--space-sm) var(--space-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* ================================================================ */
+/* 카테고리 리스트 - Columnia 스타일                                  */
+/* ================================================================ */
+
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding: 0;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: var(--space-xs) var(--space-lg);
+    transition: all 0.2s ease;
+    min-height: 36px;
+    margin: 0;
+    position: relative;
+}
+
+.category-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.category-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: var(--accent-primary);
+    transition: width 0.3s ease;
+}
+
+.category-item:hover::before {
+    width: 3px;
+}
+
+.category-link {
+    color: var(--text-secondary);
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+    font-size: 1rem;
+    font-weight: 400;
+    width: 100%;
+    line-height: 1.3;
+    font-family: "PretendardVariable", Pretendard, sans-serif;
+    padding: 0;
+}
+
+.category-link:hover,
+.category-link:focus {
+    color: var(--accent-primary);
+    text-decoration: none !important;
+}
+
+/* ================================================================ */
+/* 목차(TOC) - Columnia 스타일                                       */
+/* ================================================================ */
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.toc-item {
+    margin: 0;
+    border-left: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.toc-link {
+    display: flex;
+    align-items: center;
+    padding: var(--space-xs) var(--space-lg);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    transition: all 0.2s ease;
+    border-radius: 0;
+    min-height: 32px;
+}
+
+.toc-link:hover {
+    background: var(--bg-tertiary);
+    color: var(--accent-primary);
+}
+
+.toc-link.active {
+    background: var(--bg-accent);
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.toc-item:has(.toc-link.active) {
+    border-left-color: var(--accent-primary);
+}
+
+/* TOC 계층 구조 */
+.toc-h2 .toc-link {
+    padding-left: var(--space-lg);
+    font-weight: 500;
+}
+
+.toc-h3 .toc-link {
+    padding-left: calc(var(--space-lg) + var(--space-sm));
+    font-size: 0.8rem;
+}
+
+.toc-h4 .toc-link,
+.toc-h5 .toc-link,
+.toc-h6 .toc-link {
+    padding-left: calc(var(--space-lg) + var(--space-md));
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ================================================================ */
+/* 브레드크럼 네비게이션 - Columnia 스타일                             */
+/* ================================================================ */
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    padding: var(--space-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.breadcrumb-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+}
+
+.breadcrumb-link:hover {
+    color: var(--accent-primary);
+    background: var(--bg-accent);
+}
+
+.breadcrumb-separator {
+    color: var(--text-muted);
+}
+
+.breadcrumb-current {
+    color: var(--accent-primary);
+    font-weight: 500;
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--bg-accent);
+    border-radius: var(--radius-sm);
+}
+
+/* ================================================================ */
+/* 검색 기능 - Columnia 디자인                                       */
+/* ================================================================ */
+
+.search-container {
+    position: relative;
+    margin-bottom: var(--space-xl);
+}
+
+.search-input {
+    width: 100%;
+    padding: var(--space-md) var(--space-md) var(--space-md) 3rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-accent);
+    background: var(--bg-primary);
+    transform: scale(1.02);
+}
+
+.search-icon {
+    position: absolute;
+    left: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.search-icon:hover {
+    color: var(--accent-primary);
+}
+
+/* ================================================================ */
+/* 페이지네이션 - Columnia 스타일                                     */
+/* ================================================================ */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+}
+
+.page-link {
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.page-link:hover {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    border-color: var(--accent-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-accent);
+}
+
+.page-link.active {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    border-color: var(--accent-primary);
+}
+
+/* ================================================================ */
+/* 리딩 프로그레스 바 - Columnia 그라데이션                            */
+/* ================================================================ */
+
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    z-index: 101;
+    transition: width 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 100, 255, 0.3);
+}
+
+/* ================================================================ */
+/* Back to Top 버튼 - Columnia 스타일                               */
+/* ================================================================ */
+
+.back-to-top {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-inverse);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99;
+    box-shadow: var(--shadow-lg);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: var(--shadow-xl);
+}
+
+/* ================================================================ */
+/* 푸터 - Columnia 디자인                                           */
+/* ================================================================ */
+
+.footer {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    border-top: 1px solid var(--border-color);
+    padding: var(--space-2xl) 0;
+    margin-top: var(--space-2xl);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+}
+
+.footer-link:hover {
+    color: var(--accent-primary);
+    background: var(--bg-accent);
+}
+
+/* ================================================================ */
+/* 포스트 단일 페이지 - Columnia 스타일                               */
+/* ================================================================ */
+
+.post-single {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--space-2xl);
+    text-align: center;
+    padding: var(--space-xl);
+    background: var(--bg-accent);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-light);
+}
+
+.post-single .post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-lg);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    margin: var(--space-2xl) 0 var(--space-lg) 0;
+    color: var(--text-primary);
+    font-weight: 600;
+    position: relative;
+}
+
+.post-content h2::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 2px;
+}
+
+.post-content blockquote {
+    border-left: 4px solid var(--accent-primary);
+    padding-left: var(--space-lg);
+    margin: var(--space-xl) 0;
+    font-style: italic;
+    color: var(--text-secondary);
+    background: var(--bg-accent);
+    padding: var(--space-lg);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.post-content code {
+    background: var(--bg-secondary);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--accent-primary);
+    border: 1px solid var(--border-light);
+}
+
+.post-content pre {
+    background: var(--bg-secondary);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--space-xl) 0;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+.post-content pre code {
+    background: none;
+    padding: 0;
+    border: none;
+    color: var(--text-primary);
+}
+
+/* ================================================================ */
+/* 관련 글 섹션 - Columnia 스타일                                     */
+/* ================================================================ */
+
+.related-posts-section {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border-color);
+}
+
+.related-posts-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    position: relative;
+}
+
+.related-posts-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 2px;
+}
+
+.related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.related-post-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.related-post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-primary);
+}
+
+.related-post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+}
+
+/* ================================================================ */
+/* 언어 스위처 - Columnia 다국어 지원                                 */
+/* ================================================================ */
+
+.language-switcher {
+    position: relative;
+    display: inline-block;
+}
+
+.language-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    border: 1px solid transparent;
+}
+
+.language-btn:hover {
+    background: var(--bg-secondary);
+    color: var(--accent-primary);
+    border-color: var(--border-color);
+}
+
+.language-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm);
+    min-width: 120px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: var(--shadow-lg);
+}
+
+.language-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.language-option {
+    display: block;
+    padding: var(--space-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+}
+
+.language-option:hover {
+    background: var(--bg-tertiary);
+    color: var(--accent-primary);
+}
+
+/* ================================================================ */
+/* 검색 페이지 - Columnia 전용 스타일                                 */
+/* ================================================================ */
+
+.search-page {
+    max-width: 800px;
+    width: 100%;
+}
+
+.search-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-accent);
+    padding: var(--space-xl);
+    border-radius: var(--radius-xl);
+}
+
+.search-header .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-results-list .search-result-item {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    border: 1px solid var(--border-color);
+    margin-bottom: var(--space-lg);
+    transition: all 0.3s ease;
+}
+
+.search-results-list .search-result-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-primary);
+}
+
+.search-result-title mark,
+.search-result-excerpt mark {
+    background: var(--bg-accent);
+    color: var(--accent-primary);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}
+
+/* ================================================================ */
+/* 애니메이션 및 트랜지션 - Columnia 브랜드                           */
+/* ================================================================ */
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ================================================================ */
+/* 반응형 디자인 - 모든 기기 최적화                                    */
+/* ================================================================ */
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+        padding: var(--space-lg);
+    }
+    
+    .sidebar {
+        order: -1;
+        width: 100%;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .header-content {
+        flex-wrap: wrap;
+        gap: var(--space-md);
+    }
+    
+    .header-search {
+        order: 3;
+        flex: 1 1 100%;
+        margin: 0;
+        max-width: none;
+    }
+    
+    .post-card {
+        padding: var(--space-lg);
+    }
+    
+    .post-single .post-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+    
+    .post-footer {
+        flex-direction: column;
+        gap: var(--space-md);
+        align-items: flex-start;
+    }
+    
+    .mobile-nav-menu {
+        width: 100vw;
+        border-left: none;
+    }
+    
+    .dark-light-toggle {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ================================================================ */
+/* 전체 게시물 보기 버튼 - Columnia 브랜드 스타일                      */
+/* ================================================================ */
+
+.view-all-posts {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border-color);
+}
+
+.view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-inverse);
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.view-all-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.view-all-btn:hover::before {
+    left: 100%;
+}
+
+.view-all-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-count {
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+.btn-arrow {
+    transition: transform 0.3s ease;
+}
+
+.view-all-btn:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+/* ================================================================ */
+/* 접근성 및 사용성 개선                                               */
+/* ================================================================ */
+
+/* 포커스 스타일 - Columnia 브랜드 */
+*:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* 프린트 스타일 */
+@media print {
+    .mobile-nav-menu,
+    .reading-progress,
+    .back-to-top,
+    .share-buttons,
+    .dark-light-toggle {
+        display: none !important;
+    }
+    
+    .post-content {
+        color: #000 !important;
+        background: #fff !important;
+    }
+}
+
+/* 고해상도 디스플레이 최적화 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .post-card::before,
+    .reading-progress {
+        transform: scale(1);
+    }
+}
+
+/* ================================================================ */
+/* 성능 최적화                                                        */
+/* ================================================================ */
+
+.mobile-nav-menu,
+.reading-progress,
+.back-to-top,
+.post-card,
+.search-input {
+    will-change: transform;
+}
+
+/* GPU 가속화 */
+.post-card:hover,
+.view-all-btn:hover,
+.share-btn:hover {
+    transform: translateZ(0);
+}
+
+/* ================================================================ */
+/* 404 에러 페이지 - Columnia 테마 스타일                             */
+/* ================================================================ */
+
+.error-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: var(--space-2xl) 0;
+}
+
+.error-content {
+    text-align: center;
+    max-width: 600px;
+    padding: var(--space-2xl);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.error-number {
+    font-size: 8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-md);
+    line-height: 1;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.error-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+}
+
+.error-message {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2xl);
+    line-height: 1.6;
+}
+
+.error-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-2xl);
+}
+
+.error-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.error-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.error-btn:hover::before {
+    left: 100%;
+}
+
+.error-btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-inverse);
+    box-shadow: var(--shadow-md);
+}
+
+.error-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.error-btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.error-btn-secondary:hover {
+    background: var(--bg-accent);
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.error-btn-tertiary {
+    background: transparent;
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.error-btn-tertiary:hover {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.error-btn:hover .btn-icon {
+    transform: scale(1.1);
+}
+
+.error-help {
+    background: var(--bg-accent);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    border: 1px solid var(--border-light);
+    text-align: left;
+}
+
+.error-help h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.help-suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.help-suggestions li {
+    color: var(--text-secondary);
+    padding: var(--space-sm) 0;
+    position: relative;
+    padding-left: var(--space-lg);
+    line-height: 1.5;
+}
+
+.help-suggestions li::before {
+    content: '💡';
+    position: absolute;
+    left: 0;
+    top: var(--space-sm);
+}
+
+.help-suggestions li:not(:last-child) {
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* 404 페이지 반응형 */
+@media (max-width: 768px) {
+    .error-number {
+        font-size: 6rem;
+    }
+    
+    .error-title {
+        font-size: 1.5rem;
+    }
+    
+    .error-content {
+        padding: var(--space-lg);
+        margin: var(--space-md);
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+    }
+    
+    .error-btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-number {
+        font-size: 4rem;
+    }
+    
+    .error-message {
+        font-size: 1rem;
+    }
+    
+    .error-btn {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.9rem;
+    }
+}
+
+/* 다크모드에서 404 페이지 최적화 */
+[data-theme="dark"] .error-content {
+    box-shadow: var(--shadow-xl);
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .error-help {
+    background: rgba(51, 133, 255, 0.05);
+    border-color: var(--border-color);
+}
+
+/* ================================================================ */
+/* Columnia 테마 디버깅 수정사항 - 기존 main.scss에 추가/수정            */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 1. 로고 언더라인 제거 및 색상 고정                                   */
+/* ================================================================ */
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease;
+    font-variation-settings: 'wght' 700, 'slnt' 0;
+    position: relative;
+}
+
+.logo:hover {
+    color: var(--accent-primary) !important;
+}
+
+/* 로고의 모든 ::before, ::after 효과 제거 */
+.logo::before,
+.logo::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* 로고 내부 링크 스타일 완전 제거 */
+.logo a,
+.logo a:link,
+.logo a:visited,
+.logo a:hover,
+.logo a:active,
+.logo a:focus {
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+}
+
+.logo a:hover {
+    color: var(--accent-primary) !important;
+}
+
+/* ================================================================ */
+/* 2. 검색 페이지 수정 - 돋보기 아이콘 및 레이아웃 복원                  */
+/* ================================================================ */
+
+/* 검색 헤더 수정 */
+.search-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    padding: var(--space-xl);
+    background: var(--bg-accent);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-light);
+}
+
+.search-header .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 검색 박스 컨테이너 수정 */
+.search-box {
+    display: flex;
+    max-width: 600px;
+    margin: var(--space-lg) auto 0;
+    gap: var(--space-md);
+    position: relative;
+}
+
+/* 메인 검색 입력 필드 */
+.search-input-main {
+    flex: 1;
+    padding: var(--space-md) var(--space-lg) var(--space-md) 3rem; /* 좌측 패딩 증가 */
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: "PretendardVariable", Pretendard, sans-serif;
+    transition: all 0.3s ease;
+    min-height: 50px;
+}
+
+.search-input-main:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-accent);
+    background: var(--bg-primary);
+    transform: scale(1.02);
+}
+
+.search-input-main::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* 검색 아이콘을 input 내부에 배치 */
+.search-box::before {
+    content: '🔍';
+    position: absolute;
+    left: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* 검색 버튼 */
+.search-button {
+    padding: var(--space-md) var(--space-lg);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-inverse);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+
+.search-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* 검색 결과 상태 */
+.search-status {
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.search-status p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.search-status strong {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+/* 로딩 및 결과 없음 스타일 개선 */
+.search-loading,
+.no-results {
+    text-align: center;
+    padding: var(--space-2xl);
+    margin: var(--space-xl) 0;
+}
+
+.loading-content,
+.no-results-content {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    border: 1px solid var(--border-color);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--space-md);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.no-results-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-md);
+}
+
+.no-results-content h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    font-size: 1.25rem;
+}
+
+.no-results-content p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ================================================================ */
+/* 3. 미디엄 뷰 레이아웃 수정 - 중앙 정렬 및 TOC 위치 조정               */
+/* ================================================================ */
+
+/* 메인 콘텐츠 컨테이너 중앙 정렬 개선 */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-lg);
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-2xl);
+    justify-content: center; /* 중앙 정렬 강화 */
+}
+
+/* 카테고리 페이지 레이아웃 수정 */
+.category-page-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-lg);
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: var(--space-2xl);
+    align-items: start;
+}
+
+/* 포스트 단일 페이지 레이아웃 개선 */
+.post-layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: var(--space-xl);
+    padding: var(--space-2xl) var(--space-lg);
+    align-items: flex-start;
+    justify-content: center; /* 중앙 정렬 */
+}
+
+/* 포스트 콘텐츠 영역 */
+.post-layout .content-area {
+    flex: 1;
+    min-width: 0;
+    max-width: 800px;
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* 사이드바를 우측으로 고정하고 TOC 포함 */
+.post-layout .sidebar-compact {
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: calc(80px + var(--space-lg));
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    
+    /* 스크롤바 스타일링 */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+}
+
+.post-layout .sidebar-compact::-webkit-scrollbar {
+    width: 4px;
+}
+
+.post-layout .sidebar-compact::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.post-layout .sidebar-compact::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
+/* TOC를 사이드바에 통합 */
+.toc-sidebar-section {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    padding: 0;
+    border: 1px solid var(--border-color);
+    margin-bottom: var(--space-lg);
+    transition: all 0.3s ease;
+}
+
+.toc-sidebar-section:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-accent);
+}
+
+.toc-sidebar-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+    padding: var(--space-lg) var(--space-lg) var(--space-sm) var(--space-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* ================================================================ */
+/* 4. 반응형 레이아웃 개선 - 미디엄 뷰 최적화                          */
+/* ================================================================ */
+
+/* 태블릿 뷰 (768px ~ 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .main-content {
+        max-width: 100%;
+        padding: var(--space-xl) var(--space-md);
+        grid-template-columns: 1fr 250px;
+        gap: var(--space-lg);
+        margin: 0 auto;
+    }
+    
+    .post-layout {
+        max-width: 100%;
+        padding: var(--space-xl) var(--space-md);
+        margin: 0 auto;
+    }
+    
+    .post-layout .sidebar-compact {
+        width: 240px;
+    }
+    
+    .category-page-layout {
+        max-width: 100%;
+        padding: var(--space-xl) var(--space-md);
+        grid-template-columns: 1fr 240px;
+        gap: var(--space-lg);
+        margin: 0 auto;
+    }
+    
+    .search-page {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 var(--space-md);
+    }
+}
+
+/* 모바일 뷰 (768px 이하) */
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+        padding: var(--space-lg) var(--space-sm);
+        margin: 0 auto;
+    }
+    
+    .sidebar {
+        order: -1;
+        width: 100%;
+    }
+    
+    .post-layout {
+        flex-direction: column;
+        max-width: 100%;
+        padding: var(--space-lg) var(--space-sm);
+        margin: 0 auto;
+    }
+    
+    .post-layout .sidebar-compact {
+        position: static;
+        width: 100%;
+        max-height: none;
+        order: 2;
+        margin-top: var(--space-lg);
+    }
+    
+    .category-page-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        padding: var(--space-lg) var(--space-sm);
+        margin: 0 auto;
+    }
+    
+    .search-box {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .search-button {
+        justify-content: center;
+        min-width: auto;
+    }
+}
+
+/* ================================================================ */
+/* 5. 카테고리 페이지 레이아웃 완전 수정                               */
+/* ================================================================ */
+
+/* 카테고리 페이지 메인 구조 */
+.category-main {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: var(--space-2xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-lg);
+    align-items: start;
+}
+
+.category-content {
+    min-width: 0;
+}
+
+.category-sidebar {
+    position: sticky;
+    top: calc(80px + var(--space-lg));
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+/* 카테고리 헤더 */
+.category-header {
+    background: var(--bg-accent);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+    border: 1px solid var(--border-light);
+    text-align: center;
+}
+
+.category-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.category-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-lg);
+}
+
+.category-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    line-height: 1;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: var(--space-xs);
+}
+
+/* 카테고리 포스트 리스트 */
+.category-posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.category-post-item {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.category-post-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-primary);
+}
+
+/* 카테고리 페이지 반응형 */
+@media (max-width: 1024px) {
+    .category-main {
+        grid-template-columns: 1fr 240px;
+        gap: var(--space-lg);
+        padding: var(--space-xl) var(--space-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .category-main {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        padding: var(--space-lg) var(--space-sm);
+    }
+    
+    .category-sidebar {
+        position: static;
+        order: -1;
+        max-height: none;
+    }
+    
+    .category-title {
+        font-size: 2rem;
+    }
+    
+    .category-stats {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+}
+
+/* ================================================================ */
+/* 6. 추가 개선사항                                                   */
+/* ================================================================ */
+
+/* 헤더 검색창 중앙 정렬 개선 */
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+}
+
+/* 전체적인 컨테이너 중앙 정렬 강화 */
+.content-area {
+    min-width: 0;
+    margin: 0 auto;
+}
+
+/* 포스트 단일 페이지 중앙 정렬 */
+.post-single {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-2xl) 0;
+}
+
+/* 검색 페이지 중앙 정렬 */
+.search-page {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* 브레드크럼 여백 조정 */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    padding: var(--space-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+}
+
+/* ================================================================ */
+/* 7. 성능 및 접근성 개선                                             */
+/* ================================================================ */
+
+/* 부드러운 스크롤 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 포커스 스타일 일관성 */
+.search-input-main:focus,
+.category-link:focus,
+.toc-link:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+/* 애니메이션 성능 최적화 */
+.search-result-item,
+.category-post-item,
+.post-card {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* 미디어 쿼리 정리 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ================================================================ */
+/* 디버깅 체크리스트 - main.scss에 다음 코드들이 포함되어야 합니다        */
+/* ================================================================ */
+
+/* 1. 로고 언더라인 완전 제거 */
+.logo {
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+}
+
+.logo::before,
+.logo::after {
+    display: none !important;
+    content: none !important;
+}
+
+.logo a,
+.logo a:hover,
+.logo a:visited {
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+}
+
+/* 2. 검색 박스 돋보기 아이콘 */
+.search-box {
+    position: relative;
+}
+
+.search-box::before {
+    content: '🔍';
+    position: absolute;
+    left: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.search-input-main {
+    padding-left: 3rem !important; /* 돋보기 아이콘 공간 확보 */
+}
+
+/* 3. 중앙 정렬 강화 */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.category-main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-page {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 4. 미디엄 뷰 최적화 */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .main-content {
+        padding: var(--space-xl) var(--space-md);
+        margin: 0 auto;
+    }
+    
+    .post-layout {
+        padding: var(--space-xl) var(--space-md);
+        margin: 0 auto;
+    }
+}
+
+/* ================================================================ */
+/* 누락된 스타일 수정 - main.scss 파일 끝에 추가하세요                    */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 1. 검색 결과 태그 스타일 완전 수정                                  */
+/* ================================================================ */
+
+.search-result-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.search-result-tag {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    font-weight: 500;
+}
+
+.search-result-tag:hover {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    border-color: var(--accent-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.search-result-tag.tag-clickable {
+    cursor: pointer;
+}
+
+/* 검색 결과 카테고리 스타일 */
+.search-result-category {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-inverse);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+/* 검색 결과 메타 정보 */
+.search-result-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+    font-size: 0.875rem;
+}
+
+.search-result-date {
+    color: var(--text-muted);
+}
+
+/* ================================================================ */
+/* 2. 포스트 네비게이션 (이전/다음 글) 스타일 복원                      */
+/* ================================================================ */
+
+.post-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border-color);
+}
+
+.post-nav-item {
+    padding: var(--space-lg);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-nav-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-primary);
+}
+
+.post-nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+}
+
+.post-nav-item a {
+    text-decoration: none;
+    color: var(--text-primary);
+    display: block;
+}
+
+.post-nav-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-xs);
+    font-weight: 500;
+}
+
+.post-nav-title {
+    display: block;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.post-nav-item:hover .post-nav-title {
+    color: var(--accent-primary);
+}
+
+.post-nav-prev {
+    text-align: left;
+}
+
+.post-nav-next {
+    text-align: right;
+}
+
+/* 화살표 추가 */
+.post-nav-prev .post-nav-label::before {
+    content: '← ';
+    color: var(--accent-primary);
+}
+
+.post-nav-next .post-nav-label::after {
+    content: ' →';
+    color: var(--accent-primary);
+}
+
+/* ================================================================ */
+/* 3. 관련 글 섹션 스타일 완전 복원                                   */
+/* ================================================================ */
+
+.related-posts-section {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border-color);
+}
+
+.related-posts-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    position: relative;
+}
+
+.related-posts-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 2px;
+}
+
+.related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.related-post-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.related-post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-primary);
+}
+
+.related-post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+}
+
+.related-post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    font-size: 0.8rem;
+}
+
+.related-post-category {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+}
+
+.related-post-date {
+    color: var(--text-muted);
+}
+
+.related-post-title {
+    margin-bottom: var(--space-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.related-post-title a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.related-post-title a:hover {
+    color: var(--accent-primary);
+}
+
+.related-post-excerpt {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ================================================================ */
+/* 4. 미디엄 뷰 중앙 정렬 및 레이아웃 완전 수정                        */
+/* ================================================================ */
+
+/* 모든 메인 컨테이너 중앙 정렬 강화 */
+.main-content,
+.category-main,
+.post-layout {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+}
+
+/* 검색 페이지 중앙 정렬 */
+.search-page {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+}
+
+/* 헤더 콘텐츠 중앙 정렬 */
+.header-content {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+}
+
+/* 포스트 단일 페이지 중앙 정렬 */
+.post-single {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+}
+
+/* ================================================================ */
+/* 5. 태블릿 뷰 (미디엄 뷰) 전용 최적화                               */
+/* ================================================================ */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* 메인 콘텐츠 태블릿 최적화 */
+    .main-content {
+        max-width: 100% !important;
+        padding: var(--space-xl) var(--space-lg) !important;
+        margin: 0 auto !important;
+        grid-template-columns: 1fr 250px !important;
+        gap: var(--space-xl) !important;
+    }
+    
+    /* 카테고리 페이지 태블릿 최적화 */
+    .category-main {
+        max-width: 100% !important;
+        padding: var(--space-xl) var(--space-lg) !important;
+        margin: 0 auto !important;
+        grid-template-columns: 1fr 240px !important;
+        gap: var(--space-xl) !important;
+    }
+    
+    /* 포스트 레이아웃 태블릿 최적화 */
+    .post-layout {
+        max-width: 100% !important;
+        padding: var(--space-xl) var(--space-lg) !important;
+        margin: 0 auto !important;
+        gap: var(--space-lg) !important;
+    }
+    
+    .post-layout .sidebar-compact {
+        width: 220px !important;
+    }
+    
+    /* 사이드바 최적화 */
+    .sidebar {
+        width: 250px !important;
+    }
+    
+    .sidebar-section {
+        padding: var(--space-md) !important;
+    }
+    
+    /* 검색 페이지 태블릿 최적화 */
+    .search-page {
+        max-width: 100% !important;
+        padding: 0 var(--space-lg) !important;
+        margin: 0 auto !important;
+    }
+    
+    /* 헤더 태블릿 최적화 */
+    .header-content {
+        padding: var(--space-md) var(--space-lg) !important;
+    }
+    
+    .header-search {
+        max-width: 350px !important;
+    }
+}
+
+/* ================================================================ */
+/* 6. TOC 사이드바 통합 (포스트 페이지용)                             */
+/* ================================================================ */
+
+/* 포스트 페이지에서 TOC를 사이드바에 추가 */
+.post-with-toc .sidebar-compact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.toc-sidebar-section {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    padding: 0;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    order: -1; /* TOC를 맨 위로 */
+}
+
+.toc-sidebar-section:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-primary);
+}
+
+.toc-sidebar-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+    padding: var(--space-lg) var(--space-lg) var(--space-sm) var(--space-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.toc-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.toc-item {
+    margin: 0;
+    border-left: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.toc-link {
+    display: flex;
+    align-items: center;
+    padding: var(--space-xs) var(--space-lg);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    transition: all 0.2s ease;
+    min-height: 32px;
+}
+
+.toc-link:hover {
+    background: var(--bg-tertiary);
+    color: var(--accent-primary);
+}
+
+.toc-link.active {
+    background: var(--bg-accent);
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.toc-item:has(.toc-link.active) {
+    border-left-color: var(--accent-primary);
+}
+
+/* ================================================================ */
+/* 7. 모바일 반응형 수정                                             */
+/* ================================================================ */
+
+@media (max-width: 768px) {
+    .main-content,
+    .category-main,
+    .post-layout {
+        grid-template-columns: 1fr !important;
+        padding: var(--space-lg) var(--space-sm) !important;
+        gap: var(--space-lg) !important;
+        margin: 0 auto !important;
+    }
+    
+    .sidebar,
+    .sidebar-compact {
+        order: -1 !important;
+        width: 100% !important;
+        position: static !important;
+        max-height: none !important;
+    }
+    
+    .post-nav {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-md) !important;
+    }
+    
+    .related-posts-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-md) !important;
+    }
+    
+    .search-page {
+        padding: 0 var(--space-sm) !important;
+    }
+}
+
+/* ================================================================ */
+/* 8. 포스트 태그 스타일 통일                                        */
+/* ================================================================ */
+
+.post-tags,
+.search-result-tags,
+.related-post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.post-tag,
+.search-result-tag,
+.related-post-tag {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-weight: 500;
+}
+
+.post-tag:hover,
+.search-result-tag:hover,
+.related-post-tag:hover {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+    border-color: var(--accent-primary);
+}
+
+/* 태그 클릭 가능 상태 */
+.tag-clickable {
+    cursor: pointer !important;
+}
+
+.tag-clickable:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* ================================================================ */
+/* 9. 디버깅 및 최종 수정                                            */
+/* ================================================================ */
+
+/* 강제 중앙 정렬 */
+.content-area {
+    margin: 0 auto !important;
+    max-width: 100% !important;
+}
+
+/* 컨테이너 여백 통일 */
+body > .main-content,
+body > .category-main,
+body > .post-layout {
+    box-sizing: border-box !important;
+}
+
+/* 사이드바 Sticky 동작 보장 */
+.sidebar,
+.sidebar-compact,
+.category-sidebar {
+    position: sticky !important;
+    top: calc(80px + var(--space-lg)) !important;
+    align-self: flex-start !important;
+}
+
+@media (max-width: 768px) {
+    .sidebar,
+    .sidebar-compact,
+    .category-sidebar {
+        position: static !important;
+    }
+}
+
+/* ================================================================ */
+/* 뉴스레터 UI 완전 수정 - main.scss에 추가하거나 기존 스타일 덮어쓰기    */
+/* ================================================================ */
+
+/* 뉴스레터 섹션 전체 스타일 */
+.sidebar-section:has(.newsletter-form) {
+    background: var(--bg-secondary) !important;
+    border-radius: var(--radius-xl) !important;
+    padding: var(--space-lg) !important;
+    border: 1px solid var(--border-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+.sidebar-section:has(.newsletter-form):hover {
+    box-shadow: var(--shadow-md) !important;
+    border-color: var(--accent-primary) !important;
+}
+
+/* 뉴스레터 제목 */
+.sidebar-section:has(.newsletter-form) .sidebar-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    margin-bottom: var(--space-md) !important;
+    color: var(--text-primary) !important;
+    padding: 0 !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding-bottom: var(--space-sm) !important;
+}
+
+/* 뉴스레터 설명 */
+.newsletter-description {
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: var(--space-md) !important;
+    padding: 0 !important;
+}
+
+/* 뉴스레터 폼 */
+.newsletter-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-md) !important;
+    padding: 0 !important;
+}
+
+/* 이메일 입력 필드 */
+.newsletter-input {
+    width: 100% !important;
+    padding: var(--space-sm) var(--space-md) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-md) !important;
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    font-size: 0.9rem !important;
+    font-family: "PretendardVariable", Pretendard, sans-serif !important;
+    line-height: 1.3 !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    min-height: 42px !important;
+}
+
+.newsletter-input:focus {
+    outline: none !important;
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1) !important;
+    background: var(--bg-primary) !important;
+}
+
+.newsletter-input::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.7 !important;
+}
+
+/* 구독 버튼 */
+.newsletter-button {
+    width: 100% !important;
+    padding: var(--space-sm) var(--space-md) !important;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+    color: var(--text-inverse) !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    font-family: "PretendardVariable", Pretendard, sans-serif !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    min-height: 42px !important;
+    margin: 0 !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.newsletter-button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.newsletter-button:active {
+    transform: translateY(0) !important;
+}
+
+/* 다크모드 대응 */
+[data-theme="dark"] .newsletter-input {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .newsletter-input:focus {
+    background: var(--bg-primary) !important;
+    border-color: var(--accent-primary) !important;
+}
+
+[data-theme="dark"] .newsletter-input::placeholder {
+    color: var(--text-muted) !important;
+}
+
+/* 반응형 대응 */
+@media (max-width: 768px) {
+    .newsletter-input,
+    .newsletter-button {
+        font-size: 0.85rem !important;
+        min-height: 40px !important;
+        padding: var(--space-xs) var(--space-sm) !important;
+    }
+}
+
+/* ================================================================ */
+/* 포스트 레이아웃 중앙 정렬 수정                                      */
+/* ================================================================ */
+
+/* 메인 콘텐츠 중앙 정렬 강화 */
+.main-content {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: var(--space-2xl) var(--space-lg) !important;
+    display: grid !important;
+    grid-template-columns: 1fr 300px !important;
+    gap: var(--space-2xl) !important;
+    align-items: start !important;
+}
+
+.content-area {
+    min-width: 0 !important;
+    max-width: 100% !important;
+}
+
+.post-single {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* 사이드바 Sticky 동작 */
+.sidebar {
+    position: sticky !important;
+    top: calc(80px + var(--space-lg)) !important;
+    align-self: flex-start !important;
+    max-height: calc(100vh - 120px) !important;
+    overflow-y: auto !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--border-color) transparent !important;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color) !important;
+    border-radius: 2px !important;
+}
+
+/* TOC 숨김 처리 개선 */
+.toc-section.hidden {
+    display: none !important;
+}
+
+/* 관련 글 섹션 스타일 보장 */
+.related-posts-section {
+    margin-top: var(--space-2xl) !important;
+    padding-top: var(--space-xl) !important;
+    border-top: 1px solid var(--border-color) !important;
+}
+
+.related-posts-title {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+    margin-bottom: var(--space-lg) !important;
+    text-align: center !important;
+    position: relative !important;
+}
+
+.related-posts-title::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -8px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 60px !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)) !important;
+    border-radius: 2px !important;
+}
+
+.related-posts-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: var(--space-lg) !important;
+    margin-bottom: var(--space-xl) !important;
+}
+
+/* 관련 글이 없을 때 스타일 */
+.no-related-posts {
+    text-align: center !important;
+    padding: var(--space-2xl) !important;
+    background: var(--bg-secondary) !important;
+    border-radius: var(--radius-lg) !important;
+    border: 1px solid var(--border-color) !important;
+    grid-column: 1 / -1 !important;
+}
+
+.no-related-posts p {
+    color: var(--text-secondary) !important;
+    margin-bottom: var(--space-md) !important;
+}
+
+.btn-primary {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: var(--space-sm) !important;
+    padding: var(--space-sm) var(--space-lg) !important;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+    color: var(--text-inverse) !important;
+    text-decoration: none !important;
+    border-radius: var(--radius-lg) !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+/* 반응형 수정 */
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr !important;
+        padding: var(--space-lg) var(--space-sm) !important;
+        gap: var(--space-lg) !important;
+    }
+    
+    .sidebar {
+        order: -1 !important;
+        position: static !important;
+        max-height: none !important;
+    }
+    
+    .related-posts-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-md) !important;
+    }
+}
+
+/* ================================================================ */
+/* 카테고리 액티브 상태 스타일                                        */
+/* ================================================================ */
+
+.category-link.active {
+    color: var(--accent-primary) !important;
+    font-weight: 600 !important;
+    background: var(--bg-accent) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: var(--space-xs) var(--space-sm) !important;
+}
+
+/* ================================================================ */
+/* 포스트 페이지 레이아웃 너비 및 Sticky 수정 - main.scss 맨 끝에 추가    */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 1. 포스트 페이지 전용 레이아웃 수정                                  */
+/* ================================================================ */
+
+/* 포스트 페이지 메인 콘텐츠 컨테이너 */
+body.post-page .main-content {
+    max-width: 1400px !important; /* 기존 1200px → 1400px로 확장 */
+    margin: 0 auto !important;
+    padding: var(--space-2xl) var(--space-xl) !important; /* 기존 var(--space-lg) → var(--space-xl)로 확장 */
+    display: grid !important;
+    grid-template-columns: 1fr 280px !important; /* 사이드바를 280px로 축소 */
+    gap: var(--space-2xl) !important;
+    align-items: start !important;
+}
+
+/* 포스트 콘텐츠 영역 확장 */
+body.post-page .content-area {
+    min-width: 0 !important;
+    max-width: 900px !important; /* 기존 800px → 900px로 확장 */
+    margin: 0 !important; /* 중앙 정렬 제거하여 전체 너비 활용 */
+}
+
+/* 포스트 단일 콘텐츠 너비 확장 */
+body.post-page .post-single {
+    max-width: 100% !important; /* 기존 800px 제한 제거 */
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* 포스트 콘텐츠 내부 텍스트 너비 조정 */
+body.post-page .post-content {
+    max-width: 100% !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    color: var(--text-primary) !important;
+}
+
+/* ================================================================ */
+/* 2. 사이드바 Sticky 설정 - TOC만 Sticky                           */
+/* ================================================================ */
+
+/* 전체 사이드바는 일반 스크롤 */
+body.post-page .sidebar {
+    position: static !important; /* sticky 제거 */
+    max-height: none !important;
+    overflow-y: visible !important;
+    width: 280px !important; /* 기존 300px → 280px로 축소 */
+}
+
+/* TOC 섹션만 Sticky 적용 */
+body.post-page .toc-section {
+    position: sticky !important;
+    top: calc(80px + var(--space-lg)) !important;
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto !important;
+    z-index: 10 !important;
+    
+    /* 스크롤바 스타일링 */
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--border-color) transparent !important;
+}
+
+body.post-page .toc-section::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+body.post-page .toc-section::-webkit-scrollbar-thumb {
+    background: var(--border-color) !important;
+    border-radius: 2px !important;
+}
+
+body.post-page .toc-section::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted) !important;
+}
+
+/* 다른 사이드바 섹션들은 일반 상태 */
+body.post-page .sidebar-section:not(.toc-section) {
+    position: static !important;
+    margin-bottom: var(--space-lg) !important;
+}
+
+/* ================================================================ */
+/* 3. 반응형 조정                                                   */
+/* ================================================================ */
+
+/* 태블릿 뷰 (1024px 이하) */
+@media (max-width: 1024px) {
+    body.post-page .main-content {
+        max-width: 100% !important;
+        padding: var(--space-xl) var(--space-lg) !important; /* 태블릿에서 패딩 조정 */
+        grid-template-columns: 1fr 250px !important; /* 사이드바를 더 축소 */
+        gap: var(--space-xl) !important;
+    }
+    
+    body.post-page .content-area {
+        max-width: 100% !important;
+    }
+    
+    body.post-page .sidebar {
+        width: 250px !important;
+    }
+}
+
+/* 모바일 뷰 (768px 이하) */
+@media (max-width: 768px) {
+    body.post-page .main-content {
+        grid-template-columns: 1fr !important;
+        padding: var(--space-lg) var(--space-md) !important; /* 모바일에서 패딩 축소 */
+        gap: var(--space-lg) !important;
+    }
+    
+    body.post-page .sidebar {
+        order: -1 !important;
+        width: 100% !important;
+    }
+    
+    /* 모바일에서는 모든 사이드바 섹션을 static으로 */
+    body.post-page .toc-section {
+        position: static !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+    }
+}
+
+/* ================================================================ */
+/* 4. 포스트 페이지 body 클래스 추가를 위한 스크립트                    */
+/* ================================================================ */
+
+/* JavaScript로 포스트 페이지에 body 클래스를 추가합니다 - 아래 스크립트를 _layouts/post.html에 추가 */
+
+/* ================================================================ */
+/* 5. 추가 세부 조정                                                */
+/* ================================================================ */
+
+/* 포스트 헤더 여백 조정 */
+body.post-page .post-header {
+    margin-bottom: var(--space-2xl) !important;
+    padding: var(--space-xl) var(--space-lg) !important; /* 좌우 패딩 추가 */
+    background: var(--bg-accent) !important;
+    border-radius: var(--radius-xl) !important;
+    border: 1px solid var(--border-light) !important;
+}
+
+/* 포스트 콘텐츠 여백 조정 */
+body.post-page .post-content {
+    padding: 0 var(--space-lg) !important; /* 좌우 패딩 추가로 가독성 향상 */
+}
+
+/* 브레드크럼 여백 조정 */
+body.post-page .breadcrumbs {
+    margin-bottom: var(--space-xl) !important;
+    padding: var(--space-md) var(--space-lg) !important;
+}
+
+/* 포스트 태그 섹션 여백 */
+body.post-page .post-tags {
+    padding: 0 var(--space-lg) !important;
+    margin-bottom: var(--space-xl) !important;
+}
+
+/* 공유 버튼 섹션 여백 */
+body.post-page .post-share {
+    padding: 0 var(--space-lg) !important;
+    margin-top: var(--space-xl) !important;
+}
+
+/* 포스트 네비게이션 여백 */
+body.post-page .post-nav {
+    margin-top: var(--space-2xl) !important;
+    padding: var(--space-xl) var(--space-lg) 0 var(--space-lg) !important;
+}
+
+/* 관련 글 섹션 여백 */
+body.post-page .related-posts-section {
+    margin-top: var(--space-2xl) !important;
+    padding: var(--space-xl) var(--space-lg) 0 var(--space-lg) !important;
+}
+
+/* ================================================================ */
+/* 6. 디버깅을 위한 시각적 가이드 (필요 시 주석 해제)                    */
+/* ================================================================ */
+
+/*
+body.post-page .main-content {
+    border: 2px dashed red !important;
+}
+
+body.post-page .content-area {
+    border: 2px dashed blue !important;
+}
+
+body.post-page .post-single {
+    border: 2px dashed green !important;
+}
+
+body.post-page .sidebar {
+    border: 2px dashed orange !important;
+}
+*/
+
+/* ================================================================ */
+/* 🚀 Columnia 포스트 페이지 레이아웃 완전 수정 - v0.0.5                */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 1. 포스트 페이지 전용 레이아웃 개선                                  */
+/* ================================================================ */
+
+/* 포스트 페이지 메인 콘텐츠 컨테이너 */
+body.post-page .main-content {
+    max-width: 1400px !important; /* 1200px → 1400px로 확장 */
+    margin: 0 auto !important;
+    padding: var(--space-2xl) var(--space-xl) !important;
+    display: grid !important;
+    grid-template-columns: 1fr 280px !important; /* 사이드바 280px 고정 */
+    gap: var(--space-2xl) !important;
+    align-items: start !important;
+    justify-content: center !important; /* 중앙 정렬 강화 */
+}
+
+/* 포스트 콘텐츠 영역 확장 및 중앙 정렬 */
+body.post-page .content-area {
+    min-width: 0 !important;
+    max-width: 900px !important; /* 800px → 900px로 확장 */
+    margin: 0 auto !important; /* 중앙 정렬 복원 */
+    width: 100% !important;
+}
+
+/* 포스트 단일 콘텐츠 너비 최적화 */
+body.post-page .post-single {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* 포스트 콘텐츠 가독성 개선 */
+body.post-page .post-content {
+    max-width: 100% !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    color: var(--text-primary) !important;
+    padding: 0 var(--space-md) !important; /* 좌우 여백 추가 */
+}
+
+/* ================================================================ */
+/* 2. 사이드바 최적화 - TOC만 Sticky                                */
+/* ================================================================ */
+
+/* 전체 사이드바 설정 */
+body.post-page .sidebar {
+    position: static !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+    width: 280px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-lg) !important;
+}
+
+/* TOC 섹션만 Sticky 적용 */
+body.post-page .toc-section {
+    position: sticky !important;
+    top: calc(80px + var(--space-lg)) !important;
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto !important;
+    z-index: 10 !important;
+    order: 2 !important; /* 카테고리 다음에 배치 */
+    
+    /* 스크롤바 스타일링 */
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--border-color) transparent !important;
+}
+
+body.post-page .toc-section::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+body.post-page .toc-section::-webkit-scrollbar-thumb {
+    background: var(--border-color) !important;
+    border-radius: 2px !important;
+}
+
+/* 카테고리 섹션 순서 */
+body.post-page .sidebar-section:has(.categories-list) {
+    order: 1 !important;
+}
+
+/* 뉴스레터 섹션 순서 */
+body.post-page .sidebar-section:has(.newsletter-form) {
+    order: 3 !important;
+}
+
+/* ================================================================ */
+/* 3. 포스트 내용 요소들 여백 및 정렬 개선                              */
+/* ================================================================ */
+
+/* 브레드크럼 여백 조정 */
+body.post-page .breadcrumbs {
+    margin-bottom: var(--space-xl) !important;
+    padding: var(--space-md) var(--space-lg) !important;
+    max-width: 100% !important;
+}
+
+/* 포스트 헤더 중앙 정렬 및 여백 */
+body.post-page .post-header {
+    margin-bottom: var(--space-2xl) !important;
+    padding: var(--space-xl) !important;
+    background: var(--bg-accent) !important;
+    border-radius: var(--radius-xl) !important;
+    border: 1px solid var(--border-light) !important;
+    text-align: center !important;
+}
+
+/* 포스트 제목 중앙 정렬 */
+body.post-page .post-title {
+    text-align: center !important;
+    margin-bottom: var(--space-lg) !important;
+}
+
+/* 포스트 메타 정보 중앙 정렬 */
+body.post-page .post-meta {
+    justify-content: center !important;
+    margin-bottom: var(--space-lg) !important;
+}
+
+/* 포스트 태그 중앙 정렬 */
+body.post-page .post-tags {
+    justify-content: center !important;
+    padding: 0 var(--space-md) !important;
+    margin-bottom: var(--space-xl) !important;
+}
+
+/* 공유 버튼 중앙 정렬 */
+body.post-page .post-share {
+    text-align: center !important;
+    padding: 0 var(--space-md) !important;
+    margin-top: var(--space-xl) !important;
+}
+
+body.post-page .share-buttons {
+    justify-content: center !important;
+}
+
+/* ================================================================ */
+/* 4. 포스트 네비게이션 및 관련 글 섹션 개선                            */
+/* ================================================================ */
+
+/* 포스트 네비게이션 여백 */
+body.post-page .post-nav {
+    margin-top: var(--space-2xl) !important;
+    padding-top: var(--space-xl) !important;
+    padding-left: var(--space-md) !important;
+    padding-right: var(--space-md) !important;
+}
+
+/* 관련 글 섹션 여백 */
+body.post-page .related-posts-section {
+    margin-top: var(--space-2xl) !important;
+    padding-top: var(--space-xl) !important;
+    padding-left: var(--space-md) !important;
+    padding-right: var(--space-md) !important;
+}
+
+/* ================================================================ */
+/* 5. 반응형 최적화                                                 */
+/* ================================================================ */
+
+/* 대화면 (1400px 이상) */
+@media (min-width: 1401px) {
+    body.post-page .main-content {
+        max-width: 1600px !important;
+        padding: var(--space-2xl) var(--space-2xl) !important;
+    }
+    
+    body.post-page .content-area {
+        max-width: 1000px !important;
+    }
+}
+
+/* 태블릿 뷰 (1024px 이하) */
+@media (max-width: 1024px) {
+    body.post-page .main-content {
+        max-width: 100% !important;
+        padding: var(--space-xl) var(--space-lg) !important;
+        grid-template-columns: 1fr 250px !important;
+        gap: var(--space-xl) !important;
+    }
+    
+    body.post-page .content-area {
+        max-width: 100% !important;
+    }
+    
+    body.post-page .sidebar {
+        width: 250px !important;
+    }
+}
+
+/* 모바일 뷰 (768px 이하) */
+@media (max-width: 768px) {
+    body.post-page .main-content {
+        grid-template-columns: 1fr !important;
+        padding: var(--space-lg) var(--space-sm) !important;
+        gap: var(--space-lg) !important;
+    }
+    
+    body.post-page .sidebar {
+        order: -1 !important;
+        width: 100% !important;
+    }
+    
+    /* 모바일에서는 TOC도 static으로 */
+    body.post-page .toc-section {
+        position: static !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+    }
+    
+    /* 모바일에서 패딩 조정 */
+    body.post-page .post-content,
+    body.post-page .post-tags,
+    body.post-page .post-share,
+    body.post-page .post-nav,
+    body.post-page .related-posts-section {
+        padding-left: var(--space-xs) !important;
+        padding-right: var(--space-xs) !important;
+    }
+}
+
+/* ================================================================ */
+/* 6. 추가 시각적 개선                                               */
+/* ================================================================ */
+
+/* 포스트 콘텐츠 내 이미지 중앙 정렬 */
+body.post-page .post-content img {
+    display: block !important;
+    margin: var(--space-lg) auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* 포스트 콘텐츠 내 코드 블록 여백 */
+body.post-page .post-content pre {
+    margin: var(--space-xl) 0 !important;
+    padding: var(--space-lg) !important;
+    border-radius: var(--radius-lg) !important;
+    overflow-x: auto !important;
+}
+
+/* 포스트 콘텐츠 내 인용구 스타일 */
+body.post-page .post-content blockquote {
+    margin: var(--space-xl) 0 !important;
+    padding: var(--space-lg) !important;
+    border-left: 4px solid var(--accent-primary) !important;
+    background: var(--bg-accent) !important;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0 !important;
+}
+
+/* ================================================================ */
+/* 7. 성능 최적화                                                   */
+/* ================================================================ */
+
+/* GPU 가속화 */
+body.post-page .toc-section {
+    will-change: transform !important;
+    transform: translateZ(0) !important;
+}
+
+/* 부드러운 스크롤 */
+body.post-page .toc-section {
+    scroll-behavior: smooth !important;
+}
+
+/* ================================================================ */
+/* 8. 접근성 개선                                                   */
+/* ================================================================ */
+
+/* 포커스 스타일 개선 */
+body.post-page .toc-link:focus {
+    outline: 2px solid var(--accent-primary) !important;
+    outline-offset: 2px !important;
+}
+
+/* ================================================================ */
+/* 9. 디버깅용 시각적 가이드 (필요시 주석 해제)                        */
+/* ================================================================ */
+
+/*
+body.post-page .main-content {
+    border: 2px dashed red !important;
+}
+
+body.post-page .content-area {
+    border: 2px dashed blue !important;
+}
+
+body.post-page .post-single {
+    border: 2px dashed green !important;
+}
+
+body.post-page .sidebar {
+    border: 2px dashed orange !important;
+}
+
+body.post-page .toc-section {
+    border: 2px dashed purple !important;
+}
+*/
+
+/* ================================================================ */
+/* 🚀 Columnia 포스트 페이지 레이아웃 완전 수정 - v0.0.5                */
+/* ================================================================ */
+
+/* ================================================================ */
+/* 1. 포스트 페이지 전용 레이아웃 개선                                  */
+/* ================================================================ */
+
+/* 포스트 페이지 메인 콘텐츠 컨테이너 */
+body.post-page .main-content {
+    max-width: 1200px !important; /* 1400px → 1200px로 축소 */
+    margin: 0 auto !important;
+    padding: var(--space-2xl) var(--space-md) !important; /* 좌우 패딩 축소 */
+    display: grid !important;
+    grid-template-columns: 1fr 280px !important; /* 사이드바 280px 고정 */
+    gap: var(--space-xl) !important; /* gap 축소 */
+    align-items: start !important;
+    width: 100% !important; /* 전체 너비 활용 */
+}
+
+/* 포스트 콘텐츠 영역 확장 및 중앙 정렬 */
+body.post-page .content-area {
+    min-width: 0 !important;
+    max-width: 100% !important; /* 900px → 100%로 변경 */
+    margin: 0 !important; /* 중앙 정렬 제거 */
+    width: 100% !important;
+}
+
+/* 포스트 단일 콘텐츠 너비 최적화 */
+body.post-page .post-single {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* 포스트 콘텐츠 가독성 개선 */
+body.post-page .post-content {
+    max-width: 100% !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    color: var(--text-primary) !important;
+    padding: 0 !important; /* 좌우 여백 제거 */
+}
+
+/* ================================================================ */
+/* 2. 사이드바 최적화 - TOC만 Sticky                                */
+/* ================================================================ */
+
+/* 전체 사이드바 설정 */
+body.post-page .sidebar {
+    position: static !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+    width: 280px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-lg) !important;
+}
+
+/* TOC 섹션만 Sticky 적용 */
+body.post-page .toc-section {
+    position: sticky !important;
+    top: calc(80px + var(--space-lg)) !important;
+    max-height: calc(100vh - 140px) !important;
+    overflow-y: auto !important;
+    z-index: 10 !important;
+    order: 2 !important; /* 카테고리 다음에 배치 */
+    
+    /* 스크롤바 스타일링 */
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--border-color) transparent !important;
+}
+
+body.post-page .toc-section::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+body.post-page .toc-section::-webkit-scrollbar-thumb {
+    background: var(--border-color) !important;
+    border-radius: 2px !important;
+}
+
+/* 카테고리 섹션 순서 */
+body.post-page .sidebar-section:has(.categories-list) {
+    order: 1 !important;
+}
+
+/* 뉴스레터 섹션 순서 */
+body.post-page .sidebar-section:has(.newsletter-form) {
+    order: 3 !important;
+}
+
+/* ================================================================ */
+/* 3. 포스트 내용 요소들 여백 및 정렬 개선                              */
+/* ================================================================ */
+
+/* 브레드크럼 여백 조정 */
+body.post-page .breadcrumbs {
+    margin-bottom: var(--space-xl) !important;
+    padding: var(--space-md) var(--space-lg) !important;
+    max-width: 100% !important;
+}
+
+/* 포스트 헤더 중앙 정렬 및 여백 */
+body.post-page .post-header {
+    margin-bottom: var(--space-2xl) !important;
+    padding: var(--space-xl) !important;
+    background: var(--bg-accent) !important;
+    border-radius: var(--radius-xl) !important;
+    border: 1px solid var(--border-light) !important;
+    text-align: center !important;
+}
+
+/* 포스트 제목 중앙 정렬 */
+body.post-page .post-title {
+    text-align: center !important;
+    margin-bottom: var(--space-lg) !important;
+}
+
+/* 포스트 메타 정보 중앙 정렬 */
+body.post-page .post-meta {
+    justify-content: center !important;
+    margin-bottom: var(--space-lg) !important;
+}
+
+/* 포스트 태그 중앙 정렬 */
+body.post-page .post-tags {
+    justify-content: center !important;
+    padding: 0 !important; /* 패딩 제거 */
+    margin-bottom: var(--space-xl) !important;
+}
+
+/* 공유 버튼 중앙 정렬 */
+body.post-page .post-share {
+    text-align: center !important;
+    padding: 0 !important; /* 패딩 제거 */
+    margin-top: var(--space-xl) !important;
+}
+
+body.post-page .share-buttons {
+    justify-content: center !important;
+}
+
+/* ================================================================ */
+/* 4. 포스트 네비게이션 및 관련 글 섹션 개선                            */
+/* ================================================================ */
+
+/* 포스트 네비게이션 여백 */
+body.post-page .post-nav {
+    margin-top: var(--space-2xl) !important;
+    padding-top: var(--space-xl) !important;
+    padding-left: 0 !important; /* 패딩 제거 */
+    padding-right: 0 !important; /* 패딩 제거 */
+}
+
+/* 관련 글 섹션 여백 */
+body.post-page .related-posts-section {
+    margin-top: var(--space-2xl) !important;
+    padding-top: var(--space-xl) !important;
+    padding-left: 0 !important; /* 패딩 제거 */
+    padding-right: 0 !important; /* 패딩 제거 */
+}
+
+/* ================================================================ */
+/* 5. 반응형 최적화                                                 */
+/* ================================================================ */
+
+/* 대화면 (1400px 이상) */
+@media (min-width: 1401px) {
+    body.post-page .main-content {
+        max-width: 1400px !important; /* 대화면에서만 확장 */
+        padding: var(--space-2xl) var(--space-lg) !important;
+    }
+}
+
+/* 태블릿 뷰 (1024px 이하) */
+@media (max-width: 1024px) {
+    body.post-page .main-content {
+        max-width: 100% !important;
+        padding: var(--space-xl) var(--space-sm) !important; /* 패딩 더 축소 */
+        grid-template-columns: 1fr 240px !important; /* 사이드바 더 축소 */
+        gap: var(--space-md) !important; /* gap 더 축소 */
+    }
+    
+    body.post-page .content-area {
+        max-width: 100% !important;
+    }
+    
+    body.post-page .sidebar {
+        width: 240px !important;
+    }
+}
+
+/* 모바일 뷰 (768px 이하) */
+@media (max-width: 768px) {
+    body.post-page .main-content {
+        grid-template-columns: 1fr !important;
+        padding: var(--space-lg) var(--space-sm) !important;
+        gap: var(--space-lg) !important;
+    }
+    
+    body.post-page .sidebar {
+        order: -1 !important;
+        width: 100% !important;
+    }
+    
+    /* 모바일에서는 TOC도 static으로 */
+    body.post-page .toc-section {
+        position: static !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+    }
+    
+    /* 모바일에서 패딩 조정 */
+    body.post-page .post-content,
+    body.post-page .post-tags,
+    body.post-page .post-share,
+    body.post-page .post-nav,
+    body.post-page .related-posts-section {
+        padding-left: var(--space-xs) !important;
+        padding-right: var(--space-xs) !important;
+    }
+}
+
+/* ================================================================ */
+/* 6. 추가 시각적 개선                                               */
+/* ================================================================ */
+
+/* 포스트 콘텐츠 내 이미지 중앙 정렬 */
+body.post-page .post-content img {
+    display: block !important;
+    margin: var(--space-lg) auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* 포스트 콘텐츠 내 코드 블록 여백 */
+body.post-page .post-content pre {
+    margin: var(--space-xl) 0 !important;
+    padding: var(--space-lg) !important;
+    border-radius: var(--radius-lg) !important;
+    overflow-x: auto !important;
+}
+
+/* 포스트 콘텐츠 내 인용구 스타일 */
+body.post-page .post-content blockquote {
+    margin: var(--space-xl) 0 !important;
+    padding: var(--space-lg) !important;
+    border-left: 4px solid var(--accent-primary) !important;
+    background: var(--bg-accent) !important;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0 !important;
+}
+
+/* ================================================================ */
+/* 7. 성능 최적화                                                   */
+/* ================================================================ */
+
+/* GPU 가속화 */
+body.post-page .toc-section {
+    will-change: transform !important;
+    transform: translateZ(0) !important;
+}
+
+/* 부드러운 스크롤 */
+body.post-page .toc-section {
+    scroll-behavior: smooth !important;
+}
+
+/* ================================================================ */
+/* 8. 접근성 개선                                                   */
+/* ================================================================ */
+
+/* 포커스 스타일 개선 */
+body.post-page .toc-link:focus {
+    outline: 2px solid var(--accent-primary) !important;
+    outline-offset: 2px !important;
+}
+
+/* ================================================================ */
+/* 9. 디버깅용 시각적 가이드 (필요시 주석 해제)                        */
+/* ================================================================ */
+
+/*
+body.post-page .main-content {
+    border: 2px dashed red !important;
+}
+
+body.post-page .content-area {
+    border: 2px dashed blue !important;
+}
+
+body.post-page .post-single {
+    border: 2px dashed green !important;
+}
+
+body.post-page .sidebar {
+    border: 2px dashed orange !important;
+}
+
+body.post-page .toc-section {
+    border: 2px dashed purple !important;
+}
+*/
+
+/* ================================================================ */
+/* 포스트 페이지 레이아웃 수정 - 콘텐츠 너비 확장, 간격 최소화           */
+/* ================================================================ */
+
+body.post-page .main-content {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: var(--space-xl) var(--space-lg) var(--space-xl) var(--space-md) !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    gap: var(--space-lg) !important; /* 간격을 2xl → lg로 대폭 축소 */
+}
+
+body.post-page .content-area {
+    max-width: none !important; /* 최대 너비 제한 해제 */
+    width: calc(100% - 280px - var(--space-lg)) !important; /* 사이드바와 간격 빼고 나머지 전부 */
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+body.post-page .sidebar {
+    width: 280px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+}
+
+body.post-page .post-single {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+body.post-page .post-content {
+    max-width: 100% !important;
+    padding: 0 var(--space-md) !important;
+}
+
+/* =============================================================================
+   PAGE LAYOUTS - About 페이지 등 일반 페이지 스타일
+   ============================================================================= */
+
+// 페이지 기본 레이아웃
+.page-container {
+  display: flex;
+  gap: var(--space-lg);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-lg);
+  min-height: calc(100vh - 200px);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+}
+
+// 페이지 메인 콘텐츠
+.page-content {
+  flex: 1;
+  max-width: calc(100% - 280px - var(--space-lg));
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+// 페이지 헤더
+.page-header {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-color);
+  
+  .page-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 var(--space-sm) 0;
+    line-height: 1.2;
+    
+    // 제목 중복 방지
+    &:first-child:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .page-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+// 페이지 본문
+.page-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  
+  // 헤딩 스타일
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-md);
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    padding-bottom: var(--space-xs);
+    border-bottom: 2px solid var(--primary-color);
+    margin-top: var(--space-xl);
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  // 리스트 스타일
+  ul, ol {
+    padding-left: var(--space-lg);
+    margin: var(--space-md) 0;
+    
+    li {
+      margin-bottom: var(--space-xs);
+      line-height: 1.6;
+      
+      strong {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+    }
+  }
+  
+  // 링크 스타일
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: var(--primary-hover);
+      border-bottom-color: var(--primary-hover);
+    }
+    
+    &:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+  
+  // 단락 스타일
+  p {
+    margin: var(--space-md) 0;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  // 강조 텍스트
+  strong, b {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  
+  em, i {
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+}
+
+// 다크 모드 대응
+[data-theme="dark"] {
+  .page-header {
+    border-bottom-color: var(--border-color);
+  }
+  
+  .page-body h2 {
+    border-bottom-color: var(--primary-color);
+  }
+}

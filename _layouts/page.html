@@ -1,0 +1,79 @@
+---
+layout: default
+---
+
+<!-- 레이아웃 문제 해결을 위한 컨테이너 추가 -->
+<div class="page-layout-container">
+    <div class="content-area">
+        <article class="page-single">
+            <header class="page-header">
+                <h1 class="page-title">{{ page.title }}</h1>
+            </header>
+            
+            <div class="page-content">
+                {{ content }}
+            </div>
+        </article>
+    </div>
+
+    <!-- Simple Sidebar for pages -->
+    <aside class="sidebar slide-in">
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">페이지</h3>
+            <div class="page-nav">
+                <a href="{{ '/' | relative_url }}" class="page-nav-link">홈</a>
+                <a href="{{ '/about' | relative_url }}" class="page-nav-link">소개</a>
+                <a href="{{ '/categories' | relative_url }}" class="page-nav-link">카테고리</a>
+                <a href="{{ '/tags' | relative_url }}" class="page-nav-link">태그</a>
+            </div>
+        </div>
+        
+        <!-- Recent Posts -->
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">최근 글</h3>
+            <div class="recent-posts">
+                {% for post in site.posts limit: 5 %}
+                <div class="recent-post">
+                    <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+                    <div class="recent-post-meta">
+                        <span>⏰ {{ post.date | date: "%m월 %d일" }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- 레이아웃 수정을 위한 최소한의 CSS -->
+<style>
+.page-layout-container {
+    display: flex;
+    gap: var(--space-lg, 2rem);
+    max-width: var(--max-width, 1200px);
+    margin: 0 auto;
+    padding: var(--space-lg, 2rem);
+    min-height: calc(100vh - 200px);
+}
+
+.content-area {
+    flex: 1;
+    max-width: calc(100% - 280px - var(--space-lg, 2rem));
+}
+
+/* 반응형: 모바일에서는 세로 배치 */
+@media (max-width: 768px) {
+    .page-layout-container {
+        flex-direction: column;
+        padding: var(--space-md, 1rem);
+    }
+    
+    .content-area {
+        max-width: 100%;
+    }
+    
+    .sidebar {
+        order: -1; /* 모바일에서는 사이드바를 위로 */
+    }
+}
+</style>

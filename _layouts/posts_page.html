@@ -1,0 +1,107 @@
+---
+layout: default
+---
+
+<div class="content-area">
+    <!-- 페이지 헤더 -->
+    <header class="posts-header">
+        <h1 class="posts-title">전체 게시물</h1>
+        <p class="posts-description">{{ page.total_posts }}개의 포스트를 모두 둘러보세요</p>
+    </header>
+    
+    <!-- 포스트 목록 -->
+    <div class="posts-list">
+        {% for post in page.current_posts %}
+        <article class="post-list-item fade-in">
+            <div class="post-list-meta">
+                <span class="post-date">{{ post.date | date: "%Y년 %m월 %d일" }}</span>
+                <a href="{{ '/categories/' | append: post.category | relative_url }}" class="post-category">{{ post.category }}</a>
+            </div>
+            <h2 class="post-list-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h2>
+            <p class="post-list-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+            <div class="post-list-tags">
+                {% for tag in post.tags limit: 3 %}
+                <span class="post-list-tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            <div class="post-list-footer">
+                <span class="reading-time">📖 {{ post.content | number_of_words | divided_by: 200 | at_least: 1 }}분 읽기</span>
+                <a href="{{ post.url | relative_url }}" class="read-more-link">읽어보기 →</a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <!-- 페이지네이션 -->
+    {% if page.total_pages > 1 %}
+    <nav class="pagination-nav">
+        <div class="pagination-container">
+            <!-- 이전 페이지 -->
+            {% if page.page_num > 1 %}
+                {% assign prev_page = page.page_num | minus: 1 %}
+                {% if prev_page == 1 %}
+                    <a href="{{ '/posts/' | relative_url }}" class="pagination-link pagination-prev">
+                        ← 이전
+                    </a>
+                {% else %}
+                    <a href="{{ '/posts/' | append: prev_page | append: '/' | relative_url }}" class="pagination-link pagination-prev">
+                        ← 이전
+                    </a>
+                {% endif %}
+            {% endif %}
+            
+            <!-- 페이지 번호들 -->
+            <div class="pagination-numbers">
+                {% for page_number in (1..page.total_pages) %}
+                    {% if page_number == page.page_num %}
+                        <span class="pagination-link pagination-current">{{ page_number }}</span>
+                    {% elsif page_number == 1 %}
+                        <a href="{{ '/posts/' | relative_url }}" class="pagination-link">{{ page_number }}</a>
+                    {% else %}
+                        <a href="{{ '/posts/' | append: page_number | append: '/' | relative_url }}" class="pagination-link">{{ page_number }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+            <!-- 다음 페이지 -->
+            {% if page.page_num < page.total_pages %}
+                {% assign next_page = page.page_num | plus: 1 %}
+                <a href="{{ '/posts/' | append: next_page | append: '/' | relative_url }}" class="pagination-link pagination-next">
+                    다음 →
+                </a>
+            {% endif %}
+        </div>
+        
+        <!-- 페이지 정보 -->
+        <div class="pagination-info">
+            <span>{{ page.page_num }} / {{ page.total_pages }} 페이지</span>
+        </div>
+    </nav>
+    {% endif %}
+</div>
+
+<!-- 사이드바 (카테고리와 뉴스레터만) -->
+<aside class="sidebar slide-in">
+    <div class="sidebar-section">
+        <h3 class="sidebar-title">카테고리</h3>
+        <div class="categories-list">
+            {% for category in site.categories %}
+            <div class="category-item">
+                <a href="{{ '/categories/' | append: category[0] | relative_url }}" class="category-link">{{ category[0] }}</a>
+                <span class="category-count">{{ category[1].size }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="sidebar-section">
+        <h3 class="sidebar-title">뉴스레터 구독</h3>
+        <p class="newsletter-description">새로운 포스트를 이메일로 받아보세요.</p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="이메일 주소" class="newsletter-input">
+            <button class="newsletter-button">구독하기</button>
+        </div>
+    </div>
+</aside>
