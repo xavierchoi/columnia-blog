@@ -38,7 +38,9 @@ module Jekyll
       start_index = (page_num - 1) * posts_per_page
       end_index = [start_index + posts_per_page - 1, total_posts - 1].min
       
-      self.data['current_posts'] = site.posts.docs[start_index..end_index] || []
+      # 포스트들을 날짜 내림차순(최신→오래된 순)으로 명시적 정렬
+      sorted_posts = site.posts.docs.sort_by { |post| post.date }.reverse
+      self.data['current_posts'] = sorted_posts[start_index..end_index] || []
     end
   end
 end
