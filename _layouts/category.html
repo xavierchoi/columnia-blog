@@ -3,89 +3,145 @@ layout: default
 ---
 
 <style>
-/* 카테고리 페이지 완벽한 중앙 정렬 시스템 - 포스트 페이지 방식 + Footer 수정 */
-/* Body flex 시스템 - Footer 하단 고정을 위해 */
-body {
+/* ================================================================ */
+/* 🎯 카테고리 페이지 완벽한 중앙 정렬 시스템 - 포스트 페이지와 동일     */
+/* ================================================================ */
+
+/* 카테고리 페이지 전용 클래스 + Footer 위치 수정 */
+body.perfect-center-layout {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    /* Footer 위치 수정을 위한 flex 시스템 */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 기존 main-content 스타일 완전 무력화 + Footer 수정 */
+body.perfect-center-layout .main-content {
+    /* 기존 모든 스타일 제거 */
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    grid-template-columns: none !important;
+    justify-content: unset !important;
+    align-items: unset !important;
+    gap: unset !important;
+    
+    /* 새로운 컨테이너 역할 + Footer 위치 수정 */
+    flex: 1 !important;  /* Footer를 하단에 고정하기 위해 */
+    position: relative !important;
+    padding-top: var(--space-2xl, 3rem) !important;
+    padding-bottom: var(--space-2xl, 3rem) !important;
+    background: transparent !important;
+}
+
+/* ================================================================ */
+/* 🎯 메인 콘텐츠 - 완전한 독립 중앙 정렬                           */
+/* ================================================================ */
+
+/* 메인 콘텐츠 - 화면 정중앙 고정 */
+body.perfect-center-layout .content-area {
+    /* 완전한 중앙 정렬 */
+    position: absolute !important;
+    left: 50% !important;
+    top: 80px !important;
+    transform: translateX(-50%) !important;
+    
+    /* 고정 크기 */
+    width: 800px !important;
+    max-width: 800px !important;
+    min-width: 800px !important;
+    
+    /* 기본 설정 */
+    margin: 0 !important;
+    padding: 0 var(--space-md, 1rem) !important;
+    padding-top: 0 !important;
+    background: transparent !important;
+    z-index: 1 !important;
+}
+
+/* ================================================================ */
+/* 🎯 사이드바 - 메인 콘텐츠 우측에 독립 배치                       */
+/* ================================================================ */
+
+/* 사이드바 - 메인 콘텐츠 우측 끝에서 시작 */
+body.perfect-center-layout .sidebar {
+    /* 메인 콘텐츠 우측에 절대 위치 */
+    position: absolute !important;
+    left: calc(50% + 400px + var(--space-xl, 2rem)) !important;
+    top: 80px !important;
+    
+    /* 고정 크기 */
+    width: 280px !important;
+    max-width: 280px !important;
+    min-width: 280px !important;
+    
+    /* 기본 설정 */
+    margin: 0 !important;
+    padding: 0 var(--space-md, 1rem) !important;
+    padding-top: 0 !important;
+    background: transparent !important;
+    z-index: 2 !important;
+    
+    /* 표시 설정 */
     display: flex !important;
     flex-direction: column !important;
-    min-height: 100vh !important;
+    gap: var(--space-lg, 1.5rem) !important;
 }
 
-.main-content {
-    flex: 1 !important;  /* Footer를 하단에 밀어내기 위해 */
-    position: relative;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    padding-top: var(--space-2xl, 3rem);
-    padding-bottom: var(--space-2xl, 3rem);
-}
+/* ================================================================ */
+/* 📱 반응형 - 사이드바만 숨김, 메인 콘텐츠는 여전히 중앙              */
+/* ================================================================ */
 
-.category-main {
-    position: relative;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.category-content {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 800px;
-    max-width: 800px;
-    margin: 0;
-    padding: var(--space-lg, 1.5rem);
-    z-index: 1;
-    top: var(--space-2xl, 3rem);
-}
-
-.category-sidebar {
-    position: absolute;
-    left: calc(50% + 400px + 2rem);
-    top: var(--space-2xl, 3rem);
-    width: 280px;
-    margin: 0;
-    padding: var(--space-lg, 1.5rem);
-    z-index: 2;
-}
-
-/* 반응형: 1350px 이하에서 사이드바 숨김 */
+/* 사이드바 숨김 조건: 메인 콘텐츠(800px) + 간격(32px) + 사이드바(280px) + 여백(200px) = 1312px */
 @media (max-width: 1350px) {
-    .category-sidebar {
-        display: none;
+    /* 사이드바만 숨김 */
+    body.perfect-center-layout .sidebar {
+        display: none !important;
+    }
+    
+    /* 메인 콘텐츠는 여전히 완벽한 중앙 정렬 유지 */
+    body.perfect-center-layout .content-area {
+        /* 중앙 정렬은 그대로 */
+        left: 50% !important;
+        transform: translateX(-50%) !important;
     }
 }
 
-/* 중간 화면에서 너비 조정 */
+/* 중간 화면에서 메인 콘텐츠 너비 조정 */
 @media (max-width: 1000px) {
-    .category-content {
-        width: 90%;
-        max-width: 800px;
-        min-width: 300px;
+    body.perfect-center-layout .content-area {
+        width: 90% !important;
+        max-width: 800px !important;
+        min-width: 300px !important;
     }
 }
 
 /* 태블릿 */
 @media (max-width: 768px) {
-    .category-content {
-        width: 95%;
-        max-width: 100%;
-        padding: 0 var(--space-sm, 0.5rem);
+    body.perfect-center-layout .content-area {
+        width: 95% !important;
+        max-width: 100% !important;
+        padding: 0 var(--space-sm, 0.5rem) !important;
     }
 }
 
 /* 모바일 */
 @media (max-width: 480px) {
-    .category-content {
-        width: 98%;
-        padding: 0 var(--space-xs, 0.25rem);
+    body.perfect-center-layout .content-area {
+        width: 98% !important;
+        padding: 0 var(--space-xs, 0.25rem) !important;
     }
 }
 </style>
 
-<div class="category-main">
-    <div class="category-content">
+<div class="main-content">
+    <!-- 메인 콘텐츠 영역 - 화면 정중앙 고정 -->
+    <div class="content-area">
         <!-- 카테고리 헤더 -->
         <header class="category-header">
             <h1 class="category-title">{{ page.category }}</h1>
@@ -171,8 +227,8 @@ body {
         {% endif %}
     </div>
 
-    <!-- 사이드바 -->
-    <aside class="category-sidebar">
+    <!-- 사이드바 - 메인 콘텐츠 우측에 독립 배치 -->
+    <aside class="sidebar" id="perfectSidebar">
         <div class="sidebar-section">
             <h3 class="sidebar-title">다른 카테고리</h3>
             <div class="categories-list">
@@ -186,16 +242,6 @@ body {
                 </div>
                 {% endfor %}
             </div>
-        </div>
-        
-        <!-- 뉴스레터 구독 (선택사항) -->
-        <div class="sidebar-section">
-            <h3 class="sidebar-title">뉴스레터 구독</h3>
-            <p class="newsletter-description">새로운 글을 이메일로 받아보세요.</p>
-            <form class="newsletter-form" action="#" method="post">
-                <input type="email" class="newsletter-input" placeholder="이메일 주소" required>
-                <button type="submit" class="newsletter-button">구독하기</button>
-            </form>
         </div>
     </aside>
 </div>
@@ -260,17 +306,58 @@ body {
 </style>
 
 <script>
-// Footer 위치 수정을 위한 동적 높이 계산
+// 카테고리 페이지 완벽한 중앙 정렬 JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🎯 카테고리 페이지 완벽한 중앙 정렬 시스템 시작');
+    
+    // 카테고리 페이지 전용 body 클래스 추가
+    document.body.classList.add('perfect-center-layout');
+    console.log('✅ body.perfect-center-layout 클래스 추가됨');
+    
+    // 레이아웃 측정 및 검증
+    function measureLayout() {
+        const contentArea = document.querySelector('.content-area');
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (contentArea) {
+            const rect = contentArea.getBoundingClientRect();
+            const windowCenter = window.innerWidth / 2;
+            const contentCenter = rect.left + (rect.width / 2);
+            const offset = Math.abs(windowCenter - contentCenter);
+            
+            console.log('📐 === 카테고리 페이지 레이아웃 측정 ===');
+            console.log(`화면 중앙: ${windowCenter}px`);
+            console.log(`콘텐츠 중앙: ${contentCenter}px`);
+            console.log(`오프셋: ${offset}px`);
+            console.log(`콘텐츠 너비: ${rect.width}px`);
+            
+            if (sidebar) {
+                const sidebarRect = sidebar.getBoundingClientRect();
+                const sidebarVisible = getComputedStyle(sidebar).display !== 'none';
+                console.log(`사이드바 표시: ${sidebarVisible}`);
+                if (sidebarVisible) {
+                    console.log(`사이드바 위치: left=${sidebarRect.left}px`);
+                    console.log(`메인 콘텐츠 끝점에서 사이드바까지 간격: ${sidebarRect.left - (rect.left + rect.width)}px`);
+                }
+            }
+            
+            console.log(`중앙 정렬 성공: ${offset <= 2 ? '✅' : '❌'}`);
+        }
+    }
+    
+    // 초기 측정
+    setTimeout(measureLayout, 500);
+    
+    // Footer 위치 수정을 위한 동적 높이 계산
     function updateMainContentHeight() {
         const mainContent = document.querySelector('.main-content');
-        const categoryContent = document.querySelector('.category-content');
-        const categorySidebar = document.querySelector('.category-sidebar');
+        const contentArea = document.querySelector('.content-area');
+        const sidebar = document.querySelector('.sidebar');
         
-        if (mainContent && categoryContent) {
+        if (mainContent && contentArea) {
             // 콘텐츠 영역의 실제 높이 계산
-            const contentHeight = categoryContent.offsetHeight;
-            const sidebarHeight = categorySidebar ? categorySidebar.offsetHeight : 0;
+            const contentHeight = contentArea.offsetHeight;
+            const sidebarHeight = sidebar ? sidebar.offsetHeight : 0;
             
             // 더 큰 높이를 기준으로 main-content 높이 설정
             const maxHeight = Math.max(contentHeight, sidebarHeight);
@@ -289,8 +376,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // 초기 높이 설정
     setTimeout(updateMainContentHeight, 100);
     
-    // 창 크기 변경 시 재계산
-    window.addEventListener('resize', updateMainContentHeight);
+    // 창 크기 변경시 재측정
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            measureLayout();
+            updateMainContentHeight();
+        }, 200);
+    });
     
     // 이미지 로드 완료 후 재계산
     window.addEventListener('load', updateMainContentHeight);

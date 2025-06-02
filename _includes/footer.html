@@ -8,9 +8,22 @@
             <a href="/sitemap.xml" class="footer-link">Sitemap</a>
         </div>
         <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
-            📧 {{ site.email }} &nbsp;&nbsp;
-            🐦 @yourhandle
-        </p>
+        <div class="footer-social">
+            <a href="mailto:{{ site.email }}" class="social-link email-link">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 85.57" width="16" height="11">
+                    <path fill="currentColor" d="M3.8,0,62.48,47.85,118.65,0ZM0,80.52,41.8,38.61,0,4.53v76ZM46.41,42.37,3.31,85.57h115.9L78,42.37,64.44,53.94h0a3,3,0,0,1-3.78.05L46.41,42.37Zm36.12-3.84,40.35,42.33V4.16L82.53,38.53Z"/>
+                </svg>
+                <span>{{ site.email }}</span>
+            </a>
+            
+            <a href="https://x.com/{{ site.twitter_username }}" target="_blank" rel="noopener noreferrer" class="social-link x-link">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 509.64" width="16" height="16">
+                    <rect width="512" height="509.64" rx="115.61" ry="115.61" fill="currentColor"/>
+                    <path fill="var(--bg-primary)" d="M323.74 148.35h36.12l-78.91 90.2 92.83 122.73h-72.69l-56.93-74.43-65.15 74.43h-36.14l84.4-96.47-89.05-116.46h74.53l51.46 68.04 59.53-68.04zm-12.68 191.31h20.02l-129.2-170.82H180.4l130.66 170.82z"/>
+                </svg>
+                <span>@{{ site.twitter_username }}</span>
+            </a>
+            
+        </div>
     </div>
 </footer>

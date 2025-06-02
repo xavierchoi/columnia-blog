@@ -52,7 +52,7 @@
             <div class="header-search">
                 <div class="search-container">
                     <input type="text" class="search-input" placeholder="블로그 포스트 검색..." id="searchInput">
-                    <div class="search-icon">🔍</div>
+                    <div class="search-icon">{% include icons/search.html %}</div>
                 </div>
             </div>
     
@@ -60,7 +60,7 @@
                 <!-- Language Switcher -->
                 <div class="language-switcher">
                     <button class="language-btn" onclick="toggleLanguageDropdown()">
-                        🌐 <span>KO</span> ⌄
+                        {% include icons/globe.html %} <span>KO</span> ⌄
                     </button>
                     <div class="language-dropdown" id="languageDropdown">
                         <a href="#" class="language-option">🇰🇷 한국어</a>

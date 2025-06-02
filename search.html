@@ -30,9 +30,10 @@ body {
     width: 800px;
     max-width: 800px;
     margin: 0;
-    padding: var(--space-lg, 1.5rem);
+    padding: 0 var(--space-lg, 1.5rem);
+    padding-top: 0;
     z-index: 1;
-    top: var(--space-2xl, 3rem);
+    top: 80px;
 }
 
 /* 반응형: 중간 화면에서 너비 조정 */
@@ -58,6 +59,41 @@ body {
     .content-area {
         width: 98%;
         padding: 0 var(--space-xs, 0.25rem);
+    }
+}
+
+/* ================================================================ */
+/* 🎯 사이드바 - 메인 콘텐츠 우측에 독립 배치                       */
+/* ================================================================ */
+
+.sidebar {
+    /* 메인 콘텐츠 우측에 절대 위치 */
+    position: absolute !important;
+    left: calc(50% + 400px + var(--space-xl, 2rem)) !important;
+    top: 80px !important;
+    
+    /* 고정 크기 */
+    width: 280px !important;
+    max-width: 280px !important;
+    min-width: 280px !important;
+    
+    /* 기본 설정 */
+    margin: 0 !important;
+    padding: 0 var(--space-md, 1rem) !important;
+    padding-top: 0 !important;
+    background: transparent !important;
+    z-index: 2 !important;
+    
+    /* 표시 설정 */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-lg, 1.5rem) !important;
+}
+
+/* 반응형: 1350px 이하에서 사이드바 숨김 */
+@media (max-width: 1350px) {
+    .sidebar {
+        display: none !important;
     }
 }
 </style>

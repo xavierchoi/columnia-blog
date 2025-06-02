@@ -136,21 +136,7 @@ body {
     border-color: var(--accent-primary, #0064ff);
 }
 
-.post-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(135deg, var(--accent-primary, #0064ff), var(--accent-secondary, #06b6d4));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.post-card:hover::before {
-    opacity: 1;
-}
+/* post-card::before hover effect removed for cleaner design */
 
 /* 포스트 메타 정보 - 홈페이지와 동일 */
 .post-meta {
@@ -605,6 +591,7 @@ body {
                     <a href="#" class="share-btn" data-url="{{ post.url | absolute_url }}" data-title="{{ post.title }}" data-platform="twitter" title="Twitter">🐦</a>
                     <a href="#" class="share-btn" data-url="{{ post.url | absolute_url }}" data-title="{{ post.title }}" data-platform="linkedin" title="LinkedIn">💼</a>
                     <a href="#" class="share-btn" data-url="{{ post.url | absolute_url }}" data-title="{{ post.title }}" data-platform="kakao" title="KakaoTalk">💬</a>
+                    <a href="#" class="share-btn" data-url="{{ post.url | absolute_url }}" data-title="{{ post.title }}" data-platform="share" title="공유">{% include icons/share.html %}</a>
                 </div>
             </div>
         </article>

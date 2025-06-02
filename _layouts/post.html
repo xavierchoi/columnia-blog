@@ -49,7 +49,7 @@ body.perfect-center-layout .content-area {
     /* 완전한 중앙 정렬 */
     position: absolute !important;
     left: 50% !important;
-    top: var(--space-2xl, 3rem) !important;
+    top: 80px !important;
     transform: translateX(-50%) !important;
     
     /* 고정 크기 */
@@ -60,6 +60,7 @@ body.perfect-center-layout .content-area {
     /* 기본 설정 */
     margin: 0 !important;
     padding: 0 var(--space-md, 1rem) !important;
+    padding-top: 0 !important;
     background: transparent !important;
     z-index: 1 !important;
 }
@@ -73,7 +74,7 @@ body.perfect-center-layout .sidebar {
     /* 메인 콘텐츠 우측에 절대 위치 */
     position: absolute !important;
     left: calc(50% + 400px + var(--space-xl, 2rem)) !important;
-    top: var(--space-2xl, 3rem) !important;
+    top: 80px !important;
     
     /* 고정 크기 */
     width: 280px !important;
@@ -83,6 +84,7 @@ body.perfect-center-layout .sidebar {
     /* 기본 설정 */
     margin: 0 !important;
     padding: 0 var(--space-md, 1rem) !important;
+    padding-top: 0 !important;
     background: transparent !important;
     z-index: 2 !important;
     
@@ -238,96 +240,6 @@ body.perfect-center-layout .sidebar-section:has(.newsletter-form) {
     order: 3 !important;
 }
 
-/* ================================================================ */
-/* 🎯 디버깅 시각화 (임시)                                          */
-/* ================================================================ */
-
-/* 화면 중앙선 표시 */
-body.perfect-center-layout::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: 100vh;
-    background: rgba(255, 0, 128, 0.8);
-    z-index: 9999;
-    pointer-events: none;
-    transform: translateX(-1px);
-}
-
-body.perfect-center-layout::after {
-    content: "화면 중앙선";
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 0, 128, 0.9);
-    color: white;
-    padding: 4px 8px;
-    font-size: 12px;
-    font-weight: bold;
-    z-index: 9999;
-    pointer-events: none;
-    border-radius: 4px;
-}
-
-/* 메인 콘텐츠 시각화 */
-body.perfect-center-layout .content-area {
-    border: 2px solid rgba(0, 0, 255, 0.6) !important;
-    background: rgba(0, 255, 255, 0.05) !important;
-    position: relative;
-}
-
-body.perfect-center-layout .content-area::before {
-    content: "메인 콘텐츠 (800px 고정)";
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 255, 0.8);
-    color: white;
-    padding: 4px 8px;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 4px;
-    white-space: nowrap;
-}
-
-/* 사이드바 시각화 */
-body.perfect-center-layout .sidebar {
-    border: 2px solid rgba(0, 255, 0, 0.6) !important;
-    background: rgba(255, 0, 255, 0.05) !important;
-    position: relative;
-}
-
-body.perfect-center-layout .sidebar::before {
-    content: "사이드바 (280px 고정)";
-    position: absolute;
-    top: -30px;
-    left: 0;
-    background: rgba(0, 255, 0, 0.8);
-    color: white;
-    padding: 4px 8px;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 4px;
-    white-space: nowrap;
-}
-
-/* 콘텐츠 중앙선 표시 */
-body.perfect-center-layout .content-area::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: 100%;
-    background: rgba(0, 0, 255, 0.8);
-    z-index: 1000;
-    pointer-events: none;
-    transform: translateX(-1px);
-}
 
 /* ================================================================ */
 /* 🚀 추가 안정성 보장                                              */
@@ -557,15 +469,6 @@ body.perfect-center-layout .sidebar {
             </nav>
         </div>
 
-        <!-- 3. 뉴스레터 구독 -->
-        <div class="sidebar-section">
-            <h3 class="sidebar-title">뉴스레터 구독</h3>
-            <p class="newsletter-description">새로운 글을 이메일로 받아보세요.</p>
-            <form class="newsletter-form" action="#" method="post">
-                <input type="email" class="newsletter-input" placeholder="이메일 주소" required>
-                <button type="submit" class="newsletter-button">구독하기</button>
-            </form>
-        </div>
     </aside>
 </div>
 

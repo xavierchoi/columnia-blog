@@ -2,90 +2,396 @@
 layout: default
 ---
 
+<!-- About 페이지 완벽한 중앙 정렬 시스템 - 포스트 페이지와 동일한 방식 -->
 <style>
-/* About 페이지 완벽한 중앙 정렬 시스템 - 포스트 페이지 방식 + Footer 수정 */
-/* Body flex 시스템 - Footer 하단 고정을 위해 */
-body {
+/* ================================================================ */
+/* 🎯 완벽한 중앙 정렬 시스템 - 메인 콘텐츠 완전 독립                */
+/* ================================================================ */
+
+/* About 페이지 전용 클래스 + Footer 위치 수정 */
+body.perfect-center-layout {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    /* Footer 위치 수정을 위한 flex 시스템 */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 기존 main-content 스타일 완전 무력화 + Footer 수정 */
+body.perfect-center-layout .main-content {
+    /* 기존 모든 스타일 제거 */
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    grid-template-columns: none !important;
+    justify-content: unset !important;
+    align-items: unset !important;
+    gap: unset !important;
+    
+    /* 새로운 컨테이너 역할 + Footer 위치 수정 */
+    flex: 1 !important;  /* Footer를 하단에 고정하기 위해 */
+    position: relative !important;
+    padding-top: var(--space-2xl, 3rem) !important;
+    padding-bottom: var(--space-2xl, 3rem) !important;
+    background: transparent !important;
+}
+
+/* ================================================================ */
+/* 🎯 메인 콘텐츠 - 완전한 독립 중앙 정렬                           */
+/* ================================================================ */
+
+/* 메인 콘텐츠 - 화면 정중앙 고정 */
+body.perfect-center-layout .content-area {
+    /* 완전한 중앙 정렬 */
+    position: absolute !important;
+    left: 50% !important;
+    top: 80px !important;
+    transform: translateX(-50%) !important;
+    
+    /* 고정 크기 */
+    width: 800px !important;
+    max-width: 800px !important;
+    min-width: 800px !important;
+    
+    /* 기본 설정 */
+    margin: 0 !important;
+    padding: 0 var(--space-md, 1rem) !important;
+    padding-top: 0 !important;
+    background: transparent !important;
+    z-index: 1 !important;
+}
+
+/* ================================================================ */
+/* 🎯 사이드바 - 메인 콘텐츠 우측에 독립 배치                       */
+/* ================================================================ */
+
+/* 사이드바 - 메인 콘텐츠 우측 끝에서 시작 */
+body.perfect-center-layout .sidebar {
+    /* 메인 콘텐츠 우측에 절대 위치 */
+    position: absolute !important;
+    left: calc(50% + 400px + var(--space-xl, 2rem)) !important;
+    top: 80px !important;
+    
+    /* 고정 크기 */
+    width: 280px !important;
+    max-width: 280px !important;
+    min-width: 280px !important;
+    
+    /* 기본 설정 */
+    margin: 0 !important;
+    padding: 0 var(--space-md, 1rem) !important;
+    padding-top: 0 !important;
+    background: transparent !important;
+    z-index: 2 !important;
+    
+    /* 표시 설정 */
     display: flex !important;
     flex-direction: column !important;
-    min-height: 100vh !important;
+    gap: var(--space-lg, 1.5rem) !important;
 }
 
-.main-content {
-    flex: 1 !important;  /* Footer를 하단에 밀어내기 위해 */
-    position: relative;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    padding-top: var(--space-2xl, 3rem);
-    padding-bottom: var(--space-2xl, 3rem);
-}
+/* ================================================================ */
+/* 📱 반응형 - 사이드바만 숨김, 메인 콘텐츠는 여전히 중앙              */
+/* ================================================================ */
 
-.page-layout-container {
-    position: relative;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.content-area {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 800px;
-    max-width: 800px;
-    margin: 0;
-    padding: var(--space-lg, 1.5rem);
-    z-index: 1;
-    top: var(--space-2xl, 3rem);
-}
-
-.sidebar {
-    position: absolute;
-    left: calc(50% + 400px + 2rem);
-    top: var(--space-2xl, 3rem);
-    width: 280px;
-    margin: 0;
-    padding: var(--space-lg, 1.5rem);
-    z-index: 2;
-}
-
-/* 반응형: 1350px 이하에서 사이드바 숨김 */
+/* 사이드바 숨김 조건: 메인 콘텐츠(800px) + 간격(32px) + 사이드바(280px) + 여백(200px) = 1312px */
 @media (max-width: 1350px) {
-    .sidebar {
-        display: none;
+    /* 사이드바만 숨김 */
+    body.perfect-center-layout .sidebar {
+        display: none !important;
+    }
+    
+    /* 메인 콘텐츠는 여전히 완벽한 중앙 정렬 유지 */
+    body.perfect-center-layout .content-area {
+        /* 중앙 정렬은 그대로 */
+        left: 50% !important;
+        transform: translateX(-50%) !important;
     }
 }
 
-/* 중간 화면에서 너비 조정 */
+/* 중간 화면에서 메인 콘텐츠 너비 조정 */
 @media (max-width: 1000px) {
-    .content-area {
-        width: 90%;
-        max-width: 800px;
-        min-width: 300px;
+    body.perfect-center-layout .content-area {
+        width: 90% !important;
+        max-width: 800px !important;
+        min-width: 300px !important;
     }
 }
 
 /* 태블릿 */
 @media (max-width: 768px) {
-    .content-area {
-        width: 95%;
-        max-width: 100%;
-        padding: 0 var(--space-sm, 0.5rem);
+    body.perfect-center-layout .content-area {
+        width: 95% !important;
+        max-width: 100% !important;
+        padding: 0 var(--space-sm, 0.5rem) !important;
     }
 }
 
 /* 모바일 */
 @media (max-width: 480px) {
-    .content-area {
-        width: 98%;
-        padding: 0 var(--space-xs, 0.25rem);
+    body.perfect-center-layout .content-area {
+        width: 98% !important;
+        padding: 0 var(--space-xs, 0.25rem) !important;
+    }
+}
+
+/* ================================================================ */
+/* 📄 페이지 콘텐츠 스타일링 - 포스트 페이지와 동일하게 */
+/* ================================================================ */
+
+/* 페이지 단일 콘텐츠 - 포스트와 동일한 스타일 */
+body.perfect-center-layout .page-single {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* 페이지 헤더 - 포스트 헤더와 동일한 스타일 */
+body.perfect-center-layout .page-header {
+    text-align: center !important;
+    margin-bottom: var(--space-2xl, 3rem) !important;
+    padding: var(--space-xl, 2rem) !important;
+    background: var(--bg-accent, rgba(0, 100, 255, 0.05)) !important;
+    border-radius: var(--radius-xl, 1rem) !important;
+    border: 1px solid var(--border-light, #f1f5f9) !important;
+}
+
+/* 페이지 제목 - 포스트 제목과 동일한 스타일 */
+body.perfect-center-layout .page-title {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary, #1e293b) !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+    background: linear-gradient(135deg, var(--accent-primary, #0064ff), var(--accent-secondary, #06b6d4)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+/* 페이지 콘텐츠 - 포스트 콘텐츠와 동일한 스타일 */
+body.perfect-center-layout .page-content {
+    max-width: 100% !important;
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    word-wrap: break-word !important;
+    color: var(--text-primary, #1e293b) !important;
+}
+
+/* 페이지 콘텐츠 내부 요소들 */
+/* 사이드바 스타일링 */
+.sidebar-section {
+    background: var(--bg-primary, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-lg, 0.75rem);
+    padding: var(--space-lg, 1.5rem);
+    margin-bottom: var(--space-lg, 1.5rem);
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary, #1e293b);
+    margin-bottom: var(--space-md, 1rem);
+    padding-bottom: var(--space-sm, 0.5rem);
+    border-bottom: 2px solid var(--accent-primary, #0064ff);
+}
+
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: var(--radius-md, 0.5rem);
+    transition: background-color 0.3s ease;
+}
+
+.category-item:hover {
+    background: var(--bg-secondary, #f8fafc);
+}
+
+.category-link {
+    color: var(--text-secondary, #64748b);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.category-link:hover {
+    color: var(--accent-primary, #0064ff);
+}
+
+.category-count {
+    background: var(--bg-tertiary, #f1f5f9);
+    color: var(--text-muted, #94a3b8);
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-sm, 0.25rem);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+
+body.perfect-center-layout .page-content h1, 
+body.perfect-center-layout .page-content h2, 
+body.perfect-center-layout .page-content h3, 
+body.perfect-center-layout .page-content h4, 
+body.perfect-center-layout .page-content h5, 
+body.perfect-center-layout .page-content h6 {
+    color: var(--text-primary, #1e293b) !important;
+    margin-top: var(--space-xl, 2rem) !important;
+    margin-bottom: var(--space-lg, 1.5rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+}
+
+body.perfect-center-layout .page-content h1 { font-size: 2.25rem !important; }
+body.perfect-center-layout .page-content h2 { font-size: 1.875rem !important; }
+body.perfect-center-layout .page-content h3 { font-size: 1.5rem !important; }
+body.perfect-center-layout .page-content h4 { font-size: 1.25rem !important; }
+body.perfect-center-layout .page-content h5 { font-size: 1.125rem !important; }
+body.perfect-center-layout .page-content h6 { font-size: 1rem !important; }
+
+body.perfect-center-layout .page-content p {
+    margin-bottom: var(--space-lg, 1.5rem) !important;
+    color: var(--text-secondary, #64748b) !important;
+    line-height: 1.8 !important;
+}
+
+body.perfect-center-layout .page-content ul, 
+body.perfect-center-layout .page-content ol {
+    margin-bottom: var(--space-lg, 1.5rem) !important;
+    padding-left: var(--space-xl, 2rem) !important;
+}
+
+body.perfect-center-layout .page-content li {
+    margin-bottom: var(--space-sm, 0.5rem) !important;
+    color: var(--text-secondary, #64748b) !important;
+    line-height: 1.7 !important;
+}
+
+body.perfect-center-layout .page-content blockquote {
+    border-left: 4px solid var(--accent-primary, #0064ff) !important;
+    background: var(--bg-accent, rgba(0, 100, 255, 0.05)) !important;
+    padding: var(--space-lg, 1.5rem) !important;
+    margin: var(--space-xl, 2rem) 0 !important;
+    border-radius: var(--radius-md, 0.5rem) !important;
+    font-style: italic !important;
+    color: var(--text-secondary, #64748b) !important;
+}
+
+body.perfect-center-layout .page-content blockquote p {
+    margin-bottom: 0 !important;
+}
+
+body.perfect-center-layout .page-content code {
+    background: var(--bg-tertiary, #f1f5f9) !important;
+    color: var(--accent-primary, #0064ff) !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: var(--radius-sm, 0.25rem) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.9em !important;
+}
+
+body.perfect-center-layout .page-content pre {
+    background: var(--bg-secondary, #f8fafc) !important;
+    border: 1px solid var(--border-color, #e2e8f0) !important;
+    border-radius: var(--radius-md, 0.5rem) !important;
+    padding: var(--space-lg, 1.5rem) !important;
+    overflow-x: auto !important;
+    margin: var(--space-xl, 2rem) 0 !important;
+}
+
+body.perfect-center-layout .page-content pre code {
+    background: none !important;
+    color: var(--text-primary, #1e293b) !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+body.perfect-center-layout .page-content a {
+    color: var(--accent-primary, #0064ff) !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid transparent !important;
+    transition: all 0.3s ease !important;
+}
+
+body.perfect-center-layout .page-content a:hover {
+    color: var(--accent-secondary, #06b6d4) !important;
+    border-bottom-color: var(--accent-secondary, #06b6d4) !important;
+}
+
+body.perfect-center-layout .page-content img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: var(--radius-md, 0.5rem) !important;
+    margin: var(--space-xl, 2rem) 0 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.perfect-center-layout .page-content table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: var(--space-xl, 2rem) 0 !important;
+    background: var(--bg-primary, #ffffff) !important;
+    border-radius: var(--radius-md, 0.5rem) !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.perfect-center-layout .page-content th, 
+body.perfect-center-layout .page-content td {
+    padding: var(--space-md, 1rem) !important;
+    text-align: left !important;
+    border-bottom: 1px solid var(--border-color, #e2e8f0) !important;
+}
+
+body.perfect-center-layout .page-content th {
+    background: var(--bg-accent, rgba(0, 100, 255, 0.05)) !important;
+    font-weight: 600 !important;
+    color: var(--text-primary, #1e293b) !important;
+}
+
+body.perfect-center-layout .page-content td {
+    color: var(--text-secondary, #64748b) !important;
+}
+
+/* 반응형 텍스트 크기 조정 */
+@media (max-width: 768px) {
+    body.perfect-center-layout .page-title {
+        font-size: 2rem !important;
+    }
+    
+    body.perfect-center-layout .page-content {
+        font-size: 1rem !important;
+    }
+    
+    body.perfect-center-layout .page-content h1 { font-size: 1.875rem !important; }
+    body.perfect-center-layout .page-content h2 { font-size: 1.5rem !important; }
+    body.perfect-center-layout .page-content h3 { font-size: 1.25rem !important; }
+    body.perfect-center-layout .page-content h4 { font-size: 1.125rem !important; }
+    
+    body.perfect-center-layout .page-header {
+        padding: var(--space-lg, 1.5rem) !important;
     }
 }
 </style>
 
-<!-- 레이아웃 문제 해결을 위한 컨테이너 추가 -->
-<div class="page-layout-container">
+<!-- About 페이지 포스트 방식 구조 -->
+<div class="main-content">
+    <!-- 메인 콘텐츠 영역 - 화면 정중앙 고정 -->
     <div class="content-area">
         <article class="page-single">
             <header class="page-header">
@@ -98,37 +404,82 @@ body {
         </article>
     </div>
 
-    <!-- Simple Sidebar for pages -->
-    <aside class="sidebar slide-in">
+    <!-- 사이드바 - 메인 콘텐츠 우측에 독립 배치 -->
+    <aside class="sidebar" id="perfectSidebar">
+        <!-- 1. 카테고리 -->
         <div class="sidebar-section">
-            <h3 class="sidebar-title">페이지</h3>
-            <div class="page-nav">
-                <a href="{{ '/' | relative_url }}" class="page-nav-link">홈</a>
-                <a href="{{ '/about' | relative_url }}" class="page-nav-link">소개</a>
-                <a href="{{ '/categories' | relative_url }}" class="page-nav-link">카테고리</a>
-                <a href="{{ '/tags' | relative_url }}" class="page-nav-link">태그</a>
-            </div>
-        </div>
-        
-        <!-- Recent Posts -->
-        <div class="sidebar-section">
-            <h3 class="sidebar-title">최근 글</h3>
-            <div class="recent-posts">
-                {% for post in site.posts limit: 5 %}
-                <div class="recent-post">
-                    <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
-                    <div class="recent-post-meta">
-                        <span>⏰ {{ post.date | date: "%m월 %d일" }}</span>
-                    </div>
+            <h3 class="sidebar-title">카테고리</h3>
+            <div class="categories-list">
+                {% for category in site.categories %}
+                <div class="category-item">
+                    <a href="{{ '/categories/' | append: category[0] | relative_url }}" 
+                       class="category-link">
+                        {{ category[0] }}
+                    </a>
                 </div>
                 {% endfor %}
             </div>
         </div>
+
+
     </aside>
 </div>
 
+<!-- About 페이지 완벽한 중앙 정렬 JavaScript -->
 <script>
-// Footer 위치 수정을 위한 동적 높이 계산
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🎯 About 페이지 완벽한 중앙 정렬 시스템 시작');
+    
+    // About 페이지 전용 body 클래스 추가
+    document.body.classList.add('perfect-center-layout');
+    console.log('✅ body.perfect-center-layout 클래스 추가됨');
+    
+    // 레이아웃 측정 및 검증
+    function measureLayout() {
+        const contentArea = document.querySelector('.content-area');
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (contentArea) {
+            const rect = contentArea.getBoundingClientRect();
+            const windowCenter = window.innerWidth / 2;
+            const contentCenter = rect.left + (rect.width / 2);
+            const offset = Math.abs(windowCenter - contentCenter);
+            
+            console.log('📐 === About 페이지 레이아웃 측정 ===');
+            console.log(`화면 중앙: ${windowCenter}px`);
+            console.log(`콘텐츠 중앙: ${contentCenter}px`);
+            console.log(`오프셋: ${offset}px`);
+            console.log(`콘텐츠 너비: ${rect.width}px`);
+            
+            if (sidebar) {
+                const sidebarRect = sidebar.getBoundingClientRect();
+                const sidebarVisible = getComputedStyle(sidebar).display !== 'none';
+                console.log(`사이드바 표시: ${sidebarVisible}`);
+                if (sidebarVisible) {
+                    console.log(`사이드바 위치: left=${sidebarRect.left}px`);
+                    console.log(`메인 콘텐츠 끝점에서 사이드바까지 간격: ${sidebarRect.left - (rect.left + rect.width)}px`);
+                }
+            }
+            
+            console.log(`중앙 정렬 성공: ${offset <= 2 ? '✅' : '❌'}`);
+        }
+    }
+    
+    
+    // 초기 측정
+    setTimeout(measureLayout, 500);
+    
+    // 창 크기 변경시 재측정
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(measureLayout, 200);
+    });
+    
+    console.log('✅ About 페이지 완벽한 중앙 정렬 시스템 완료');
+});
+
+// Footer 위치 수정을 위한 동적 높이 계산 시스템
 document.addEventListener('DOMContentLoaded', function() {
     function updateMainContentHeight() {
         const mainContent = document.querySelector('.main-content');
@@ -155,7 +506,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 초기 높이 설정
-    setTimeout(updateMainContentHeight, 100);
+    setTimeout(updateMainContentHeight, 500);
     
     // 창 크기 변경 시 재계산
     window.addEventListener('resize', updateMainContentHeight);
