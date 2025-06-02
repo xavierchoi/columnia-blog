@@ -379,9 +379,11 @@ body.perfect-center-layout .sidebar {
             <div class="post-share">
                 <h4>이 글이 도움이 되셨나요?</h4>
                 <div class="share-buttons">
-                    <a href="#" class="share-btn" onclick="sharePost('{{ page.title }}', '{{ site.url }}{{ page.url }}'); return false;" title="링크 복사">📤</a>
-                    <a href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ site.url }}{{ page.url }}" class="share-btn" target="_blank" title="트위터 공유">🐦</a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" class="share-btn" target="_blank" title="페이스북 공유">📘</a>
+                    <a href="#" class="share-btn" data-url="{{ site.url }}{{ page.url }}" data-title="{{ page.title }}" data-platform="facebook" title="Facebook">📘</a>
+                    <a href="#" class="share-btn" data-url="{{ site.url }}{{ page.url }}" data-title="{{ page.title }}" data-platform="twitter" title="Twitter">🐦</a>
+                    <a href="#" class="share-btn" data-url="{{ site.url }}{{ page.url }}" data-title="{{ page.title }}" data-platform="linkedin" title="LinkedIn">💼</a>
+                    <a href="#" class="share-btn" data-url="{{ site.url }}{{ page.url }}" data-title="{{ page.title }}" data-platform="kakao" title="KakaoTalk">💬</a>
+                    <a href="#" class="share-btn" data-url="{{ site.url }}{{ page.url }}" data-title="{{ page.title }}" data-platform="share" title="공유">{% include icons/share.html %}</a>
                 </div>
             </div>
 
@@ -461,28 +463,14 @@ body.perfect-center-layout .sidebar {
                         <article class="related-post-card">
                             <div class="related-post-meta">
                                 <span class="related-post-date">{{ post.date | date: "%m월 %d일" }}</span>
-                                <span class="related-post-category">{{ post.category }}</span>
+                                <a href="{{ '/categories/' | append: post.category | relative_url }}" class="related-post-category">{{ post.category }}</a>
                             </div>
                             <h4 class="related-post-title">
                                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
                             </h4>
-                            <p class="related-post-excerpt">{{ post.excerpt | strip_html | truncatewords: 15 }}</p>
-                            
-                            <!-- 관련성 힌트 -->
-                            <div class="relation-hints">
-                                {% if post.category == page.category %}
-                                    <span class="hint-tag category-match">같은 카테고리</span>
-                                {% endif %}
-                                {% assign common_tags = 0 %}
-                                {% for tag in page.tags %}
-                                    {% if post.tags contains tag %}
-                                        {% assign common_tags = common_tags | plus: 1 %}
-                                    {% endif %}
-                                {% endfor %}
-                                {% if common_tags > 0 %}
-                                    <span class="hint-tag tags-match">공통 태그 {{ common_tags }}개</span>
-                                {% endif %}
-                            </div>
+                            <p class="related-post-excerpt">
+                                <a href="{{ post.url | relative_url }}">{{ post.excerpt | strip_html | truncatewords: 15 }}</a>
+                            </p>
                         </article>
                     {% endfor %}
                     
