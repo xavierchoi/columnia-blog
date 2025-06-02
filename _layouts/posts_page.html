@@ -2,6 +2,562 @@
 layout: default
 ---
 
+<style>
+/* 전체 게시물 페이지 완벽한 중앙 정렬 시스템 - 포스트 페이지 방식 + Footer 수정 */
+/* Body flex 시스템 - Footer 하단 고정을 위해 */
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}
+
+.main-content {
+    flex: 1 !important;  /* Footer를 하단에 밀어내기 위해 */
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-top: var(--space-2xl, 3rem);
+    padding-bottom: var(--space-2xl, 3rem);
+}
+
+.content-area {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    max-width: 800px;
+    margin: 0;
+    padding: var(--space-lg, 1.5rem);
+    z-index: 1;
+    top: var(--space-2xl, 3rem);
+}
+
+.sidebar {
+    position: absolute;
+    left: calc(50% + 400px + 2rem);
+    top: var(--space-2xl, 3rem);
+    width: 280px;
+    margin: 0;
+    padding: var(--space-lg, 1.5rem);
+    z-index: 2;
+}
+
+/* 반응형: 1350px 이하에서 사이드바 숨김 */
+@media (max-width: 1350px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+/* 중간 화면에서 너비 조정 */
+@media (max-width: 1000px) {
+    .content-area {
+        width: 90%;
+        max-width: 800px;
+        min-width: 300px;
+    }
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+    .content-area {
+        width: 95%;
+        max-width: 100%;
+        padding: 0 var(--space-sm, 0.5rem);
+    }
+}
+
+/* 모바일 */
+@media (max-width: 480px) {
+    .content-area {
+        width: 98%;
+        padding: 0 var(--space-xs, 0.25rem);
+    }
+}
+
+/* ================================================================ */
+/* 전체 게시물 페이지 전용 스타일링 */
+/* ================================================================ */
+
+/* 페이지 헤더 */
+.posts-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl, 3rem);
+    padding: var(--space-xl, 2rem);
+    background: linear-gradient(135deg, rgba(0, 100, 255, 0.05), rgba(6, 182, 212, 0.05));
+    border-radius: var(--radius-xl, 1rem);
+    border: 1px solid var(--border-light, #f1f5f9);
+}
+
+.posts-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary, #1e293b);
+    margin-bottom: var(--space-md, 1rem);
+    background: linear-gradient(135deg, var(--accent-primary, #0064ff), var(--accent-secondary, #06b6d4));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.posts-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary, #64748b);
+    margin: 0;
+}
+
+/* 포스트 목록 컨테이너 - 홈페이지와 동일한 스타일 */
+.posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl, 2rem);
+    margin-bottom: var(--space-2xl, 3rem);
+}
+
+/* 포스트 카드 - 홈페이지와 동일한 스타일 사용 */
+.post-card {
+    background: var(--bg-primary, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-lg, 0.75rem);
+    padding: var(--space-xl, 2rem);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent-primary, #0064ff);
+}
+
+.post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, var(--accent-primary, #0064ff), var(--accent-secondary, #06b6d4));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.post-card:hover::before {
+    opacity: 1;
+}
+
+/* 포스트 메타 정보 - 홈페이지와 동일 */
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md, 1rem);
+    margin-bottom: var(--space-md, 1rem);
+    font-size: 0.875rem;
+    flex-wrap: wrap;
+}
+
+.post-category {
+    background: linear-gradient(135deg, var(--accent-primary, #0064ff), var(--accent-secondary, #06b6d4));
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-md, 0.5rem);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.post-category:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 100, 255, 0.3);
+}
+
+.post-meta span {
+    color: var(--text-muted, #94a3b8);
+    font-weight: 500;
+}
+
+.reading-time {
+    color: var(--text-muted, #94a3b8);
+    font-weight: 500;
+}
+
+.post-views {
+    color: var(--text-muted, #94a3b8);
+    font-weight: 500;
+}
+
+/* 포스트 제목 - 홈페이지와 동일 */
+.post-title {
+    margin: 0 0 var(--space-md, 1rem) 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.post-title a {
+    color: var(--text-primary, #1e293b);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-title a:hover {
+    color: var(--accent-primary, #0064ff);
+}
+
+/* 포스트 요약 - 홈페이지와 동일 */
+.post-excerpt {
+    color: var(--text-secondary, #64748b);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg, 1.5rem);
+    font-size: 1rem;
+}
+
+/* 포스트 태그 - 홈페이지와 동일 */
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: var(--space-lg, 1.5rem);
+}
+
+.post-tag {
+    background: var(--bg-tertiary, #f1f5f9);
+    color: var(--text-secondary, #64748b);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.post-tag:hover {
+    background: var(--accent-primary, #0064ff);
+    color: white;
+    border-color: var(--accent-primary, #0064ff);
+    transform: translateY(-1px);
+}
+
+/* 포스트 푸터 - 홈페이지와 동일 */
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-lg, 1.5rem);
+    padding-top: var(--space-md, 1rem);
+    border-top: 1px solid var(--border-light, #f1f5f9);
+}
+
+.read-more {
+    color: var(--accent-primary, #0064ff);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.read-more:hover {
+    color: var(--accent-secondary, #06b6d4);
+    transform: translateX(2px);
+}
+
+/* 공유 버튼 - 홈페이지와 동일 */
+.share-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-md, 0.5rem);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    background: var(--bg-secondary, #f8fafc);
+    border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.share-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 페이지네이션 */
+.pagination-nav {
+    margin-top: var(--space-2xl, 3rem);
+    padding-top: var(--space-xl, 2rem);
+    border-top: 2px solid var(--border-light, #f1f5f9);
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md, 1rem);
+    margin-bottom: var(--space-lg, 1.5rem);
+}
+
+.pagination-numbers {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.pagination-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-md, 0.5rem);
+    text-decoration: none;
+    color: var(--text-secondary, #64748b);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background: var(--bg-primary, #ffffff);
+}
+
+.pagination-link:hover {
+    background: var(--accent-primary, #0064ff);
+    color: white;
+    border-color: var(--accent-primary, #0064ff);
+    transform: translateY(-1px);
+}
+
+.pagination-current {
+    background: var(--accent-primary, #0064ff);
+    color: white;
+    border-color: var(--accent-primary, #0064ff);
+}
+
+.pagination-prev, .pagination-next {
+    background: linear-gradient(135deg, var(--accent-primary, #0064ff), var(--accent-secondary, #06b6d4));
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+.pagination-prev:hover, .pagination-next:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 100, 255, 0.3);
+}
+
+/* 처음으로, 끝으로 버튼 스타일 */
+.pagination-first, .pagination-last {
+    background: linear-gradient(135deg, var(--accent-secondary, #06b6d4), var(--accent-primary, #0064ff));
+    color: white;
+    border: none;
+    font-weight: 600;
+    /* font-size는 데스크톱에서 브라우저 기본값 사용, 모바일에서만 지정 */
+    position: relative;
+    overflow: hidden;
+    min-width: auto;  /* 고정 너비 제거 */
+    width: auto;      /* 콘텐츠에 맞는 가로 길이 */
+}
+
+.pagination-first:hover, .pagination-last:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
+    background: linear-gradient(135deg, var(--accent-primary, #0064ff), var(--accent-secondary, #06b6d4));
+}
+
+/* 맨 처음, 맨 끝 버튼에 미묘한 구분 효과 */
+.pagination-first::before, .pagination-last::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.pagination-first:hover::before, .pagination-last:hover::before {
+    left: 100%;
+}
+
+.pagination-info {
+    text-align: center;
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* 사이드바 스타일링 */
+.sidebar-section {
+    background: var(--bg-primary, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-lg, 0.75rem);
+    padding: var(--space-lg, 1.5rem);
+    margin-bottom: var(--space-lg, 1.5rem);
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary, #1e293b);
+    margin-bottom: var(--space-md, 1rem);
+    padding-bottom: var(--space-sm, 0.5rem);
+    border-bottom: 2px solid var(--accent-primary, #0064ff);
+}
+
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: var(--radius-md, 0.5rem);
+    transition: background-color 0.3s ease;
+}
+
+.category-item:hover {
+    background: var(--bg-secondary, #f8fafc);
+}
+
+.category-link {
+    color: var(--text-secondary, #64748b);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.category-link:hover {
+    color: var(--accent-primary, #0064ff);
+}
+
+.category-count {
+    background: var(--bg-tertiary, #f1f5f9);
+    color: var(--text-muted, #94a3b8);
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-sm, 0.25rem);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* 뉴스레터 폼 */
+.newsletter-description {
+    color: var(--text-secondary, #64748b);
+    font-size: 0.875rem;
+    margin-bottom: var(--space-md, 1rem);
+    line-height: 1.5;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.newsletter-input {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.875rem;
+    transition: border-color 0.3s ease;
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: var(--accent-primary, #0064ff);
+    box-shadow: 0 0 0 3px rgba(0, 100, 255, 0.1);
+}
+
+.newsletter-button {
+    background: linear-gradient(135deg, var(--accent-primary, #0064ff), var(--accent-secondary, #06b6d4));
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: var(--radius-md, 0.5rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.newsletter-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 100, 255, 0.3);
+}
+
+/* 애니메이션 */
+.fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 반응형 추가 */
+@media (max-width: 768px) {
+    .posts-title {
+        font-size: 2rem;
+    }
+    
+    .post-card {
+        padding: var(--space-lg, 1.5rem);
+    }
+    
+    .post-title {
+        font-size: 1.25rem;
+    }
+    
+    .post-meta {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .share-buttons {
+        gap: 0.25rem;
+    }
+    
+    .share-btn {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.75rem;
+    }
+    
+    .pagination-container {
+        flex-wrap: wrap;
+    }
+    
+    .pagination-link {
+        min-width: 2rem;
+        height: 2rem;
+        font-size: 0.875rem;
+    }
+    
+    .pagination-first, .pagination-last {
+        font-size: 0.875rem;  /* 다른 버튼과 동일한 폰트 크기 유지 */
+        min-width: auto;
+        width: auto;
+        padding: 0 0.75rem;  /* 다른 버튼과 동일한 패딩 */
+    }
+}
+</style>
+
 <div class="content-area">
     <!-- 페이지 헤더 -->
     <header class="posts-header">
@@ -12,23 +568,32 @@ layout: default
     <!-- 포스트 목록 -->
     <div class="posts-list">
         {% for post in page.current_posts %}
-        <article class="post-list-item fade-in">
-            <div class="post-list-meta">
-                <span class="post-date">{{ post.date | date: "%Y년 %m월 %d일" }}</span>
+        <article class="post-card fade-in">
+            <div class="post-meta">
                 <a href="{{ '/categories/' | append: post.category | relative_url }}" class="post-category">{{ post.category }}</a>
+                <span>⏰ {{ post.date | date: "%Y년 %m월 %d일" }}</span>
+                <span class="reading-time">📖 {{ post.content | number_of_words | divided_by: 200 | at_least: 1 }}분 읽기</span>
+                <span class="post-views">👁️ 0 views</span>
             </div>
-            <h2 class="post-list-title">
+            <h2 class="post-title">
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
             </h2>
-            <p class="post-list-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-            <div class="post-list-tags">
-                {% for tag in post.tags limit: 3 %}
-                <span class="post-list-tag">{{ tag }}</span>
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+            <div class="post-tags">
+                {% for tag in post.tags limit: 4 %}
+                <span class="post-tag tag-clickable" data-tag="{{ tag }}">{{ tag }}</span>
                 {% endfor %}
             </div>
-            <div class="post-list-footer">
-                <span class="reading-time">📖 {{ post.content | number_of_words | divided_by: 200 | at_least: 1 }}분 읽기</span>
-                <a href="{{ post.url | relative_url }}" class="read-more-link">읽어보기 →</a>
+            <div class="post-footer">
+                <a href="{{ post.url | relative_url }}" class="read-more">
+                    읽어보기 →
+                </a>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn" data-url="{{ post.url | absolute_url }}" data-title="{{ post.title }}" data-platform="facebook" title="Facebook">📘</a>
+                    <a href="#" class="share-btn" data-url="{{ post.url | absolute_url }}" data-title="{{ post.title }}" data-platform="twitter" title="Twitter">🐦</a>
+                    <a href="#" class="share-btn" data-url="{{ post.url | absolute_url }}" data-title="{{ post.title }}" data-platform="linkedin" title="LinkedIn">💼</a>
+                    <a href="#" class="share-btn" data-url="{{ post.url | absolute_url }}" data-title="{{ post.title }}" data-platform="kakao" title="KakaoTalk">💬</a>
+                </div>
             </div>
         </article>
         {% endfor %}
@@ -38,6 +603,13 @@ layout: default
     {% if page.total_pages > 1 %}
     <nav class="pagination-nav">
         <div class="pagination-container">
+            <!-- 처음으로 버튼 -->
+            {% if page.page_num > 1 and page.total_pages > 1 %}
+                <a href="{{ '/posts/' | relative_url }}" class="pagination-link pagination-first">
+                    ⇤ 처음으로
+                </a>
+            {% endif %}
+            
             <!-- 이전 페이지 -->
             {% if page.page_num > 1 %}
                 {% assign prev_page = page.page_num | minus: 1 %}
@@ -70,6 +642,14 @@ layout: default
                 {% assign next_page = page.page_num | plus: 1 %}
                 <a href="{{ '/posts/' | append: next_page | append: '/' | relative_url }}" class="pagination-link pagination-next">
                     다음 →
+                </a>
+            {% endif %}
+            
+            <!-- 끝으로 버튼 -->
+            {% assign last_check = page.total_pages | minus: 1 %}
+            {% if page.page_num < page.total_pages and page.total_pages > 1 %}
+                <a href="{{ '/posts/' | append: page.total_pages | append: '/' | relative_url }}" class="pagination-link pagination-last">
+                    끝으로 ⇥
                 </a>
             {% endif %}
         </div>
@@ -105,3 +685,56 @@ layout: default
         </div>
     </div>
 </aside>
+
+<script>
+// 태그 클릭 이벤트
+document.addEventListener('DOMContentLoaded', function() {
+    const tagElements = document.querySelectorAll('.tag-clickable');
+    
+    tagElements.forEach(tag => {
+        tag.style.cursor = 'pointer';
+        tag.addEventListener('click', function() {
+            const tagName = this.getAttribute('data-tag');
+            window.location.href = `/search/?q=${encodeURIComponent(tagName)}`;
+        });
+    });
+});
+
+// Footer 위치 수정을 위한 동적 높이 계산
+document.addEventListener('DOMContentLoaded', function() {
+    function updateMainContentHeight() {
+        const mainContent = document.querySelector('.main-content');
+        const contentArea = document.querySelector('.content-area');
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (mainContent && contentArea) {
+            // 콘텐츠 영역의 실제 높이 계산
+            const contentHeight = contentArea.offsetHeight;
+            const sidebarHeight = sidebar ? sidebar.offsetHeight : 0;
+            
+            // 더 큰 높이를 기준으로 main-content 높이 설정
+            const maxHeight = Math.max(contentHeight, sidebarHeight);
+            const totalHeight = maxHeight + 120; // 상하 패딩 고려
+            
+            mainContent.style.minHeight = totalHeight + 'px';
+            
+            console.log('페이지네이션 페이지 높이 업데이트:', {
+                pageNum: {{ page.page_num | default: 'unknown' }},
+                contentHeight: contentHeight,
+                sidebarHeight: sidebarHeight,
+                totalHeight: totalHeight
+            });
+        }
+    }
+    
+    // 초기 높이 설정
+    setTimeout(updateMainContentHeight, 100);
+    
+    // 창 크기 변경 시 재계산
+    window.addEventListener('resize', updateMainContentHeight);
+    
+    // 이미지 로드 완료 후 재계산
+    window.addEventListener('load', updateMainContentHeight);
+});
+
+</script>
