@@ -218,9 +218,66 @@ body.perfect-center-layout .share-buttons {
 /* 📋 사이드바 섹션 최적화                                          */
 /* ================================================================ */
 
-/* 사이드바 섹션 간격 */
+/* 사이드바 섹션 스타일링 - 표준 디자인 */
 body.perfect-center-layout .sidebar-section {
+    background: var(--bg-primary, #ffffff) !important;
+    border: 1px solid var(--border-color, #e2e8f0) !important;
+    border-radius: var(--radius-lg, 0.75rem) !important;
+    padding: var(--space-lg, 1.5rem) !important;
     margin-bottom: var(--space-lg, 1.5rem) !important;
+}
+
+body.perfect-center-layout .sidebar-title {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary, #1e293b) !important;
+    margin-bottom: var(--space-md, 1rem) !important;
+    padding-bottom: var(--space-sm, 0.5rem) !important;
+    border-bottom: 2px solid var(--accent-primary, #0064ff) !important;
+}
+
+body.perfect-center-layout .categories-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+}
+
+body.perfect-center-layout .category-item {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.5rem !important;
+    border-radius: var(--radius-md, 0.5rem) !important;
+    transition: background-color 0.3s ease !important;
+}
+
+body.perfect-center-layout .category-item:hover {
+    background: var(--bg-secondary, #f8fafc) !important;
+}
+
+body.perfect-center-layout .category-link {
+    color: var(--text-secondary, #64748b) !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: color 0.3s ease !important;
+}
+
+body.perfect-center-layout .category-link:hover {
+    color: var(--accent-primary, #0064ff) !important;
+}
+
+body.perfect-center-layout .category-link.active {
+    color: var(--accent-primary, #0064ff) !important;
+    font-weight: 700 !important;
+}
+
+body.perfect-center-layout .category-count {
+    background: var(--bg-tertiary, #f1f5f9) !important;
+    color: var(--text-muted, #94a3b8) !important;
+    padding: 0.125rem 0.5rem !important;
+    border-radius: var(--radius-sm, 0.25rem) !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
 }
 
 body.perfect-center-layout .sidebar-section:last-child {
@@ -236,9 +293,6 @@ body.perfect-center-layout .sidebar-section.toc-section {
     order: 2 !important;
 }
 
-body.perfect-center-layout .sidebar-section:has(.newsletter-form) {
-    order: 3 !important;
-}
 
 
 /* ================================================================ */
@@ -456,6 +510,7 @@ body.perfect-center-layout .sidebar {
                        class="category-link {% if category[0] == page.category %}active{% endif %}">
                         {{ category[0] }}
                     </a>
+                    <span class="category-count">{{ category[1].size }}</span>
                 </div>
                 {% endfor %}
             </div>

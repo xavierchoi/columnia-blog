@@ -90,6 +90,63 @@ body {
         padding: 0 var(--space-xs, 0.25rem);
     }
 }
+
+/* 사이드바 스타일링 - 표준 디자인 */
+.sidebar-section {
+    background: var(--bg-primary, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: var(--radius-lg, 0.75rem);
+    padding: var(--space-lg, 1.5rem);
+    margin-bottom: var(--space-lg, 1.5rem);
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary, #1e293b);
+    margin-bottom: var(--space-md, 1rem);
+    padding-bottom: var(--space-sm, 0.5rem);
+    border-bottom: 2px solid var(--accent-primary, #0064ff);
+}
+
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: var(--radius-md, 0.5rem);
+    transition: background-color 0.3s ease;
+}
+
+.category-item:hover {
+    background: var(--bg-secondary, #f8fafc);
+}
+
+.category-link {
+    color: var(--text-secondary, #64748b);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.category-link:hover {
+    color: var(--accent-primary, #0064ff);
+}
+
+.category-count {
+    background: var(--bg-tertiary, #f1f5f9);
+    color: var(--text-muted, #94a3b8);
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-sm, 0.25rem);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
 </style>
 
 <div class="content-area">
@@ -113,15 +170,12 @@ body {
                     <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
                 </h2>
                 <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-                <div class="post-tags">
-                    {% for tag in post.tags limit: 4 %}
-                    <span class="post-tag tag-clickable" data-tag="{{ tag }}">{{ tag }}</span>
-                    {% endfor %}
-                </div>
-                <div class="post-footer">
-                    <a href="{{ post.url | relative_url }}" class="read-more">
-                        읽어보기 →
-                    </a>
+                <div class="post-bottom">
+                    <div class="post-tags">
+                        {% for tag in post.tags limit: 4 %}
+                        <span class="post-tag tag-clickable" data-tag="{{ tag }}">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
                     <div class="share-buttons">
                         <a href="#" class="share-btn" data-url="{{ post.url | absolute_url }}" data-title="{{ post.title }}" data-platform="facebook" title="Facebook">📘</a>
                         <a href="#" class="share-btn" data-url="{{ post.url | absolute_url }}" data-title="{{ post.title }}" data-platform="twitter" title="Twitter">🐦</a>

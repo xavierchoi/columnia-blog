@@ -1,5 +1,57 @@
 // 간단화된 main.js - 핵심 기능만 포함
 
+// 모바일 메뉴 토글
+function toggleMobileMenu() {
+    const mobileMenu = document.querySelector('.mobile-nav-menu');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const body = document.body;
+    
+    if (!mobileMenu) {
+        // 모바일 메뉴가 없으면 생성
+        createMobileMenu();
+        return;
+    }
+    
+    mobileMenu.classList.toggle('show');
+    menuToggle.classList.toggle('active');
+    body.classList.toggle('menu-open');
+}
+
+// 모바일 메뉴 생성
+function createMobileMenu() {
+    const nav = document.querySelector('.header nav');
+    if (!nav) return;
+    
+    // 오버레이 생성
+    const overlay = document.createElement('div');
+    overlay.className = 'mobile-menu-overlay';
+    overlay.onclick = toggleMobileMenu;
+    document.body.appendChild(overlay);
+    
+    // 모바일 메뉴 컨테이너 생성
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'mobile-nav-menu';
+    
+    // 메뉴 헤더
+    const menuHeader = document.createElement('div');
+    menuHeader.className = 'mobile-menu-header';
+    menuHeader.innerHTML = `
+        <span class="mobile-menu-title">메뉴</span>
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
+    `;
+    
+    // 네비게이션 메뉴 복사
+    const navClone = nav.cloneNode(true);
+    navClone.className = 'mobile-nav-content';
+    
+    mobileMenu.appendChild(menuHeader);
+    mobileMenu.appendChild(navClone);
+    document.body.appendChild(mobileMenu);
+    
+    // 첫 생성 후 즉시 토글
+    setTimeout(() => toggleMobileMenu(), 10);
+}
+
 // 태그 클릭 이벤트
 function initTagClickEvents() {
     console.log('🏷️ 태그 클릭 이벤트 초기화');
@@ -319,48 +371,39 @@ function initTableOfContents() {
     tocContainer.appendChild(tocList);
 }
 
-// 홈페이지 실시간 검색
+// 홈페이지 검색 - 엔터키만 지원
 function initHomePageSearch() {
     if (!document.querySelector('.posts-grid')) return;
     
     const searchInput = document.getElementById('searchInput');
-    const posts = document.querySelectorAll('.post-card');
     
-    if (!searchInput || posts.length === 0) return;
+    if (!searchInput) return;
     
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase().trim();
-        let visibleCount = 0;
-        
-        posts.forEach(post => {
-            const titleElement = post.querySelector('.post-title a');
-            const excerptElement = post.querySelector('.post-excerpt');
-            const categoryElement = post.querySelector('.post-category');
-            const tagElements = post.querySelectorAll('.post-tag');
-            
-            if (!titleElement || !excerptElement) return;
-            
-            const title = titleElement.textContent.toLowerCase();
-            const excerpt = excerptElement.textContent.toLowerCase();
-            const category = categoryElement ? categoryElement.textContent.toLowerCase() : '';
-            const tags = Array.from(tagElements).map(tag => tag.textContent.toLowerCase()).join(' ');
-            
-            const isMatch = searchTerm === '' || 
-                          title.includes(searchTerm) || 
-                          excerpt.includes(searchTerm) ||
-                          category.includes(searchTerm) ||
-                          tags.includes(searchTerm);
-            
-            if (isMatch) {
-                post.style.display = 'block';
-                post.classList.add('fade-in');
-                visibleCount++;
+    // 엔터키를 눌렀을 때만 검색 페이지로 이동
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const query = this.value.trim();
+            if (query) {
+                window.location.href = `/search/?q=${encodeURIComponent(query)}`;
             } else {
-                post.style.display = 'none';
-                post.classList.remove('fade-in');
+                window.location.href = '/search/';
+            }
+        }
+    });
+    
+    // 검색 아이콘 클릭 시에도 검색 페이지로 이동
+    const searchIcon = document.querySelector('.header-search .search-icon');
+    if (searchIcon) {
+        searchIcon.addEventListener('click', function() {
+            const query = searchInput.value.trim();
+            if (query) {
+                window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+            } else {
+                window.location.href = '/search/';
             }
         });
-    });
+    }
 }
 
 // ================================================================
@@ -373,9 +416,26 @@ function toggleTheme() {
     
     const html = document.documentElement;
     const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const currentMode = localStorage.getItem('themeMode') || 'auto';
     
-    console.log('현재 테마:', currentTheme, '→ 새 테마:', newTheme);
+    let newTheme, newMode;
+    
+    // 현재 모드에 따라 다음 상태 결정
+    if (currentMode === 'auto') {
+        // auto → light (수동)
+        newTheme = 'light';
+        newMode = 'manual';
+    } else if (currentTheme === 'light') {
+        // light → dark (수동)
+        newTheme = 'dark';
+        newMode = 'manual';
+    } else {
+        // dark → auto (시스템 따라가기)
+        newTheme = getSystemTheme();
+        newMode = 'auto';
+    }
+    
+    console.log('테마 변경:', currentTheme, '→', newTheme, '(모드:', newMode + ')');
     
     // 테마 변경
     html.setAttribute('data-theme', newTheme);
@@ -383,10 +443,28 @@ function toggleTheme() {
     // localStorage에 저장
     try {
         localStorage.setItem('theme', newTheme);
-        console.log('테마 저장됨:', newTheme);
+        localStorage.setItem('themeMode', newMode);
+        console.log('테마 저장됨:', newTheme, '모드:', newMode);
     } catch (e) {
         console.warn('localStorage 사용 불가:', e);
     }
+    
+    // 버튼 상태 업데이트
+    updateThemeButtonState(newMode, newTheme);
+}
+
+// 테마 버튼 상태 업데이트
+function updateThemeButtonState(mode, theme) {
+    const themeButton = document.querySelector('.dark-light-toggle');
+    if (!themeButton) return;
+    
+    // 버튼에 현재 상태 표시 (선택적)
+    themeButton.setAttribute('data-mode', mode);
+    themeButton.setAttribute('title', 
+        mode === 'auto' 
+            ? '테마: 자동 (시스템 설정 따름)' 
+            : `테마: ${theme === 'dark' ? '다크' : '라이트'} 모드`
+    );
 }
 
 // 언어 드롭다운 토글 함수
@@ -405,20 +483,63 @@ function scrollToTop() {
     });
 }
 
+// 시스템 테마 감지 함수
+function getSystemTheme() {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+    }
+    return 'light';
+}
+
+// 시스템 테마 변경 감지 및 자동 적용
+function watchSystemTheme() {
+    if (!window.matchMedia) return;
+    
+    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    darkModeQuery.addEventListener('change', (e) => {
+        const themeMode = localStorage.getItem('themeMode') || 'auto';
+        
+        if (themeMode === 'auto') {
+            const newTheme = e.matches ? 'dark' : 'light';
+            console.log('🌓 시스템 테마 변경 감지:', newTheme);
+            document.documentElement.setAttribute('data-theme', newTheme);
+        }
+    });
+}
+
 // 페이지 로드 시 저장된 테마 적용
 function initTheme() {
     console.log('🎨 테마 초기화');
     
-    let savedTheme = 'light';
+    let themeMode = 'auto';  // 기본값: auto (시스템 테마 따라가기)
+    let theme = 'light';
     
     try {
-        savedTheme = localStorage.getItem('theme') || 'light';
+        themeMode = localStorage.getItem('themeMode') || 'auto';
+        
+        if (themeMode === 'auto') {
+            // 시스템 테마 감지
+            theme = getSystemTheme();
+            console.log('시스템 테마 사용:', theme);
+        } else {
+            // 수동으로 설정된 테마 사용
+            theme = localStorage.getItem('theme') || 'light';
+            console.log('수동 설정 테마 사용:', theme);
+        }
     } catch (e) {
         console.warn('localStorage 읽기 실패:', e);
+        theme = getSystemTheme();
     }
     
-    console.log('저장된 테마:', savedTheme);
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    console.log('적용할 테마:', theme, '(모드:', themeMode + ')');
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // 버튼 상태 업데이트
+    updateThemeButtonState(themeMode, theme);
+    
+    // 시스템 테마 변경 감지 시작
+    watchSystemTheme();
 }
 
 // 외부 클릭 시 언어 드롭다운 닫기

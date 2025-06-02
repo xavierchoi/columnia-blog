@@ -1,6 +1,7 @@
 # CLAUDE.md
 
 Before start reading this, PLEASE DO CHECK and read guideline_dear_claude.md file. The file is important to understand what is in user's mind.
+"버전 빌드를 종료합니다" 라고 말하면 guideline_dear_claude.md 파일에 업데이트 및 변경 로그를 추가하고, 현재 버전을 커밋 코멘트에 적어 커밋 후 푸시합니다.
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 

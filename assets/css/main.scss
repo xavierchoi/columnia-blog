@@ -393,15 +393,68 @@ h1, h2, h3, h4 {
     border: none;
     color: var(--text-secondary);
     cursor: pointer;
-    font-size: 1.275rem;  /* 85% of 1.5rem */
     padding: var(--space-sm);
     border-radius: var(--radius-md);
     transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    position: relative;
 }
 
 .mobile-menu-toggle:hover {
     background: var(--bg-secondary);
-    color: var(--accent-primary);
+}
+
+/* 햄버거 아이콘 스타일 */
+.hamburger-icon {
+    display: block;
+    width: 24px;
+    height: 20px;
+    position: relative;
+    margin: auto;
+}
+
+.hamburger-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: var(--text-secondary);
+    border-radius: 3px;
+    opacity: 1;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger-icon span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger-icon span:nth-child(2) {
+    top: 8px;
+}
+
+.hamburger-icon span:nth-child(3) {
+    bottom: 0;
+}
+
+/* 메뉴 열렸을 때 X 모양으로 변환 */
+.mobile-menu-toggle.active .hamburger-icon span:nth-child(1) {
+    top: 8px;
+    transform: rotate(45deg);
+}
+
+.mobile-menu-toggle.active .hamburger-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-icon span:nth-child(3) {
+    top: 8px;
+    transform: rotate(-45deg);
+}
+
+.mobile-menu-toggle:hover .hamburger-icon span {
+    background: var(--accent-primary);
 }
 
 .mobile-nav-menu {
@@ -413,24 +466,84 @@ h1, h2, h3, h4 {
     background: var(--bg-primary);
     border-left: 1px solid var(--border-color);
     transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 200;
-    box-shadow: var(--shadow-xl);
-    padding-top: 80px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 2000;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-nav-menu.show {
     transform: translateX(0);
 }
 
-.mobile-nav {
-    display: flex;
-    flex-direction: column;
-    padding: var(--space-lg);
-    gap: var(--space-xs);
+/* 메뉴 오버레이 */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.mobile-nav-link {
+body.menu-open .mobile-menu-overlay {
+    display: block;
+    opacity: 1;
+}
+
+/* 모바일 메뉴 헤더 */
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-menu-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-close:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* 모바일 네비게이션 콘텐츠 */
+.mobile-nav-content {
+    padding: var(--space-lg);
+}
+
+.mobile-nav-content .nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav-content .nav-link {
     display: block;
     padding: var(--space-md) var(--space-lg);
     color: var(--text-primary);
@@ -441,16 +554,21 @@ h1, h2, h3, h4 {
     position: relative;
 }
 
-.mobile-nav-link:hover,
-.mobile-nav-link:focus {
+.mobile-nav-content .nav-link:hover,
+.mobile-nav-content .nav-link:focus {
     background: var(--bg-secondary);
     color: var(--accent-primary);
     transform: translateX(4px);
 }
 
-.mobile-nav-link.active {
+.mobile-nav-content .nav-link.active {
     background: var(--accent-primary);
     color: var(--text-inverse);
+}
+
+/* 메뉴 오픈시 body 스크롤 방지 */
+body.menu-open {
+    overflow: hidden;
 }
 
 /* ================================================================ */
@@ -636,35 +754,25 @@ h1, h2, h3, h4 {
 }
 
 /* ================================================================ */
-/* 공유 버튼 - Columnia 스타일                                       */
+/* 포스트 하단 - Columnia 스타일                                       */
 /* ================================================================ */
 
-.post-footer {
+.post-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: var(--space-md);
-    border-top: 1px solid var(--border-color);
+    gap: var(--space-md);
 }
 
-.read-more {
-    color: var(--accent-primary);
-    text-decoration: none;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    transition: all 0.3s ease;
-}
-
-.read-more:hover {
-    color: var(--accent-secondary);
-    transform: translateX(4px);
+.post-bottom .post-tags {
+    flex: 1;
+    margin-bottom: 0;
 }
 
 .share-buttons {
     display: flex;
     gap: var(--space-sm);
+    flex-shrink: 0;
 }
 
 .share-btn {
@@ -1334,8 +1442,10 @@ h1, h2, h3, h4 {
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-xs);
     border: 1px solid transparent;
+    text-align: center;
 }
 
 .language-btn:hover {
@@ -1347,7 +1457,8 @@ h1, h2, h3, h4 {
 .language-dropdown {
     position: absolute;
     top: 100%;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
@@ -1355,7 +1466,6 @@ h1, h2, h3, h4 {
     min-width: 120px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
     transition: all 0.3s ease;
     z-index: 100;
     box-shadow: var(--shadow-lg);
@@ -1364,16 +1474,19 @@ h1, h2, h3, h4 {
 .language-dropdown.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
 }
 
 .language-option {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: var(--space-sm);
     color: var(--text-secondary);
     text-decoration: none;
     border-radius: var(--radius-sm);
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .language-option:hover {
@@ -1472,6 +1585,17 @@ h1, h2, h3, h4 {
 /* 반응형 디자인 - 모든 기기 최적화                                    */
 /* ================================================================ */
 
+/* 태블릿 미디어 쿼리 - 1000px 이하에서 햄버거 메뉴 표시 */
+@media (max-width: 1000px) {
+    .header nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
 @media (max-width: 768px) {
     .main-content {
         grid-template-columns: 1fr;
@@ -1488,9 +1612,6 @@ h1, h2, h3, h4 {
         font-size: 2rem;
     }
     
-    .mobile-menu-toggle {
-        display: block;
-    }
     
     .header-content {
         flex-wrap: wrap;
@@ -5605,8 +5726,8 @@ body.layout-posts .sidebar {
 
 /* 지구본 아이콘 */
 .globe-icon {
-    width: 18px;
-    height: 18px;
+    width: 21.6px;  /* 18px * 1.2 = 21.6px */
+    height: 21.6px;  /* 18px * 1.2 = 21.6px */
     color: var(--text-secondary);
     margin-right: 0.375rem;
 }
@@ -5617,8 +5738,8 @@ body.layout-posts .sidebar {
 
 /* 공유 아이콘 */
 .share-icon {
-    width: 14px;
-    height: 14px;
+    width: 16.8px;  /* 14px * 1.2 = 16.8px */
+    height: 16.8px;  /* 14px * 1.2 = 16.8px */
     color: inherit;
 }
 
