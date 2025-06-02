@@ -6,6 +6,81 @@ permalink: /posts/
 title: "전체 게시물"
 ---
 
+<style>
+/* 전체 게시물 페이지 완벽한 중앙 정렬 시스템 - 포스트 페이지 방식 + Footer 수정 */
+/* Body flex 시스템 - Footer 하단 고정을 위해 */
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}
+
+.main-content {
+    flex: 1 !important;  /* Footer를 하단에 밀어내기 위해 */
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-top: var(--space-2xl, 3rem);
+    padding-bottom: var(--space-2xl, 3rem);
+}
+
+.content-area {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    max-width: 800px;
+    margin: 0;
+    padding: var(--space-lg, 1.5rem);
+    z-index: 1;
+    top: var(--space-2xl, 3rem);
+}
+
+.sidebar {
+    position: absolute;
+    left: calc(50% + 400px + 2rem);
+    top: var(--space-2xl, 3rem);
+    width: 280px;
+    margin: 0;
+    padding: var(--space-lg, 1.5rem);
+    z-index: 2;
+}
+
+/* 반응형: 1350px 이하에서 사이드바 숨김 */
+@media (max-width: 1350px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+/* 중간 화면에서 너비 조정 */
+@media (max-width: 1000px) {
+    .content-area {
+        width: 90%;
+        max-width: 800px;
+        min-width: 300px;
+    }
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+    .content-area {
+        width: 95%;
+        max-width: 100%;
+        padding: 0 var(--space-sm, 0.5rem);
+    }
+}
+
+/* 모바일 */
+@media (max-width: 480px) {
+    .content-area {
+        width: 98%;
+        padding: 0 var(--space-xs, 0.25rem);
+    }
+}
+</style>
+
 <div class="content-area">
     <!-- 페이지 헤더 -->
     <header class="posts-header">
@@ -112,55 +187,40 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-</script>
-<script>
+// Footer 위치 수정을 위한 동적 높이 계산
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('📄 전체 게시물 페이지 통일 레이아웃 시스템 적용');
-    
-    // 전체 게시물 페이지 전용 body 클래스 추가
-    document.body.classList.add('layout-posts');
-    console.log('✅ body.layout-posts 클래스 추가됨');
-    
-    // 레이아웃 측정 및 검증
-    function measurePostsLayout() {
+    function updateMainContentHeight() {
+        const mainContent = document.querySelector('.main-content');
         const contentArea = document.querySelector('.content-area');
         const sidebar = document.querySelector('.sidebar');
         
-        if (contentArea) {
-            const rect = contentArea.getBoundingClientRect();
-            const windowCenter = window.innerWidth / 2;
-            const contentStart = rect.left;
-            const expectedStart = windowCenter - 400; // 800px의 절반
-            const offset = Math.abs(expectedStart - contentStart);
+        if (mainContent && contentArea) {
+            // 콘텐츠 영역의 실제 높이 계산
+            const contentHeight = contentArea.offsetHeight;
+            const sidebarHeight = sidebar ? sidebar.offsetHeight : 0;
             
-            console.log('📐 === 전체 게시물 페이지 레이아웃 측정 ===');
-            console.log(`화면 중앙: ${windowCenter}px`);
-            console.log(`콘텐츠 시작점: ${contentStart}px`);
-            console.log(`예상 시작점: ${expectedStart}px`);
-            console.log(`오프셋: ${offset}px`);
-            console.log(`포스트 페이지와 정렬 성공: ${offset <= 5 ? '✅' : '❌'}`);
+            // 더 큰 높이를 기준으로 main-content 높이 설정
+            const maxHeight = Math.max(contentHeight, sidebarHeight);
+            const totalHeight = maxHeight + 120; // 상하 패딩 고려
             
-            if (sidebar) {
-                const sidebarRect = sidebar.getBoundingClientRect();
-                const sidebarVisible = getComputedStyle(sidebar).display !== 'none';
-                console.log(`사이드바 표시: ${sidebarVisible}`);
-                if (sidebarVisible) {
-                    console.log(`사이드바 시작점: ${sidebarRect.left}px`);
-                }
-            }
+            mainContent.style.minHeight = totalHeight + 'px';
+            
+            console.log('전체 게시물 페이지 높이 업데이트:', {
+                contentHeight: contentHeight,
+                sidebarHeight: sidebarHeight,
+                totalHeight: totalHeight
+            });
         }
     }
     
-    // 초기 측정
-    setTimeout(measurePostsLayout, 500);
+    // 초기 높이 설정
+    setTimeout(updateMainContentHeight, 100);
     
-    // 창 크기 변경시 재측정
-    let postsResizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(postsResizeTimeout);
-        postsResizeTimeout = setTimeout(measurePostsLayout, 200);
-    });
+    // 창 크기 변경 시 재계산
+    window.addEventListener('resize', updateMainContentHeight);
     
-    console.log('✅ 전체 게시물 페이지 통일 레이아웃 시스템 완료');
+    // 이미지 로드 완료 후 재계산
+    window.addEventListener('load', updateMainContentHeight);
 });
+
 </script>

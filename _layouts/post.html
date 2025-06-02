@@ -8,14 +8,18 @@ layout: default
 /* 🎯 완벽한 중앙 정렬 시스템 - 메인 콘텐츠 완전 독립                */
 /* ================================================================ */
 
-/* 포스트 페이지 전용 클래스 */
+/* 포스트 페이지 전용 클래스 + Footer 위치 수정 */
 body.perfect-center-layout {
     margin: 0;
     padding: 0;
     position: relative;
+    /* Footer 위치 수정을 위한 flex 시스템 */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* 기존 main-content 스타일 완전 무력화 */
+/* 기존 main-content 스타일 완전 무력화 + Footer 수정 */
 body.perfect-center-layout .main-content {
     /* 기존 모든 스타일 제거 */
     max-width: none !important;
@@ -24,14 +28,13 @@ body.perfect-center-layout .main-content {
     padding: 0 !important;
     display: block !important;
     grid-template-columns: none !important;
-    flex: none !important;
     justify-content: unset !important;
     align-items: unset !important;
     gap: unset !important;
     
-    /* 새로운 컨테이너 역할 */
+    /* 새로운 컨테이너 역할 + Footer 위치 수정 */
+    flex: 1 !important;  /* Footer를 하단에 고정하기 위해 */
     position: relative !important;
-    min-height: 100vh !important;
     padding-top: var(--space-2xl, 3rem) !important;
     padding-bottom: var(--space-2xl, 3rem) !important;
     background: transparent !important;
@@ -679,5 +682,48 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     console.log('✅ 완벽한 중앙 정렬 시스템 완료');
+});
+
+// Footer 위치 수정을 위한 동적 높이 계산 시스템
+document.addEventListener('DOMContentLoaded', function() {
+    function updateMainContentHeight() {
+        const mainContent = document.querySelector('.main-content');
+        const contentArea = document.querySelector('.content-area');
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (mainContent && contentArea) {
+            // 콘텐츠 영역의 실제 높이 계산
+            const contentHeight = contentArea.offsetHeight;
+            const sidebarHeight = sidebar ? sidebar.offsetHeight : 0;
+            
+            // 더 큰 높이를 기준으로 main-content 높이 설정
+            const maxHeight = Math.max(contentHeight, sidebarHeight);
+            const totalHeight = maxHeight + 120; // 상하 패딩 고려
+            
+            mainContent.style.minHeight = totalHeight + 'px';
+            
+            console.log('포스트 페이지 높이 업데이트:', {
+                contentHeight: contentHeight,
+                sidebarHeight: sidebarHeight,
+                totalHeight: totalHeight
+            });
+        }
+    }
+    
+    // 초기 높이 설정 (TOC 생성 후 실행하기 위해 더 긴 지연)
+    setTimeout(updateMainContentHeight, 500);
+    
+    // 창 크기 변경 시 재계산
+    window.addEventListener('resize', updateMainContentHeight);
+    
+    // 이미지 로드 완료 후 재계산
+    window.addEventListener('load', updateMainContentHeight);
+    
+    // TOC 변경 감지 후 재계산
+    const tocContainer = document.getElementById('tableOfContents');
+    if (tocContainer) {
+        const observer = new MutationObserver(updateMainContentHeight);
+        observer.observe(tocContainer, { childList: true, subtree: true });
+    }
 });
 </script>
