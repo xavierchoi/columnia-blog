@@ -11,6 +11,9 @@ url: "https://xavierchoi.github.io"
 # 소셜 미디어
 twitter_username: whereisxavier
 
+# Google Analytics
+google_analytics: G-DKW3PW7456
+
 # Build settings
 markdown: kramdown
 highlighter: rouge

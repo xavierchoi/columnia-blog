@@ -39,13 +39,11 @@ Conversational AI 2.0는 음성과 텍스트 등 다양한 채널에서 작동�
 HIPAA 준수, EU 데이터 레지던시 요건 충족, 엔터프라이즈 보안까지 제공하며 규제가 엄격한 산업에도 즉시 적용 가능하도록 출시되었습니다.
 
 ### 7️⃣ 다양한 플랜
-월 15분 무료 플랜부터, 크리에이터(월 $11) 및 비즈니스(월 $11~$1,320)까지 유연한 플랜으로 구성되어 누구나 쉽게 시작할 수 있습니다.
+월 15분 무료 플랜부터, 크리에이터(월 $11) 및 비즈니스(월 $11~$1,320)까지 유연한 플랜으로 구성되어 누구나 쉽게 시작할 수 있습니다.<br><br>
 
 
-🧐 이제 ElevenLabs의 Conversational AI 2.0의 등장으로 인해 “실시간·다국어·맥락 인지형” 대화가 새로운 표준으로 취급되겠네요. 음성 AI가 인간과 거의 구분되지 않는 시대, 그 시작점에 선 Conversational AI 2.0에 대해 더 자세히 알고 싶으시다면 ElevenLabs의 발표 비디오와 블로그를 참조하세요.
+🧐 이제 ElevenLabs의 Conversational AI 2.0의 등장으로 인해 “실시간·다국어·맥락 인지형” 대화가 새로운 표준으로 취급되겠네요. 음성 AI가 인간과 거의 구분되지 않는 시대, 그 시작점에 선 Conversational AI 2.0에 대해 더 자세히 알고 싶으시다면 ElevenLabs의 발표 비디오와 블로그를 참조하세요.<br><br>
 
-👉 블로그: https://lnkd.in/gksd5SqW
+👉 ElevenLabs 블로그: [Coversational AI 2.0](https://elevenlabs.io/blog/conversational-ai-2-0)
 
 ##### *자막 비디오는 ElevenLabs 공식 YouTube를 가져와 Whisper AI을 사용해 자막을 추출하고, 영어 자막본을 ChatGPT과 함께 번역하여 인코딩했습니다.
-
-#AI #ElevenLabs #ConversationalAI #text_to_speech #일레븐랩스

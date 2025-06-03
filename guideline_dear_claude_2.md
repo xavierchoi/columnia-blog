@@ -680,3 +680,108 @@ _모바일 UX 완성 및 공유 버튼 표준화로 사용자 경험 통합!_
 _HTTPS 전환 및 커스텀 도메인으로 안전하고 전문적인 블로그 완성!_
 
 **핵심 성과**: HTTPS 프로토콜 통일, CNAME 파일 생성, 보안 강화, 커스텀 도메인 설정
+
+----------
+
+# 📊 **Version v0.1.5.5 개발 로그** _(2025.06.03)_
+
+## 📈 **Google Analytics 기반 조회수 카운터 구현**
+
+### **<1> Google Analytics 통합**
+
+**GA4 추적 코드 구현:**
+- `_layouts/default.html`에 GA4 추적 스크립트 추가
+- `_config.yml`에 GA 측정 ID 설정 (G-DKW3PW7456)
+- 조건부 렌더링으로 GA ID 설정 시에만 활성화
+
+**추가된 코드:**
+```liquid
+{% if site.google_analytics %}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.google_analytics }}');
+</script>
+{% endif %}
+```
+
+### **<2> 듀얼 조회수 카운터 시스템**
+
+**두 가지 구현 방식:**
+1. **기본 카운터** (`view-counter.js`)
+   - sessionStorage 기반
+   - GA 미설정 시 기본 작동
+   - 간단하고 즉각적인 카운팅
+
+2. **GA 기반 카운터** (`ga-view-counter.js`)
+   - Google Analytics 이벤트 전송
+   - localStorage로 영구 저장
+   - sessionStorage로 중복 방지
+   - 실제 방문자 추적 가능
+
+### **<3> GA 카운터 주요 기능**
+
+**핵심 기능:**
+- 페이지뷰 이벤트를 GA로 전송
+- 5분 캐싱으로 성능 최적화
+- 세션별 중복 카운트 방지
+- 조회수 통계 및 인기 포스트 추적
+
+**개발자 도구 명령어:**
+```javascript
+// GA 통계 확인
+await window.getGAStats()
+
+// 조회수 초기화
+window.resetGAViews()
+```
+
+### **<4> 자동 전환 로직**
+
+**스마트 로더:**
+```liquid
+{% if site.google_analytics %}
+<script src="{{ '/assets/js/ga-view-counter.js' | relative_url }}"></script>
+{% else %}
+<script src="{{ '/assets/js/view-counter.js' | relative_url }}"></script>
+{% endif %}
+```
+
+### **<5> 기술적 구현 세부사항**
+
+**하이브리드 접근법:**
+- GA API 직접 호출은 서버 인증 필요
+- 클라이언트 사이드에서 GA 이벤트 + localStorage 조합
+- 실시간성과 영구성을 모두 확보
+
+**이벤트 구조:**
+```javascript
+gtag('event', 'page_view_count', {
+    page_path: pagePath,
+    view_count: views[pagePath]
+});
+```
+
+## 🚀 **성과 및 분석 기능 향상**
+
+### **<1> 달성 목표**
+- ✅ Google Analytics 완전 통합
+- ✅ 실제 방문자 기반 조회수 추적
+- ✅ 듀얼 카운터 시스템 구현
+- ✅ 자동 전환 로직 완성
+
+### **<2> 분석 개선 효과**
+- 🔹 실제 사용자 행동 데이터 수집
+- 🔹 GA 대시보드에서 상세 분석 가능
+- 🔹 영구적인 조회수 데이터 보존
+- 🔹 마케팅 인사이트 확보 가능
+
+----------
+
+**Version v0.1.5.5 완료! 📊**  
+_Google Analytics 통합으로 실제 방문자 기반 조회수 추적 시스템 구축!_
+
+**핵심 성과**: GA4 통합, 듀얼 카운터 시스템, 실시간 방문자 추적, 자동 전환 로직

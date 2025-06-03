@@ -112,9 +112,22 @@ Posts use absolute positioning for pixel-perfect centering:
 - Search page at `/search/`
 
 ### View Counter
+- Two implementations available:
+  1. **Basic counter** (sessionStorage): Default when GA not configured
+  2. **Google Analytics based**: Activated when GA4 ID is set in _config.yml
 - Increments on page load (once per session)
-- Data stored in sessionStorage
-- Access stats via browser console: `window.getPopularPosts()`
+- GA version sends events to Analytics for real visitor tracking
+- Access stats via browser console:
+  - Basic: `window.getViewStats()`
+  - GA: `window.getGAStats()`
+
+### Google Analytics Setup
+1. Get GA4 Measurement ID from Google Analytics
+2. Add to `_config.yml`:
+   ```yaml
+   google_analytics: G-XXXXXXXXXX
+   ```
+3. Rebuild site - view counter will automatically use GA
 
 ## Performance Optimizations
 - Lazy loading with Intersection Observer

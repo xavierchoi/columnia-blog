@@ -34,6 +34,18 @@
     
     <!-- Feed -->
     {% feed_meta %}
+    
+    <!-- Google Analytics -->
+    {% if site.google_analytics %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.google_analytics }}');
+    </script>
+    {% endif %}
 </head>
 <body>
     {% if page.collection == "posts" %}
@@ -131,5 +143,12 @@
     
     <!-- Scripts -->
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    
+    <!-- View Counter -->
+    {% if site.google_analytics %}
+    <script src="{{ '/assets/js/ga-view-counter.js' | relative_url }}"></script>
+    {% else %}
+    <script src="{{ '/assets/js/view-counter.js' | relative_url }}"></script>
+    {% endif %}
 </body>
 </html>
