@@ -36,6 +36,11 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 # 개발 및 서버 실행용
 gem "webrick", "~> 1.8"
 
+# 개발 환경 전용 도구
+group :development do
+  gem "jekyll-admin", "~> 0.11"
+end
+
 # 프로덕션 환경 최적화 (GitHub Actions에서 사용)
 group :production do
   # CSS/JS 압축 (선택사항)

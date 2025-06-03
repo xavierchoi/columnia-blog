@@ -1,6 +1,6 @@
 # 사이트 기본 정보
 title: "Columnia"
-email: me@xavier.kr
+email: me@xavierchoi.blog
 description: >-
   A fast and easy markdown Jekyll blog theme with multilingual support.
 
@@ -22,9 +22,32 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-paginate-v2
+  - jekyll-admin
+
+# Jekyll Admin 설정
+jekyll_admin:
+  # 파일 업로드 허용
+  uploads_dir: assets/images
+  # 업로드 가능한 파일 확장자
+  uploads_ext_whitelist:
+    - jpg
+    - jpeg
+    - png
+    - gif
+    - webp
+    - svg
+    - ico
+
+# Static files 처리 설정
+include:
+  - "assets/images"
 
 # 기본 레이아웃 설정
 defaults:
+  - scope:
+      path: "assets/images"
+    values:
+      image: true
   - scope:
       path: ""
       type: "posts"

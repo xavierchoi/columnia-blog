@@ -1,7 +1,7 @@
 # CLAUDE.md
 
-Before start reading this, PLEASE DO CHECK and read guideline_dear_claude.md file. The file is important to understand what is in user's mind.
-"버전 빌드를 종료합니다" 라고 말하면 guideline_dear_claude.md 파일에 업데이트 및 변경 로그를 추가하고, 현재 버전을 커밋 코멘트에 적어 커밋 후 푸시합니다.
+Before start reading this, PLEASE DO CHECK and read guideline_dear_claude.md and guideline_dear_claude_2.md files in order. The file is important to understand what is in user's mind and update log of project.
+사용자가 "버전 빌드를 종료합니다" 라고 말하면 guideline_dear_claude_2.md 파일의 마지막 부분에 지금까지 채팅에서 진행한 업데이트 및 변경사항 로그를 정리합니다. 사용자의 별도 제안이 없는 한 가장 마이너한 버전 넘버로 업데이트합니다. 이후 현재 버전을 커밋 코멘트에 적어 커밋 후 푸시합니다. 커밋은 Claude 명의로 합니다. #important
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 

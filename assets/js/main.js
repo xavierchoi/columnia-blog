@@ -169,6 +169,28 @@ function initShareButtons() {
 }
 
 function sharePost(platform, url, title) {
+    console.log('📤 공유 기능 시작:', platform, url, title);
+    
+    // Web Share API를 우선적으로 사용 (share 플랫폼이거나 Web Share API 사용 가능한 경우)
+    if ((platform.toLowerCase() === 'share' || platform.toLowerCase() === '공유') && navigator.share) {
+        console.log('🌐 Web Share API 사용');
+        
+        navigator.share({
+            title: title,
+            url: url,
+            text: `${title} - 흥미로운 글을 발견했습니다!`
+        }).then(() => {
+            console.log('✅ Web Share API 공유 성공');
+            showNotification('공유가 완료되었습니다!', 'success');
+        }).catch((error) => {
+            console.warn('❌ Web Share API 공유 실패:', error);
+            // Web Share API 실패 시 폴백으로 클립보드 복사
+            fallbackToClipboard(url, title);
+        });
+        return;
+    }
+    
+    // 기존 플랫폼별 공유 로직
     const encodedUrl = encodeURIComponent(url);
     const encodedTitle = encodeURIComponent(title);
     
@@ -189,14 +211,70 @@ function sharePost(platform, url, title) {
         case 'kakaotalk':
             showNotification('카카오톡 공유 기능은 실제 구현 시 Kakao SDK가 필요합니다.', 'info');
             return;
+        case 'share':
+        case '공유':
+            // Web Share API가 지원되지 않는 경우 클립보드 복사로 폴백
+            fallbackToClipboard(url, title);
+            return;
         default:
             console.warn('Unknown sharing platform:', platform);
             return;
     }
     
     if (shareUrl) {
+        console.log('🔗 플랫폼별 공유 URL 열기:', shareUrl);
         window.open(shareUrl, '_blank', 'width=600,height=400,scrollbars=yes,resizable=yes');
         showNotification('공유 창이 열렸습니다!', 'success');
+    }
+}
+
+// Web Share API 폴백: 클립보드 복사
+function fallbackToClipboard(url, title) {
+    console.log('📋 클립보드 복사 폴백 실행');
+    
+    if (navigator.clipboard && window.isSecureContext) {
+        // 현대적인 Clipboard API 사용
+        navigator.clipboard.writeText(url).then(() => {
+            console.log('✅ 클립보드 복사 성공 (Clipboard API)');
+            showNotification(`"${title}" 링크가 클립보드에 복사되었습니다!`, 'success');
+        }).catch((error) => {
+            console.warn('❌ 클립보드 복사 실패 (Clipboard API):', error);
+            legacyClipboardCopy(url, title);
+        });
+    } else {
+        // 레거시 방식 폴백
+        legacyClipboardCopy(url, title);
+    }
+}
+
+// 레거시 클립보드 복사 방식
+function legacyClipboardCopy(text, title) {
+    console.log('📋 레거시 클립보드 복사 시도');
+    
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        // @ts-ignore - execCommand는 deprecated이지만 폴백용으로 사용
+        const successful = document.execCommand('copy');
+        if (successful) {
+            console.log('✅ 클립보드 복사 성공 (레거시)');
+            showNotification(`"${title || '링크'}"가 클립보드에 복사되었습니다!`, 'success');
+        } else {
+            console.warn('❌ 클립보드 복사 실패 (레거시)');
+            showNotification('링크 복사에 실패했습니다. 수동으로 복사해주세요.', 'error');
+        }
+    } catch (error) {
+        console.warn('❌ 클립보드 복사 오류 (레거시):', error);
+        showNotification('링크 복사에 실패했습니다. 수동으로 복사해주세요.', 'error');
+    } finally {
+        document.body.removeChild(textArea);
     }
 }
 

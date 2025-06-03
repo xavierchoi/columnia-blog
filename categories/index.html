@@ -1,10 +1,27 @@
 ---
 layout: default
-title: "카테고리"
+title: "접근 제한"
 permalink: /categories/
 ---
 
-<div class="content-area">
+<script>
+// 카테고리 페이지 접근 제한
+document.addEventListener('DOMContentLoaded', function() {
+    // 홈페이지로 리다이렉트
+    window.location.href = '{{ "/" | relative_url }}';
+});
+</script>
+
+<div class="content-area" style="text-align: center; padding: var(--space-2xl) 0;">
+    <div class="access-restricted">
+        <h1 style="color: var(--text-muted); font-size: 2rem; margin-bottom: var(--space-lg);">🚫 접근 제한</h1>
+        <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">이 페이지는 현재 접근이 제한되어 있습니다.</p>
+        <a href="{{ '/' | relative_url }}" class="btn-primary" style="text-decoration: none; padding: var(--space-md) var(--space-lg); background: var(--accent-primary); color: white; border-radius: var(--radius-md);">홈으로 돌아가기</a>
+    </div>
+</div>
+
+<!-- 원본 디버그 정보 (숨김 처리) -->
+<div style="display: none;">
     <div class="page-header">
         <h1 class="page-title">디버그 정보</h1>
         <p>Jekyll 카테고리 시스템 진단</p>

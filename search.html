@@ -348,7 +348,9 @@ document.addEventListener('DOMContentLoaded', function() {
             html += '<h2 class="post-title">';
             html += '<a href="' + (post.url || '#') + '">' + highlightText(post.title || '제목 없음', query) + '</a>';
             html += '</h2>';
-            html += '<p class="post-excerpt">' + highlightText(post.excerpt || '내용 미리보기가 없습니다.', query) + '</p>';
+            html += '<p class="post-excerpt">';
+            html += '<a href="' + (post.url || '#') + '">' + highlightText(post.excerpt || '내용 미리보기가 없습니다.', query) + '</a>';
+            html += '</p>';
             html += '<div class="post-bottom">';
             
             if (post.tags && post.tags.length > 0) {
@@ -377,6 +379,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 태그 클릭 이벤트 추가
         addTagClickEvents();
+        
+        // 공유 버튼 이벤트 추가
+        addShareButtonEvents();
     }
     
     // 태그 클릭 이벤트 함수
@@ -391,6 +396,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+    }
+    
+    // 공유 버튼 이벤트 함수
+    function addShareButtonEvents() {
+        console.log('🔗 검색 결과 공유 버튼 이벤트 리스너 추가');
+        
+        document.querySelectorAll('.share-btn').forEach(function(btn) {
+            // 기존 이벤트 리스너 제거 (중복 방지)
+            btn.removeEventListener('click', handleShareClick);
+            
+            // 새 이벤트 리스너 추가
+            btn.addEventListener('click', handleShareClick);
+        });
+    }
+    
+    // 공유 버튼 클릭 핸들러
+    function handleShareClick(e) {
+        e.preventDefault();
+        
+        const platform = this.getAttribute('data-platform') || 
+                       this.getAttribute('title')?.toLowerCase() || 
+                       this.textContent.trim();
+        const url = this.getAttribute('data-url') || window.location.href;
+        const title = this.getAttribute('data-title') || document.title;
+        
+        console.log('📤 검색 결과에서 공유 버튼 클릭:', platform, url, title);
+        
+        // 전역 sharePost 함수 호출
+        if (typeof sharePost === 'function') {
+            sharePost(platform, url, title);
+        } else {
+            console.warn('❌ sharePost 함수를 찾을 수 없습니다.');
+        }
     }
     
     // 텍스트 하이라이팅 함수
