@@ -620,3 +620,63 @@ body.post-page .share-buttons {
 _모바일 UX 완성 및 공유 버튼 표준화로 사용자 경험 통합!_
 
 **핵심 성과**: 모바일 네비게이션 마진 개선, 공유 버튼 스타일 표준화, 터치 친화적 UI 완성
+
+----------
+
+# 📋 **Version v0.1.5.4 개발 로그** _(2025.06.03)_
+
+## 🔒 **HTTPS 보안 업데이트 및 커스텀 도메인 설정**
+
+### **<1> 보안 강화를 위한 HTTPS 전환**
+
+**변경 사항:**
+- SVG 네임스페이스 선언을 https://로 변경
+- 로컬 개발 환경 URL을 https://localhost:4000으로 업데이트
+- CSS 폰트 라이선스 URL을 https://로 변경
+
+**수정된 파일:**
+- `_includes/icons/search.html`: SVG xmlns 속성
+- `_includes/icons/share.html`: SVG xmlns 속성  
+- `_includes/icons/globe.html`: SVG xmlns 속성
+- `_config_local.yml`: 로컬 개발 URL
+- `assets/css/pretendardvariable.min.css`: SIL 라이선스 URL
+
+### **<2> 커스텀 도메인 설정**
+
+**CNAME 파일 생성:**
+- 도메인: `xavierchoi.blog`
+- GitHub Pages 커스텀 도메인 설정 완료
+- HTTPS 자동 적용을 위한 준비 완료
+
+### **<3> 기술적 세부사항**
+
+**보안 업데이트 이유:**
+- 모든 외부 리소스를 HTTPS로 통일하여 Mixed Content 경고 방지
+- 브라우저 보안 정책 준수
+- SEO 및 사용자 신뢰도 향상
+
+**CNAME 파일 역할:**
+- GitHub Pages에서 커스텀 도메인 연결
+- 자동 HTTPS 인증서 발급 지원
+- 정적 사이트 빌드 시 도메인 설정 유지
+
+## 🚀 **성과 및 보안 향상**
+
+### **<1> 달성 목표**
+- ✅ 모든 리소스 HTTPS 프로토콜로 통일
+- ✅ 커스텀 도메인 설정 완료
+- ✅ 보안 경고 제거 및 신뢰도 향상
+- ✅ GitHub Pages 배포 최적화
+
+### **<2> 보안 개선 효과**
+- 🔹 암호화된 연결로 데이터 보호
+- 🔹 브라우저 보안 표시 아이콘 획득
+- 🔹 SEO 순위 향상 기대
+- 🔹 사용자 신뢰도 증가
+
+----------
+
+**Version v0.1.5.4 완료! 🔒**  
+_HTTPS 전환 및 커스텀 도메인으로 안전하고 전문적인 블로그 완성!_
+
+**핵심 성과**: HTTPS 프로토콜 통일, CNAME 파일 생성, 보안 강화, 커스텀 도메인 설정
