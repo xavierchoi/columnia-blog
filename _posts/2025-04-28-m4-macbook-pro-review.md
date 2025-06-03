@@ -1,17 +1,22 @@
 ---
+title: 'M4 MacBook Pro 리뷰: 개발자가 6개월 사용한 솔직한 후기'
 layout: post
-title: "M4 MacBook Pro 리뷰: 개발자가 6개월 사용한 솔직한 후기"
-date: 2025-04-28 17:10:00 +0900
-category: "Apple"
-tags: [MacBook Pro, M4칩, Apple, 리뷰, 개발환경]
-excerpt: "M4 칩이 탑재된 MacBook Pro를 6개월간 개발 업무에 사용하며 느낀 장단점을 솔직하게 공유합니다."
-author: "Columnia"
+date: '2025-04-28 17:10:00 +0900'
+category: Apple
+tags:
+- MacBook Pro
+- M4칩
+- Apple
+- 리뷰
+- 개발환경
+excerpt: M4 칩이 탑재된 MacBook Pro를 6개월간 개발 업무에 사용하며 느낀 장단점을 솔직하게 공유합니다.
+author: Xavier Choi
 featured: false
 image: "/assets/images/m4-macbook-pro.jpg"
 views: 1987
 reading_time: 5
 lang: ko
-permalink: /apple/m4-macbook-pro-review/
+permalink: "/apple/m4-macbook-pro-review/"
 ---
 
 # M4 MacBook Pro 리뷰: 개발자가 6개월 사용한 솔직한 후기

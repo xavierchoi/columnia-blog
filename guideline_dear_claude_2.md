@@ -785,3 +785,129 @@ gtag('event', 'page_view_count', {
 _Google Analytics 통합으로 실제 방문자 기반 조회수 추적 시스템 구축!_
 
 **핵심 성과**: GA4 통합, 듀얼 카운터 시스템, 실시간 방문자 추적, 자동 전환 로직
+
+----------
+
+# 💬 **Version v0.1.5.6 개발 로그** _(2025.06.03)_
+
+## 🎯 **Giscus 댓글 시스템 및 고급 기능 구현**
+
+### **<1> Giscus 댓글 시스템 완전 통합**
+
+**GitHub Discussions 기반 댓글 시스템:**
+- GitHub 계정으로 로그인하여 댓글 작성
+- 반응 이모지 지원 (👍 😄 🎉 등)
+- 다크 모드 자동 전환
+- 지연 로딩으로 성능 최적화
+
+**설정 완료:**
+```yaml
+giscus:
+  repo: xavierchoi/columnia-blog
+  repo_id: R_kgDOOy_9hA
+  category: Announcements
+  category_id: DIC_kwDOOy_9hM4Cq9fJ
+  mapping: pathname
+  reactions_enabled: 1
+  theme: preferred_color_scheme
+```
+
+### **<2> 댓글 알림 시스템 구현**
+
+**GitHub Watch 기반 알림:**
+- 저장소 Watch → "All Activity" 설정으로 모든 댓글 알림 받기
+- 댓글 작성 시 해당 토론 자동 구독
+- GitHub 알림 설정에서 이메일/웹 알림 커스터마이징
+
+**사용자 가이드:**
+- 포스트 하단에 접을 수 있는 "🔔 댓글 알림 받기" 섹션
+- 단계별 설정 방법 상세 안내
+- 블로그 작성자 vs 독자별 알림 차이점 설명
+
+### **<3> 실시간 댓글 수 표시 기능**
+
+**GitHub API 활용:**
+- REST API를 통한 Discussions 데이터 가져오기
+- 포스트 카드에 "💬 0" 형태로 댓글 수 표시
+- 1시간 캐싱으로 API 호출 최적화
+
+**구현 파일:**
+- `giscus-utils.js`: GitHub API 연동 및 댓글 수 관리
+- CSS 스타일링으로 일관된 디자인
+- 에러 처리 및 fallback 로직
+
+### **<4> 인기 댓글 위젯 시스템**
+
+**사이드바 위젯:**
+- "🔥 인기 토론" 제목으로 상위 5개 토론 표시
+- 댓글 수 + 반응 수 기준 정렬
+- GitHub Discussions 링크로 직접 이동
+
+**배치 위치:**
+- 홈페이지 사이드바 (카테고리 아래)
+- 포스트 페이지 사이드바 (TOC 아래)
+- 반응형 디자인으로 모든 화면 크기 지원
+
+### **<5> 기술적 구현 세부사항**
+
+**JavaScript 아키텍처:**
+```javascript
+class GiscusUtils {
+    // GitHub API 호출
+    async fetchCommentCounts()
+    // 포스트 카드 업데이트  
+    updateCommentCountDisplays()
+    // 인기 위젯 렌더링
+    renderPopularWidget()
+}
+```
+
+**캐싱 전략:**
+- localStorage: 댓글 수 및 인기 토론 데이터
+- 1시간 캐시 만료로 적절한 실시간성 확보
+- API 실패 시 캐시된 데이터 사용
+
+**개발자 도구:**
+```javascript
+// 댓글 수 수동 갱신
+window.refreshCommentCounts()
+// 인기 토론 확인
+window.showPopularDiscussions()
+```
+
+## 🚀 **사용자 경험 향상**
+
+### **<1> 커뮤니티 활성화**
+- ✅ 간편한 GitHub 로그인으로 댓글 참여
+- ✅ 실시간 알림으로 토론 지속성 확보
+- ✅ 인기 토론 발견으로 참여도 증가
+
+### **<2> 콘텐츠 인사이트**
+- ✅ 댓글 수로 인기 포스트 즉시 파악
+- ✅ 인기 위젯으로 활발한 토론 노출
+- ✅ GitHub Discussions 연동으로 전문적 토론 환경
+
+### **<3> 성능 최적화**
+- ✅ 지연 로딩으로 초기 페이지 로딩 속도 유지
+- ✅ API 캐싱으로 반복 호출 최소화
+- ✅ 에러 처리로 안정적인 사용자 경험
+
+## 📊 **기능 완성도**
+
+### **<1> 댓글 시스템 완전체**
+- 댓글 작성/읽기: Giscus 위젯
+- 댓글 알림: GitHub Watch 시스템
+- 댓글 수 표시: GitHub API 연동
+- 인기 댓글: 사이드바 위젯
+
+### **<2> 미래 확장 가능성**
+- Cusdis로 전환 시 기존 구조 재활용 가능
+- 댓글 분석 대시보드 추가 가능
+- 댓글 기반 추천 시스템 구현 가능
+
+----------
+
+**Version v0.1.5.6 완료! 💬**  
+_GitHub Discussions 기반 완전한 댓글 생태계 구축!_
+
+**핵심 성과**: Giscus 통합, 실시간 댓글 수, 인기 위젯, 알림 시스템, GitHub API 활용

@@ -5857,3 +5857,165 @@ body.layout-posts .sidebar {
     color: var(--accent-primary);
     transform: translateY(-1px);
 }
+
+/* ================================================================ */
+/* Comments Section Styling */
+/* ================================================================ */
+
+.comments-section {
+    margin-top: var(--space-3xl, 4rem);
+    padding-top: var(--space-2xl, 3rem);
+    border-top: 2px solid var(--border-color);
+}
+
+.comments-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md, 1rem);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.comments-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: var(--space-lg, 1.5rem);
+    line-height: 1.6;
+}
+
+/* Giscus 컨테이너 추가 스타일 */
+.giscus-container {
+    background: var(--bg-secondary);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* 다크 모드에서 Giscus 스타일 */
+[data-theme="dark"] .giscus-container {
+    background: var(--bg-tertiary);
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .comments-section {
+        margin-top: var(--space-2xl, 3rem);
+        padding-top: var(--space-xl, 2rem);
+    }
+    
+    .comments-title {
+        font-size: 1.25rem;
+    }
+    
+    .giscus-container {
+        padding: var(--space-md);
+    }
+}
+
+/* ================================================================ */
+/* Comment Count Display */
+/* ================================================================ */
+
+.post-comments {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-left: var(--space-sm);
+}
+
+.comment-icon {
+    font-size: 0.875rem;
+}
+
+/* Popular Comments Widget */
+.popular-discussions {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.widget-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.popular-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.popular-item {
+    margin-bottom: var(--space-sm);
+}
+
+.popular-item:last-child {
+    margin-bottom: 0;
+}
+
+.popular-link {
+    display: block;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: background-color 0.2s ease;
+    border: 1px solid var(--border-color);
+}
+
+.popular-link:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+}
+
+.popular-title {
+    display: block;
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.popular-stats {
+    display: flex;
+    gap: var(--space-md);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.comment-count,
+.reaction-count {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.no-discussions {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: var(--space-xl);
+}
+
+/* 다크 모드 */
+[data-theme="dark"] .popular-discussions {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .popular-link {
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .popular-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+}

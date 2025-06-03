@@ -1,0 +1,123 @@
+<!-- 댓글 알림 설정 안내 -->
+<div class="comment-notification-info">
+  <details class="notification-guide">
+    <summary>
+      <span class="notification-icon">🔔</span>
+      댓글 알림 받기
+    </summary>
+    <div class="notification-content">
+      <h4>댓글 알림을 받는 방법:</h4>
+      <ol>
+        <li>
+          <strong>GitHub에서 Watch 설정:</strong>
+          <a href="https://github.com/{{ site.giscus.repo }}/discussions" target="_blank" rel="noopener">
+            저장소 Discussions 페이지
+          </a>로 이동 → 상단 Watch 버튼 클릭 → "All Activity" 선택
+        </li>
+        <li>
+          <strong>특정 글 알림:</strong>
+          댓글을 남긴 글은 자동으로 구독되어 새 댓글 시 이메일 알림을 받습니다.
+        </li>
+        <li>
+          <strong>알림 설정 관리:</strong>
+          <a href="https://github.com/settings/notifications" target="_blank" rel="noopener">
+            GitHub 알림 설정
+          </a>에서 이메일/웹 알림을 커스터마이즈할 수 있습니다.
+        </li>
+      </ol>
+      
+      <div class="notification-tip">
+        💡 <strong>팁:</strong> 블로그 작성자는 모든 댓글에 대한 알림을 받습니다. 
+        독자는 자신이 참여한 토론에 대해서만 알림을 받습니다.
+      </div>
+    </div>
+  </details>
+</div>
+
+<style>
+.comment-notification-info {
+  margin-bottom: var(--space-lg);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.notification-guide {
+  cursor: pointer;
+}
+
+.notification-guide summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  user-select: none;
+  padding: var(--space-sm);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s ease;
+}
+
+.notification-guide summary:hover {
+  background: var(--bg-secondary);
+}
+
+.notification-guide summary::-webkit-details-marker {
+  display: none;
+}
+
+.notification-guide[open] summary {
+  margin-bottom: var(--space-md);
+}
+
+.notification-icon {
+  font-size: 1.2rem;
+}
+
+.notification-content {
+  padding: 0 var(--space-md);
+  color: var(--text-secondary);
+}
+
+.notification-content h4 {
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  font-size: 1rem;
+}
+
+.notification-content ol {
+  margin-left: var(--space-lg);
+  line-height: 1.8;
+}
+
+.notification-content li {
+  margin-bottom: var(--space-sm);
+}
+
+.notification-content a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent-primary);
+}
+
+.notification-content a:hover {
+  border-bottom-style: solid;
+}
+
+.notification-tip {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent-primary);
+}
+
+/* 다크 모드 */
+[data-theme="dark"] .comment-notification-info {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .notification-guide summary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+</style>

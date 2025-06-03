@@ -150,5 +150,17 @@
     {% else %}
     <script src="{{ '/assets/js/view-counter.js' | relative_url }}"></script>
     {% endif %}
+    
+    <!-- Giscus Utils -->
+    {% if site.giscus.repo %}
+    <script>
+        // Jekyll 변수를 JavaScript에 전달
+        window.giscusConfig = {
+            repo: '{{ site.giscus.repo }}',
+            categoryId: '{{ site.giscus.category_id }}'
+        };
+    </script>
+    <script src="{{ '/assets/js/giscus-utils.js' | relative_url }}"></script>
+    {% endif %}
 </body>
 </html>

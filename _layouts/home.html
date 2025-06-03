@@ -215,6 +215,11 @@ body {
         </div>
     </div>
     
+    <!-- 인기 댓글 위젯 -->
+    {% if site.giscus.repo %}
+    {% include popular-comments-widget.html %}
+    {% endif %}
+    
 </aside>
 
 <script>

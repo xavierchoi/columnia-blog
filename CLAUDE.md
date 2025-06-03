@@ -129,6 +129,33 @@ Posts use absolute positioning for pixel-perfect centering:
    ```
 3. Rebuild site - view counter will automatically use GA
 
+### Giscus Comments Setup
+1. **Enable GitHub Discussions** in your repository:
+   - Go to Settings → Features → Enable Discussions
+
+2. **Visit [giscus.app](https://giscus.app)**:
+   - Enter your repository (e.g., `username/repo-name`)
+   - Choose Discussion category (e.g., "Announcements" or "Comments")
+   - Select features you want
+   - Get the configuration values
+
+3. **Update `_config.yml`**:
+   ```yaml
+   giscus:
+     repo: username/repo-name
+     repo_id: R_xxxxx  # from giscus.app
+     category: Comments
+     category_id: DIC_xxxxx  # from giscus.app
+     mapping: pathname
+     reactions_enabled: 1
+     theme: preferred_color_scheme
+   ```
+
+4. **Supported logins**:
+   - GitHub account only
+   - Visitors must have a GitHub account to comment
+   - If their GitHub is linked to Google/Twitter, they can use those to log into GitHub first
+
 ## Performance Optimizations
 - Lazy loading with Intersection Observer
 - Compressed CSS output

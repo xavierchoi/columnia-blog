@@ -14,6 +14,21 @@ twitter_username: whereisxavier
 # Google Analytics
 google_analytics: G-DKW3PW7456
 
+# Giscus 댓글 시스템
+giscus:
+  repo: xavierchoi/columnia-blog
+  repo_id: R_kgDOOy_9hA
+  category: Announcements
+  category_id: DIC_kwDOOy_9hM4Cq9fJ
+  mapping: pathname # 페이지 경로를 discussion 제목으로 사용
+  strict: 0 # 제목 매칭 strict 모드 (0 또는 1)
+  reactions_enabled: 1 # 반응 이모지 활성화
+  emit_metadata: 0 # 메타데이터 발행
+  input_position: top # 댓글 입력창 위치 (top 또는 bottom)
+  theme: preferred_color_scheme # 테마 (자동 감지)
+  lang: ko # 언어 설정
+  loading: lazy # 지연 로딩
+
 # Build settings
 markdown: kramdown
 highlighter: rouge
@@ -40,6 +55,23 @@ jekyll_admin:
     - webp
     - svg
     - ico
+  # Jekyll Admin 메타데이터 필드 설정
+  # 이 필드들은 Jekyll Admin UI에서 표시되며, 사용자가 직접 입력할 수 있습니다
+  # defaults에 없는 필드들은 사용자가 자유롭게 편집 가능합니다
+  metadata_fields:
+    - title        # 제목 (필수)
+    - date         # 발행 날짜 (자동 생성되지만 수정 가능)
+    - category     # 카테고리 - 사용자가 매번 선택
+    - tags         # 태그 목록 - 사용자가 자유롭게 입력
+    - excerpt      # 포스트 요약 - 선택적 입력
+    - author       # 작성자 이름 - 필요시 입력
+    - image        # 대표 이미지 경로 - 선택적 입력
+    - permalink    # 커스텀 URL - 선택적 입력
+    # defaults에 정의된 필드들 (아래)은 기본값이 자동 적용됨:
+    # - layout: "post" (자동 적용)
+    # - comments: true (자동 적용)  
+    # - featured: false (자동 적용)
+    # - lang: "ko" (자동 적용)
 
 # Static files 처리 설정
 include:
@@ -57,6 +89,8 @@ defaults:
     values:
       layout: "post"
       comments: true
+      featured: false   # 추천 포스트 여부 (기본값: false)
+      lang: "ko"        # 언어 설정 (기본값: 한국어)
   - scope:
       path: ""
     values:

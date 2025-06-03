@@ -483,6 +483,16 @@ body.perfect-center-layout .sidebar {
                     {% endif %}
                 </div>
             </section>
+            
+            <!-- 댓글 섹션 -->
+            {% if site.giscus.repo %}
+            <section class="comments-section">
+                <h3 class="comments-title">💬 댓글</h3>
+                <p class="comments-description">GitHub 계정으로 로그인하여 의견을 남겨주세요!</p>
+                {% include comment-notification.html %}
+                {% include giscus.html %}
+            </section>
+            {% endif %}
         </article>
     </div>
 
@@ -511,6 +521,11 @@ body.perfect-center-layout .sidebar {
                 <!-- JavaScript로 자동 생성됩니다 -->
             </nav>
         </div>
+
+        <!-- 3. 인기 댓글 위젯 -->
+        {% if site.giscus.repo %}
+        {% include popular-comments-widget.html %}
+        {% endif %}
 
     </aside>
 </div>

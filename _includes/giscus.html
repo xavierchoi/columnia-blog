@@ -1,0 +1,48 @@
+<!-- Giscus Comments -->
+<div class="giscus-container">
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ site.giscus.repo }}"
+          data-repo-id="{{ site.giscus.repo_id }}"
+          data-category="{{ site.giscus.category }}"
+          data-category-id="{{ site.giscus.category_id }}"
+          data-mapping="{{ site.giscus.mapping | default: 'pathname' }}"
+          data-strict="{{ site.giscus.strict | default: '0' }}"
+          data-reactions-enabled="{{ site.giscus.reactions_enabled | default: '1' }}"
+          data-emit-metadata="{{ site.giscus.emit_metadata | default: '0' }}"
+          data-input-position="{{ site.giscus.input_position | default: 'top' }}"
+          data-theme="{{ site.giscus.theme | default: 'preferred_color_scheme' }}"
+          data-lang="{{ site.giscus.lang | default: 'ko' }}"
+          data-loading="{{ site.giscus.loading | default: 'lazy' }}"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<style>
+/* Giscus 댓글 컨테이너 스타일링 */
+.giscus-container {
+  margin-top: var(--space-2xl, 3rem);
+  padding-top: var(--space-xl, 2rem);
+  border-top: 1px solid var(--border-color);
+}
+
+/* 다크 모드 지원 */
+[data-theme="dark"] .giscus-frame {
+  color-scheme: dark;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .giscus-container {
+    margin-top: var(--space-xl, 2rem);
+    padding-top: var(--space-lg, 1.5rem);
+  }
+}
+
+/* Giscus iframe 스타일 조정 */
+.giscus-frame {
+  width: 100% !important;
+  border: none !important;
+  color-scheme: auto;
+}
+</style>

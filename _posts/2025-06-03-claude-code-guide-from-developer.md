@@ -1,6 +1,6 @@
 ---
 title: 개발자가 직접 설명해주는 Claude Code 사용법
-category: vibe-coding
+category: 바이브 코딩
 date: '2025-06-03 10:00:00'
 layout: post
 ---
