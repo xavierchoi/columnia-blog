@@ -8,8 +8,6 @@ excerpt: "Vercel 및 GitHub Pages 배포와 CI/CD 설정을 마무리하며 시�
 author: "Columnia"
 featured: false
 image: "/assets/images/home-cafe.jpg"
-views: 892
-reading_time: 3
 lang: ko
 permalink: /blog_theme_develope/nocode_jekyll_theme_develope_log_(8)/
 ---

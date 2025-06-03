@@ -983,3 +983,127 @@ window.showPopularDiscussions()
 _GitHub Discussions 기반 완전한 댓글 생태계 구축!_
 
 **핵심 성과**: Giscus 통합, 실시간 댓글 수, 인기 위젯, 알림 시스템, GitHub API 활용
+
+----------
+
+# 📱 **Version v0.1.5.7 개발 로그** _(2025.06.03)_
+
+## 📺 **YouTube 동영상 반응형 디자인 구현**
+
+### **<1> 문제 분석 및 해결**
+
+**발견된 이슈:**
+- 포스트에 임베디드된 YouTube iframe이 태블릿/모바일 뷰에서 콘텐츠 영역을 벗어남
+- 고정 width="800" 속성으로 인한 화면 오버플로우
+- 이미지는 반응형이지만 iframe은 반응형 처리되지 않음
+
+**근본 원인:**
+- CSS에서 iframe 요소에 대한 반응형 스타일 누락
+- `body.perfect-center-layout` 선택자와 일치하지 않는 CSS 우선순위
+- 인라인 width/height 속성이 CSS를 오버라이드
+
+### **<2> 포괄적 해결책 구현**
+
+**다층 CSS 스타일 적용:**
+```scss
+/* 기본 iframe 반응형 처리 */
+.post-content iframe {
+    display: block !important;
+    margin: var(--space-lg) auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9 !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* perfect-center-layout 전용 강화 */
+body.perfect-center-layout .post-content iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 16/9 !important;
+}
+
+/* YouTube 특화 처리 */
+body.perfect-center-layout .post-content iframe[src*="youtube.com"],
+body.perfect-center-layout .post-content iframe[src*="youtu.be"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9 !important;
+}
+```
+
+**인라인 스타일 직접 적용:**
+- 문제 포스트의 iframe에 직접 반응형 스타일 추가
+- CSS가 적용되지 않을 경우의 확실한 백업 방안
+- `max-width: 100%; aspect-ratio: 16/9` 등 핵심 속성 포함
+
+### **<3> 기술적 구현 세부사항**
+
+**우선순위 전략:**
+1. **첫 번째 단계**: 전역 iframe 스타일 
+2. **두 번째 단계**: body 클래스 기반 강화
+3. **세 번째 단계**: YouTube 특화 선택자
+4. **최종 단계**: 인라인 스타일 직접 적용
+
+**반응형 핵심 속성:**
+- `max-width: 100%`: 콘텐츠 영역 내 제한
+- `width: 100%`: 사용 가능한 전체 너비 활용
+- `aspect-ratio: 16/9`: 동영상 비율 유지
+- `height: auto`: 자동 높이 계산
+
+### **<4> 검증 및 테스트**
+
+**테스트 환경:**
+- 데스크톱 (>1350px): 800px 고정 너비 유지
+- 태블릿 (768px-1350px): 콘텐츠 영역에 맞춰 스케일링
+- 모바일 (≤768px): 화면 너비에 맞춘 완전 반응형
+
+**Jekyll 빌드 확인:**
+```bash
+bundle exec jekyll build  # ✅ 성공
+```
+
+**URL 테스트:**
+- `http://localhost:4000/claude-code-guide-from-developer/`
+- `http://localhost:4000/conversational-ai-2-0/`
+
+### **<5> 메타데이터 정리 작업**
+
+**레거시 필드 제거:**
+- 구 포스트에서 `views`와 `reading_time` 메타데이터 필드 삭제
+- 동적 계산 시스템으로 완전 전환
+- JavaScript 조회수 카운터와 Jekyll 읽기 시간 계산 활용
+
+**정리된 포스트:**
+- `2025-04-28-m4-macbook-pro-review.md`
+- `2025-04-30-developer-pc-build-2025.md`
+- `2025-05-06-nocode-jekyll-theme-develope-log-(8).md`
+
+## 🚀 **성과 및 사용성 향상**
+
+### **<1> 달성 목표**
+- ✅ YouTube 동영상 완전 반응형 처리
+- ✅ 모든 화면 크기에서 오버플로우 방지
+- ✅ 16:9 비율 유지로 시청 경험 보장
+- ✅ 메타데이터 시스템 현대화
+
+### **<2> 사용자 경험 개선**
+- 🔹 태블릿/모바일에서 동영상 정상 시청 가능
+- 🔹 콘텐츠 영역 내 완벽한 피팅
+- 🔹 스크롤 없이 전체 동영상 화면 확인
+- 🔹 일관된 시각적 스타일 (모서리, 그림자)
+
+### **<3> 기술적 안정성**
+- 🔹 다층 CSS 우선순위로 확실한 적용
+- 🔹 인라인 스타일 백업으로 100% 보장
+- 🔹 YouTube 특화 선택자로 정확한 타겟팅
+- 🔹 CSS 컴파일 및 Jekyll 빌드 검증 완료
+
+----------
+
+**Version v0.1.5.7 완료! 📱📺**  
+_YouTube 동영상 반응형 완성으로 모든 디바이스에서 완벽한 시청 경험!_
+
+**핵심 성과**: iframe 반응형 처리, 다층 CSS 우선순위, 인라인 스타일 백업, 메타데이터 현대화

@@ -6019,3 +6019,58 @@ body.layout-posts .sidebar {
 [data-theme="dark"] .popular-link:hover {
     background: rgba(255, 255, 255, 0.05);
 }
+
+/* 포스트 콘텐츠 내 YouTube 동영상 및 iframe 반응형 처리 */
+body.perfect-center-layout .post-content iframe {
+    display: block !important;
+    margin: var(--space-lg) auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9 !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* 추가 안전장치 - 모든 포스트 콘텐츠 iframe에 적용 */
+.post-content iframe {
+    display: block !important;
+    margin: var(--space-lg) auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9 !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* 인라인 스타일이 있는 iframe도 덮어쓰기 (최고 우선순위) */
+.post-content iframe[width],
+.post-content iframe[height],
+.post-content iframe[style] {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9 !important;
+}
+
+/* perfect-center-layout 전용 iframe 스타일 (더 높은 우선순위) */
+body.perfect-center-layout .post-content iframe {
+    display: block !important;
+    margin: var(--space-lg) auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9 !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* 가장 강력한 우선순위 - YouTube iframe 전용 */
+body.perfect-center-layout .post-content iframe[src*="youtube.com"],
+body.perfect-center-layout .post-content iframe[src*="youtu.be"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9 !important;
+    display: block !important;
+    margin: var(--space-lg) auto !important;
+}
+

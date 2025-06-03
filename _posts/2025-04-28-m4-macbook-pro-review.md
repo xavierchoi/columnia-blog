@@ -13,8 +13,6 @@ excerpt: M4 칩이 탑재된 MacBook Pro를 6개월간 개발 업무에 사용�
 author: Xavier Choi
 featured: false
 image: "/assets/images/m4-macbook-pro.jpg"
-views: 1987
-reading_time: 5
 lang: ko
 permalink: "/apple/m4-macbook-pro-review/"
 ---

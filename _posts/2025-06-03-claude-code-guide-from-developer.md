@@ -3,7 +3,16 @@ title: 개발자가 직접 설명해주는 Claude Code 사용법
 category: 바이브 코딩
 date: '2025-06-03 10:00:00'
 layout: post
-permalink: /claude-code-guide-from-developer/
+permalink: "/claude-code-guide-from-developer/"
+tags:
+- AI
+- 바이브코딩
+- 노코드
+- AgentAI
+- Claude.ai
+excerpt: Claude Code는 AI 모델 Claude의 개발사 Anthropic에서 출시한 코딩 도구로, 단순한 코드 생성기를 넘어 실제
+  개발 현장에서 필요한 다양한 기능을 제공하고 있습니다.
+author: Xavier Choi
 ---
 
 # Claude Code(클로드 코드)에 대해서 알고 계시나요?

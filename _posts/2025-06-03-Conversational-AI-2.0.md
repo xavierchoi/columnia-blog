@@ -9,13 +9,15 @@ tags:
 - 일레븐랩스
 date: '2025-06-03 04:00:00'
 layout: post
-permalink: /conversational-ai-2-0/
+permalink: "/conversational-ai-2-0/"
+author: Xavier Choi
+excerpt: 대화형 AI의 새로운 지평을 연 ElevenLabs, 새로운 모델인 Conversational AI 2.0을 발표하다.
 ---
 
 ## 📰 AI Text-to-Speech 스타트업 ElevenLabs, Conversational AI 2.0 출시
 
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/nn_SHKGm2uE" frameborder="0" allowfullscreen></iframe>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/nn_SHKGm2uE" frameborder="0" allowfullscreen style="max-width: 100%; width: 100%; height: auto; aspect-ratio: 16/9; display: block; margin: 1.275rem auto; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"></iframe>
 
 #### ElevenLabs가 5월 30일, 음성 AI의 새로운 시대를 여는 Conversational AI 2.0을 공개했습니다.
 

@@ -8,8 +8,6 @@ excerpt: "최신 하드웨어 트렌드를 반영한 개발용 PC 구성 가이�
 author: "Columnia"
 featured: false
 image: "/assets/images/pc-build-2025.jpg"
-views: 3128
-reading_time: 9
 lang: ko
 permalink: /hardware/developer-pc-build-2025/
 ---
