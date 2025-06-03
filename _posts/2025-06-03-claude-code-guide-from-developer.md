@@ -3,6 +3,7 @@ title: 개발자가 직접 설명해주는 Claude Code 사용법
 category: 바이브 코딩
 date: '2025-06-03 10:00:00'
 layout: post
+permalink: /claude-code-guide-from-developer/
 ---
 
 # Claude Code(클로드 코드)에 대해서 알고 계시나요?

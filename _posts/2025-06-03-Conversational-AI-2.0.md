@@ -8,6 +8,8 @@ tags:
 - text_to_speech
 - 일레븐랩스
 date: '2025-06-03 04:00:00'
+layout: post
+permalink: /conversational-ai-2-0/
 ---
 
 ## 📰 AI Text-to-Speech 스타트업 ElevenLabs, Conversational AI 2.0 출시

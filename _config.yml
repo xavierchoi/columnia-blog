@@ -55,23 +55,13 @@ jekyll_admin:
     - webp
     - svg
     - ico
-  # Jekyll Admin 메타데이터 필드 설정
-  # 이 필드들은 Jekyll Admin UI에서 표시되며, 사용자가 직접 입력할 수 있습니다
-  # defaults에 없는 필드들은 사용자가 자유롭게 편집 가능합니다
-  metadata_fields:
-    - title        # 제목 (필수)
-    - date         # 발행 날짜 (자동 생성되지만 수정 가능)
-    - category     # 카테고리 - 사용자가 매번 선택
-    - tags         # 태그 목록 - 사용자가 자유롭게 입력
-    - excerpt      # 포스트 요약 - 선택적 입력
-    - author       # 작성자 이름 - 필요시 입력
-    - image        # 대표 이미지 경로 - 선택적 입력
-    - permalink    # 커스텀 URL - 선택적 입력
-    # defaults에 정의된 필드들 (아래)은 기본값이 자동 적용됨:
-    # - layout: "post" (자동 적용)
-    # - comments: true (자동 적용)  
-    # - featured: false (자동 적용)
-    # - lang: "ko" (자동 적용)
+  # Jekyll Admin 필드 표시 설정
+  # Jekyll Admin은 defaults에 정의된 필드들을 New Post 화면에 자동으로 표시합니다
+  # 위의 defaults 섹션에서 posts 타입에 대해 모든 필요한 필드를 정의했습니다:
+  # - layout, comments, featured, lang (기본값 적용)
+  # - category, tags, excerpt, author, image, permalink (빈 값으로 표시)
+  # 
+  # 주의: metadata_fields 설정은 Jekyll Admin 0.12.0에서 지원되지 않습니다
 
 # Static files 처리 설정
 include:
@@ -87,10 +77,18 @@ defaults:
       path: ""
       type: "posts"
     values:
-      layout: "post"
-      comments: true
-      featured: false   # 추천 포스트 여부 (기본값: false)
-      lang: "ko"        # 언어 설정 (기본값: 한국어)
+      # Jekyll Admin 최적화된 설정
+      layout: "post"     # 실제 기본값 (변경시 override 필요)
+      comments: true     # 실제 기본값 (변경시 override 필요)
+      featured: false    # 실제 기본값 (변경시 override 필요)
+      lang: "ko"         # 실제 기본값 (변경시 override 필요)
+      # 아래 필드들은 빈 값으로 설정하여 직접 편집 가능
+      category: ""       # 빈 값 - 직접 편집 가능
+      tags: []           # 빈 배열 - 직접 편집 가능
+      excerpt: ""        # 빈 값 - 직접 편집 가능
+      author: ""         # 빈 값 - 직접 편집 가능
+      image: ""          # 빈 값 - 직접 편집 가능
+      permalink: ""      # 빈 값 - 직접 편집 가능
   - scope:
       path: ""
     values:

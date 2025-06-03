@@ -121,6 +121,23 @@ Posts use absolute positioning for pixel-perfect centering:
   - Basic: `window.getViewStats()`
   - GA: `window.getGAStats()`
 
+### Jekyll Admin Setup
+Jekyll Admin provides a web-based interface for content management:
+
+**Accessing Jekyll Admin:**
+- URL: `http://localhost:4000/admin/` (when server is running)
+- Provides GUI for creating/editing posts, pages, and data files
+
+**Custom Fields Configuration:**
+- Jekyll Admin displays fields defined in `defaults` for posts
+- All metadata fields (category, tags, excerpt, author, image, permalink) are automatically shown
+- Fields with empty default values appear as editable fields in New Post form
+- The `metadata_fields` setting is not supported in Jekyll Admin 0.12.0
+
+**File Uploads:**
+- Configured to upload to `assets/images/`
+- Supports: jpg, jpeg, png, gif, webp, svg, ico
+
 ### Google Analytics Setup
 1. Get GA4 Measurement ID from Google Analytics
 2. Add to `_config.yml`:
