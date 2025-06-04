@@ -15,19 +15,25 @@ twitter_username: whereisxavier
 google_analytics: G-DKW3PW7456
 
 # Giscus 댓글 시스템
-giscus:
-  repo: xavierchoi/columnia-blog
-  repo_id: R_kgDOOy_9hA
-  category: Announcements
-  category_id: DIC_kwDOOy_9hM4Cq9fJ
-  mapping: pathname # 페이지 경로를 discussion 제목으로 사용
-  strict: 0 # 제목 매칭 strict 모드 (0 또는 1)
-  reactions_enabled: 1 # 반응 이모지 활성화
-  emit_metadata: 0 # 메타데이터 발행
-  input_position: top # 댓글 입력창 위치 (top 또는 bottom)
-  theme: preferred_color_scheme # 테마 (자동 감지)
-  lang: ko # 언어 설정
-  loading: lazy # 지연 로딩
+# Giscus 댓글 시스템 (kommentio 개발 중으로 일시 비활성화)
+# giscus:
+#   repo: xavierchoi/columnia-blog
+#   repo_id: R_kgDOOy_9hA
+#   category: Announcements
+#   category_id: DIC_kwDOOy_9hM4Cq9fJ
+#   mapping: pathname # 페이지 경로를 discussion 제목으로 사용
+#   strict: 0 # 제목 매칭 strict 모드 (0 또는 1)
+#   reactions_enabled: 1 # 반응 이모지 활성화
+#   emit_metadata: 0 # 메타데이터 발행
+#   input_position: top # 댓글 입력창 위치 (top 또는 bottom)
+#   theme: preferred_color_scheme # 테마 (자동 감지)
+#   lang: ko # 언어 설정
+#   loading: lazy # 지연 로딩
+
+# Kommentio 댓글 시스템 (개발 중)
+kommentio:
+  enabled: false # 개발 완료 시 true로 변경
+  # 향후 kommentio 설정이 여기에 추가될 예정
 
 # Build settings
 markdown: kramdown

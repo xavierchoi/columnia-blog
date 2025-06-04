@@ -10,7 +10,7 @@
           data-reactions-enabled="{{ site.giscus.reactions_enabled | default: '1' }}"
           data-emit-metadata="{{ site.giscus.emit_metadata | default: '0' }}"
           data-input-position="{{ site.giscus.input_position | default: 'top' }}"
-          data-theme="{{ site.giscus.theme | default: 'preferred_color_scheme' }}"
+          data-theme="light"
           data-lang="{{ site.giscus.lang | default: 'ko' }}"
           data-loading="{{ site.giscus.loading | default: 'lazy' }}"
           crossorigin="anonymous"
@@ -18,12 +18,116 @@
   </script>
 </div>
 
+<script>
+// Giscus 테마를 블로그 테마와 동기화
+document.addEventListener('DOMContentLoaded', function() {
+    function getCurrentTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        return currentTheme === 'dark' ? 'dark' : 'light';
+    }
+    
+    function reloadGiscusWithCorrectTheme() {
+        const giscusContainer = document.querySelector('.giscus-container');
+        const existingScript = giscusContainer.querySelector('script[src*="giscus.app"]');
+        const existingFrame = giscusContainer.querySelector('.giscus-frame');
+        
+        // 기존 요소들 제거
+        if (existingFrame) {
+            existingFrame.remove();
+        }
+        
+        // 새로운 스크립트 생성
+        const newScript = document.createElement('script');
+        newScript.src = 'https://giscus.app/client.js';
+        newScript.setAttribute('data-repo', existingScript.getAttribute('data-repo'));
+        newScript.setAttribute('data-repo-id', existingScript.getAttribute('data-repo-id'));
+        newScript.setAttribute('data-category', existingScript.getAttribute('data-category'));
+        newScript.setAttribute('data-category-id', existingScript.getAttribute('data-category-id'));
+        newScript.setAttribute('data-mapping', existingScript.getAttribute('data-mapping'));
+        newScript.setAttribute('data-strict', existingScript.getAttribute('data-strict'));
+        newScript.setAttribute('data-reactions-enabled', existingScript.getAttribute('data-reactions-enabled'));
+        newScript.setAttribute('data-emit-metadata', existingScript.getAttribute('data-emit-metadata'));
+        newScript.setAttribute('data-input-position', existingScript.getAttribute('data-input-position'));
+        newScript.setAttribute('data-theme', getCurrentTheme()); // 현재 테마 적용
+        newScript.setAttribute('data-lang', existingScript.getAttribute('data-lang'));
+        newScript.setAttribute('data-loading', existingScript.getAttribute('data-loading'));
+        newScript.setAttribute('crossorigin', 'anonymous');
+        newScript.async = true;
+        
+        // 기존 스크립트 제거 후 새 스크립트 추가
+        existingScript.remove();
+        giscusContainer.appendChild(newScript);
+        
+        console.log('Giscus 재로드 완료, 테마:', getCurrentTheme());
+    }
+    
+    function updateGiscusTheme() {
+        const currentTheme = getCurrentTheme();
+        const giscusFrame = document.querySelector('.giscus-frame');
+        
+        if (giscusFrame) {
+            // postMessage로 시도
+            try {
+                const message = {
+                    setConfig: {
+                        theme: currentTheme
+                    }
+                };
+                giscusFrame.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+                console.log('Giscus 테마 변경 시도:', currentTheme);
+                
+                // 2초 후에도 변경되지 않았다면 재로드
+                setTimeout(function() {
+                    reloadGiscusWithCorrectTheme();
+                }, 2000);
+            } catch (e) {
+                console.log('postMessage 실패, Giscus 재로드');
+                reloadGiscusWithCorrectTheme();
+            }
+        } else {
+            // iframe이 없다면 스크립트 속성만 업데이트
+            const giscusScript = document.querySelector('script[src*="giscus.app"]');
+            if (giscusScript) {
+                giscusScript.setAttribute('data-theme', currentTheme);
+            }
+        }
+    }
+    
+    // 초기 테마 설정 (조금 지연을 두고)
+    setTimeout(function() {
+        updateGiscusTheme();
+    }, 1000);
+    
+    // 테마 변경 감지
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                setTimeout(updateGiscusTheme, 100);
+            }
+        });
+    });
+    
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+    });
+    
+    // 강제로 라이트 테마 적용 (즉시 실행)
+    const giscusScript = document.querySelector('script[src*="giscus.app"]');
+    if (giscusScript) {
+        giscusScript.setAttribute('data-theme', 'light');
+    }
+});
+</script>
+
 <style>
 /* Giscus 댓글 컨테이너 스타일링 */
 .giscus-container {
   margin-top: var(--space-2xl, 3rem);
   padding-top: var(--space-xl, 2rem);
+  padding-bottom: var(--space-2xl, 3rem); /* 하단 여백 추가 */
   border-top: 1px solid var(--border-color);
+  min-height: 200px; /* 최소 높이 설정으로 레이아웃 안정성 확보 */
 }
 
 /* 다크 모드 지원 */
@@ -36,6 +140,16 @@
   .giscus-container {
     margin-top: var(--space-xl, 2rem);
     padding-top: var(--space-lg, 1.5rem);
+    padding-bottom: var(--space-3xl, 4rem); /* 모바일에서 더 큰 하단 여백 */
+    min-height: 250px; /* 모바일에서 더 큰 최소 높이 */
+  }
+}
+
+/* 모바일 추가 여백 */
+@media (max-width: 480px) {
+  .giscus-container {
+    padding-bottom: var(--space-4xl, 5rem); /* 매우 작은 화면에서 더 큰 여백 */
+    min-height: 300px;
   }
 }
 
@@ -43,6 +157,33 @@
 .giscus-frame {
   width: 100% !important;
   border: none !important;
-  color-scheme: auto;
+  color-scheme: light !important; /* 강제로 라이트 모드 적용 */
+  min-height: 150px; /* iframe 최소 높이 */
+}
+
+/* Giscus 강제 라이트 테마 적용 */
+.giscus-container iframe {
+  background: #ffffff !important;
+  color-scheme: light !important;
+}
+
+/* 라이트 모드에서 Giscus 배경 강제 설정 */
+body:not([data-theme="dark"]) .giscus-container {
+  background: #ffffff !important;
+}
+
+body:not([data-theme="dark"]) .giscus-container iframe {
+  background: #ffffff !important;
+  filter: none !important;
+}
+
+/* Giscus 로딩 상태 개선 */
+.giscus-container:empty::before {
+  content: "댓글을 불러오는 중...";
+  display: block;
+  text-align: center;
+  color: var(--text-muted);
+  padding: var(--space-lg);
+  font-style: italic;
 }
 </style>

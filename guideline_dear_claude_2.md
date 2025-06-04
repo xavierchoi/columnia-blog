@@ -1107,3 +1107,150 @@ bundle exec jekyll build  # ✅ 성공
 _YouTube 동영상 반응형 완성으로 모든 디바이스에서 완벽한 시청 경험!_
 
 **핵심 성과**: iframe 반응형 처리, 다층 CSS 우선순위, 인라인 스타일 백업, 메타데이터 현대화
+
+----------
+
+# 💬 **Version v0.1.5.8 개발 로그** _(2025.06.04)_
+
+## 🔄 **댓글 시스템 전환 및 kommentio 준비**
+
+### **<1> Giscus 댓글 시스템 일시 비활성화**
+
+**변경 이유:**
+- 자체 개발 kommentio 댓글 시스템으로 전환 예정
+- Giscus 설정은 유지하되 임시 비활성화로 언제든 재활성화 가능
+- 개발 과정에서 댓글 시스템 충돌 방지
+
+**구현 방법:**
+```yaml
+# _config.yml
+# giscus:
+#   repo: xavierchoi/columnia-blog
+#   repo_id: R_kgDOOy_9hA
+#   category: Announcements
+#   category_id: DIC_kwDOOy_9hM4Cq9fJ
+#   mapping: pathname
+#   reactions_enabled: 1
+#   theme: preferred_color_scheme
+```
+
+### **<2> kommentio 댓글 시스템 준비**
+
+**시스템 설계:**
+- kommentio 우선순위 시스템 구현
+- 3단계 우선순위: kommentio → giscus → placeholder
+- 향후 kommentio 개발 완료 시 즉시 활성화 가능
+
+**설정 구조:**
+```yaml
+# kommentio 설정 (개발 예정)
+kommentio:
+  enabled: false  # 개발 완료 시 true로 변경
+  endpoint: ""    # API 엔드포인트
+  site_id: ""     # 사이트 식별자
+```
+
+### **<3> 우선순위 기반 댓글 로딩 시스템**
+
+**로직 구현:**
+```liquid
+{% if site.kommentio and site.kommentio.enabled %}
+  {% include kommentio.html %}
+{% elsif site.giscus and site.giscus.repo %}
+  {% include giscus.html %}
+{% else %}
+  <!-- 개발 중 placeholder -->
+  <div class="comments-placeholder">...</div>
+{% endif %}
+```
+
+**3단계 시스템:**
+1. **kommentio**: 최우선 (개발 완료 시)
+2. **giscus**: 대체 시스템 (현재 비활성화)
+3. **placeholder**: 개발 중 상태 표시
+
+### **<4> 개발 중 Placeholder 디자인**
+
+**시각적 특징:**
+- "🚧 댓글 시스템 개발 중입니다" 메시지
+- 브랜드 컬러 (#6366f1) 적용
+- Shimmer 애니메이션 효과로 동적인 느낌
+- 기존 댓글 영역과 동일한 마진 및 패딩
+
+**CSS 구현:**
+```scss
+.comments-placeholder {
+  background: linear-gradient(90deg, 
+    rgba(99, 102, 241, 0.1) 25%, 
+    rgba(99, 102, 241, 0.2) 50%, 
+    rgba(99, 102, 241, 0.1) 75%);
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+```
+
+### **<5> kommentio.html 준비 파일 생성**
+
+**파일 구조:**
+```html
+<!-- kommentio 위젯 로드 영역 -->
+<div id="kommentio-widget" class="comments-section">
+  <!-- JavaScript를 통한 동적 로딩 예정 -->
+</div>
+
+<script>
+// kommentio 초기화 로직 (개발 예정)
+// API 연동 및 위젯 렌더링
+</script>
+```
+
+**준비 상태:**
+- kommentio 개발 완료 시 즉시 적용 가능한 구조
+- CSS 스타일 및 JavaScript 초기화 준비 완료
+- 기존 Giscus와 동일한 디자인 일관성 유지
+
+## 🚀 **시스템 호환성 및 확장성**
+
+### **<1> 하위 호환성 보장**
+- ✅ 기존 Giscus 설정 완전 보존
+- ✅ 언제든 주석 해제로 즉시 재활성화 가능
+- ✅ 모든 기존 포스트 레이아웃 호환성 유지
+
+### **<2> 개발 준비도**
+- ✅ kommentio 위젯 파일 생성 완료
+- ✅ 우선순위 로직 구현 완료  
+- ✅ 개발 중 상태 시각화 완료
+- ✅ 전체 시스템 무중단 전환 준비
+
+### **<3> 사용자 경험**
+- 🔹 개발 중임을 명확히 알리는 메시지
+- 🔹 시각적으로 매력적인 애니메이션 효과
+- 🔹 기존 레이아웃과 완벽 호환
+- 🔹 모바일 반응형 지원
+
+## 📋 **다음 단계 계획**
+
+### **<1> kommentio 개발 로드맵**
+1. API 엔드포인트 설계
+2. 댓글 CRUD 기능 구현
+3. 실시간 댓글 시스템
+4. 관리자 대시보드
+5. 스팸 필터링 시스템
+
+### **<2> 전환 시나리오**
+- kommentio 개발 완료 시:
+  1. `kommentio.enabled: true` 설정
+  2. API 엔드포인트 및 site_id 설정
+  3. 자동으로 kommentio 시스템 활성화
+  4. 기존 placeholder 자동 교체
+
+----------
+
+**Version v0.1.5.8 완료! 🔄💬**  
+_댓글 시스템 전환 준비 완료! kommentio 개발을 위한 완벽한 기반 구축!_
+
+**핵심 성과**: Giscus 일시 비활성화, kommentio 우선순위 시스템, 개발 중 Placeholder, 하위 호환성 보장

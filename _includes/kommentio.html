@@ -1,0 +1,75 @@
+<!-- Kommentio 댓글 시스템 -->
+<div class="kommentio-container" id="kommentio">
+  <!-- kommentio 위젯이 여기에 로드됩니다 -->
+  <div class="kommentio-placeholder">
+    <div class="kommentio-loading">
+      <div class="loading-spinner"></div>
+      <p>kommentio를 불러오는 중...</p>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Kommentio 컨테이너 기본 스타일 */
+.kommentio-container {
+  margin-top: var(--space-2xl, 3rem);
+  padding-top: var(--space-xl, 2rem);
+  padding-bottom: var(--space-2xl, 3rem);
+  border-top: 1px solid var(--border-color);
+  min-height: 200px;
+  background: var(--bg-primary);
+}
+
+/* 로딩 상태 */
+.kommentio-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl, 3rem) var(--space-lg, 1.5rem);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border-color);
+  border-top: 3px solid var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--space-md, 1rem);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .kommentio-container {
+    margin-top: var(--space-xl, 2rem);
+    padding-top: var(--space-lg, 1.5rem);
+    padding-bottom: var(--space-3xl, 4rem);
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kommentio-container {
+    padding-bottom: var(--space-4xl, 5rem);
+    min-height: 300px;
+  }
+}
+</style>
+
+<script>
+// Kommentio 초기화 (개발 완료 시 실제 구현)
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Kommentio 준비 완료 - 개발 중');
+  
+  // 향후 kommentio.js 로드 및 초기화 코드가 여기에 추가될 예정
+  // 예: kommentio.init({ ... });
+});
+</script>

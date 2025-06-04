@@ -1175,6 +1175,24 @@ body.menu-open {
     border-top: 1px solid var(--border-color);
     padding: var(--space-lg) 0;      /* 더 줄인 세로 패딩 */
     margin-top: var(--space-xl);
+    position: relative;              /* 기본 상대 위치 */
+    z-index: 10;                     /* 기본 z-index */
+}
+
+/* 🚨 모바일 radical layout을 위한 footer 강화 */
+@media (max-width: 480px) {
+    body.perfect-center-layout .footer {
+        position: relative !important;
+        flex-shrink: 0 !important;
+        margin-top: auto !important;
+        z-index: 1000 !important;
+        background: var(--bg-primary) !important;
+        border-top: 2px solid var(--border-color) !important;
+        /* 다른 모든 스타일 덮어쓰기 방지 */
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
 }
 
 .footer-content {

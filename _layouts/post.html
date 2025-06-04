@@ -19,6 +19,50 @@ body.perfect-center-layout {
     min-height: 100vh;
 }
 
+/* FOUC (Flash of Unstyled Content) 방지 시스템 */
+html.js-loading {
+    /* 로딩 중에는 스크롤 방지 */
+    overflow-y: hidden;
+}
+
+html.js-loading body {
+    /* 로딩 중 깜빡임 방지 */
+    opacity: 0.95;
+    transition: opacity 0.3s ease;
+}
+
+html.js-loaded body {
+    /* 로딩 완료 후 부드러운 표시 */
+    opacity: 1;
+}
+
+/* 페이지 로드 중 안정적인 레이아웃을 위한 초기 설정 */
+@media (max-width: 480px) {
+    body.perfect-center-layout {
+        /* 모바일에서는 처음부터 flex 레이아웃 사용 */
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: 100vh !important;
+    }
+    
+    body.perfect-center-layout .main-content {
+        /* 초기 상태부터 static 포지셔닝 */
+        position: static !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: auto !important;
+        padding-bottom: var(--space-3xl, 4rem) !important;
+    }
+    
+    /* 로딩 중에도 footer 겹침 방지 */
+    html.js-loading .giscus-container {
+        min-height: 400px !important;
+        margin-bottom: var(--space-4xl, 5rem) !important;
+        padding-bottom: var(--space-4xl, 5rem) !important;
+    }
+}
+
 /* 기존 main-content 스타일 완전 무력화 + Footer 수정 */
 body.perfect-center-layout .main-content {
     /* 기존 모든 스타일 제거 */
@@ -154,9 +198,71 @@ body.perfect-center-layout .sidebar::-webkit-scrollbar-thumb {
 
 /* 모바일 */
 @media (max-width: 480px) {
+    /* 🚨 RADICAL MOBILE LAYOUT - 완전한 재구성 🚨 */
+    
+    /* 1. Body를 완전한 flex 컨테이너로 변경 */
+    body.perfect-center-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* 2. Main-content를 flex item으로 변경 (절대 위치 제거) */
+    body.perfect-center-layout .main-content {
+        position: static !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: var(--space-lg, 1.5rem) var(--space-md, 1rem) !important;
+        padding-bottom: 0 !important; /* footer 겹침 방지를 위해 하단 패딩 제거 */
+        box-sizing: border-box !important;
+    }
+    
+    /* 3. Content-area를 일반적인 block 요소로 변경 */
     body.perfect-center-layout .content-area {
-        width: 98% !important;
-        padding: 0 var(--space-xs, 0.25rem) !important;
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    /* 4. Post content를 flex item으로 설정 */
+    body.perfect-center-layout .post-single {
+        flex: 1 !important;
+        margin-bottom: var(--space-lg, 1.5rem) !important;
+        padding-bottom: var(--space-lg, 1.5rem) !important;
+    }
+    
+    /* 5. Comments section에 강제 하단 여백 */
+    body.perfect-center-layout .comments-section {
+        margin-top: var(--space-xl, 2rem) !important;
+        margin-bottom: var(--space-4xl, 5rem) !important;
+        padding-bottom: var(--space-4xl, 5rem) !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    /* 6. Footer를 body의 자식으로 고정 */
+    body.perfect-center-layout .footer {
+        position: relative !important;
+        flex-shrink: 0 !important;
+        margin-top: auto !important;
+        z-index: 100 !important;
+        background: var(--bg-primary) !important;
+        border-top: 2px solid var(--border-color) !important;
     }
 }
 
@@ -284,9 +390,161 @@ body.perfect-center-layout .sidebar-section:last-child {
     margin-bottom: 0 !important;
 }
 
+/* ================================================================ */
+/* 📱 RADICAL MOBILE LAYOUT - 완전 재구성 v2.0                     */
+/* ================================================================ */
+
+/* 
+ * 🚨 MOBILE LAYOUT REVOLUTION 🚨
+ * 기존의 absolute positioning 시스템을 완전히 폐기하고
+ * 표준 flexbox 기반의 안정적인 모바일 레이아웃으로 교체
+ */
+@media (max-width: 480px) {
+    /* 1. 전체 페이지를 flex 컨테이너로 재구성 */
+    body.perfect-center-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+    }
+    
+    /* 2. Header는 flex-shrink: 0으로 고정 크기 유지 */
+    body.perfect-center-layout .header {
+        flex-shrink: 0 !important;
+        position: relative !important;
+        z-index: 1000 !important;
+    }
+    
+    /* 3. Main-content는 flex: 1로 남은 공간 모두 차지 */
+    body.perfect-center-layout .main-content {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: var(--space-lg, 1.5rem) var(--space-md, 1rem) !important;
+        box-sizing: border-box !important;
+        min-height: 0 !important; /* flex item이 내용에 맞게 크기 조정 */
+    }
+    
+    /* 4. Content-area는 일반적인 block 요소로 변경 */
+    body.perfect-center-layout .content-area {
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+    
+    /* 5. Post content에 적절한 하단 여백 */
+    body.perfect-center-layout .post-single {
+        margin-bottom: var(--space-xl, 2rem) !important;
+        padding-bottom: var(--space-lg, 1.5rem) !important;
+    }
+    
+    /* 6. Sidebar는 완전히 숨김 */
+    body.perfect-center-layout .sidebar {
+        display: none !important;
+    }
+    
+    /* 7. Comments section에 강제 하단 여백 */
+    body.perfect-center-layout .comments-section {
+        margin-top: var(--space-xl, 2rem) !important;
+        margin-bottom: var(--space-4xl, 5rem) !important;
+        padding-bottom: var(--space-4xl, 5rem) !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    /* 8. Giscus container 안정화 */
+    body.perfect-center-layout .giscus-container {
+        margin-bottom: var(--space-4xl, 5rem) !important;
+        padding-bottom: var(--space-4xl, 5rem) !important;
+        min-height: 300px !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    /* 9. Footer를 flex-shrink: 0으로 고정하여 항상 하단에 위치 */
+    body.perfect-center-layout .footer {
+        flex-shrink: 0 !important;
+        position: relative !important;
+        z-index: 1000 !important;
+        margin-top: auto !important;
+        background: var(--bg-primary) !important;
+        border-top: 2px solid var(--border-color) !important;
+    }
+    
+    /* 10. Back to top 버튼 위치 조정 */
+    body.perfect-center-layout .back-to-top {
+        position: fixed !important;
+        bottom: calc(var(--space-4xl, 5rem) + 60px) !important; /* footer 높이 + 여백 */
+        z-index: 100 !important;
+    }
+}
+
 /* 사이드바 섹션 순서 */
 body.perfect-center-layout .sidebar-section:has(.categories-list) {
     order: 1 !important;
+}
+
+/* ================================================================ */
+/* 🚧 Kommentio 준비 및 Placeholder 스타일                          */
+/* ================================================================ */
+
+/* Kommentio placeholder 스타일 */
+.comments-placeholder {
+    background: linear-gradient(135deg, var(--bg-accent), var(--bg-secondary)) !important;
+    border: 2px dashed var(--accent-primary) !important;
+    border-radius: var(--radius-xl) !important;
+    padding: var(--space-2xl, 3rem) !important;
+    text-align: center !important;
+    margin: var(--space-xl, 2rem) 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.comments-placeholder::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 100, 255, 0.1), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.comments-placeholder p {
+    margin: var(--space-sm, 0.5rem) 0 !important;
+    color: var(--text-primary) !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.comments-placeholder p:first-child {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: var(--accent-primary) !important;
+}
+
+.comments-placeholder strong {
+    color: var(--accent-primary) !important;
+    font-weight: 700 !important;
 }
 
 body.perfect-center-layout .sidebar-section.toc-section {
@@ -485,12 +743,26 @@ body.perfect-center-layout .sidebar {
             </section>
             
             <!-- 댓글 섹션 -->
-            {% if site.giscus.repo %}
+            {% if site.kommentio.enabled %}
+            <section class="comments-section">
+                <h3 class="comments-title">💬 댓글</h3>
+                <p class="comments-description">kommentio로 의견을 남겨주세요!</p>
+                {% include kommentio.html %}
+            </section>
+            {% elsif site.giscus.repo %}
             <section class="comments-section">
                 <h3 class="comments-title">💬 댓글</h3>
                 <p class="comments-description">GitHub 계정으로 로그인하여 의견을 남겨주세요!</p>
                 {% include comment-notification.html %}
                 {% include giscus.html %}
+            </section>
+            {% else %}
+            <section class="comments-section">
+                <h3 class="comments-title">💬 댓글</h3>
+                <div class="comments-placeholder">
+                    <p>🚧 새로운 댓글 시스템 <strong>kommentio</strong> 개발 중입니다!</p>
+                    <p>곧 더 나은 댓글 경험을 제공해드릴 예정입니다. ✨</p>
+                </div>
             </section>
             {% endif %}
         </article>
@@ -530,14 +802,95 @@ body.perfect-center-layout .sidebar {
     </aside>
 </div>
 
+<!-- FOUC 방지를 위한 즉시 실행 스크립트 -->
+<script>
+// 페이지 로드 즉시 클래스 추가하여 FOUC 방지
+document.documentElement.classList.add('js-loading');
+document.body.classList.add('perfect-center-layout');
+
+// 모바일 환경에서 즉시 radical layout 적용
+if (window.innerWidth <= 480) {
+    document.documentElement.classList.add('mobile-layout');
+    
+    // 즉시 실행되는 radical layout 스타일 주입
+    const emergencyStyle = document.createElement('style');
+    emergencyStyle.id = 'emergency-radical-mobile-fix';
+    emergencyStyle.textContent = `
+        /* 🚨 EMERGENCY RADICAL MOBILE LAYOUT 🚨 */
+        body.perfect-center-layout {
+            display: flex !important;
+            flex-direction: column !important;
+            min-height: 100vh !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        body.perfect-center-layout .header {
+            flex-shrink: 0 !important;
+            position: relative !important;
+            z-index: 1000 !important;
+        }
+        body.perfect-center-layout .main-content {
+            flex: 1 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            position: relative !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 1.5rem 1rem !important;
+            box-sizing: border-box !important;
+            min-height: 0 !important;
+        }
+        body.perfect-center-layout .content-area {
+            position: static !important;
+            transform: none !important;
+            left: auto !important;
+            top: auto !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block !important;
+        }
+        body.perfect-center-layout .footer {
+            flex-shrink: 0 !important;
+            position: relative !important;
+            z-index: 1000 !important;
+            margin-top: auto !important;
+            background: var(--bg-primary) !important;
+            border-top: 2px solid var(--border-color) !important;
+        }
+        .giscus-container {
+            margin-bottom: 5rem !important;
+            padding-bottom: 5rem !important;
+            min-height: 300px !important;
+            position: relative !important;
+            z-index: 1 !important;
+        }
+        .comments-section {
+            margin-bottom: 5rem !important;
+            padding-bottom: 5rem !important;
+            position: relative !important;
+            z-index: 1 !important;
+        }
+        .giscus-frame {
+            position: relative !important;
+            z-index: 1 !important;
+        }
+    `;
+    document.head.appendChild(emergencyStyle);
+}
+</script>
+
 <!-- 완벽한 중앙 정렬 JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🎯 완벽한 중앙 정렬 시스템 시작');
     
-    // 포스트 페이지 전용 body 클래스 추가
-    document.body.classList.add('perfect-center-layout');
-    console.log('✅ body.perfect-center-layout 클래스 추가됨');
+    // 로딩 완료 표시
+    document.documentElement.classList.remove('js-loading');
+    document.documentElement.classList.add('js-loaded');
+    console.log('✅ 페이지 로딩 완료, FOUC 방지 해제');
     
     // 레이아웃 측정 및 검증
     function measureLayout() {
@@ -651,11 +1004,33 @@ document.addEventListener('DOMContentLoaded', function() {
         const mainContent = document.querySelector('.main-content');
         const contentArea = document.querySelector('.content-area');
         const sidebar = document.querySelector('.sidebar');
+        const giscusContainer = document.querySelector('.giscus-container');
+        
+        // 모바일 여부 확인
+        const isMobile = window.innerWidth <= 480;
         
         if (mainContent && contentArea) {
-            // 콘텐츠 영역의 실제 높이 계산
-            const contentHeight = contentArea.offsetHeight;
+            // 모바일에서는 static 레이아웃을 사용하므로 높이 계산 스킵
+            if (isMobile) {
+                mainContent.style.minHeight = 'auto';
+                mainContent.style.height = 'auto';
+                console.log('📱 모바일 환경 - static 레이아웃, 자동 높이 사용');
+                return;
+            }
+            
+            // 데스크톱/태블릿: 기존 높이 계산 로직 사용
+            let contentHeight = contentArea.offsetHeight;
             const sidebarHeight = sidebar ? sidebar.offsetHeight : 0;
+            
+            // Giscus 컨테이너가 있으면 추가 여백을 고려
+            if (giscusContainer) {
+                const giscusFrame = giscusContainer.querySelector('.giscus-frame');
+                if (giscusFrame && giscusFrame.offsetHeight > 0) {
+                    // Giscus가 로드된 경우 추가 여백 적용
+                    contentHeight += 150; // 더 큰 Giscus 하단 여백
+                    console.log('Giscus 감지됨 - 추가 여백 적용');
+                }
+            }
             
             // 더 큰 높이를 기준으로 main-content 높이 설정
             const maxHeight = Math.max(contentHeight, sidebarHeight);
@@ -666,7 +1041,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('포스트 페이지 높이 업데이트:', {
                 contentHeight: contentHeight,
                 sidebarHeight: sidebarHeight,
-                totalHeight: totalHeight
+                totalHeight: totalHeight,
+                giscusPresent: !!giscusContainer,
+                isMobile: isMobile
             });
         }
     }
@@ -685,6 +1062,43 @@ document.addEventListener('DOMContentLoaded', function() {
     if (tocContainer) {
         const observer = new MutationObserver(updateMainContentHeight);
         observer.observe(tocContainer, { childList: true, subtree: true });
+    }
+    
+    // Giscus 컨테이너 감지 및 로드 완료 후 높이 재계산
+    const giscusContainer = document.querySelector('.giscus-container');
+    if (giscusContainer) {
+        // Giscus iframe 로드 감지를 위한 observer
+        const giscusObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList') {
+                    const giscusFrame = giscusContainer.querySelector('.giscus-frame');
+                    if (giscusFrame) {
+                        // Giscus iframe이 추가되면 높이 재계산
+                        console.log('Giscus iframe 감지됨');
+                        setTimeout(updateMainContentHeight, 1000); // 1초 후 재계산
+                        
+                        // iframe 로드 완료 감지
+                        giscusFrame.addEventListener('load', function() {
+                            console.log('Giscus 로드 완료');
+                            setTimeout(updateMainContentHeight, 500);
+                        });
+                    }
+                }
+            });
+        });
+        
+        giscusObserver.observe(giscusContainer, { 
+            childList: true, 
+            subtree: true 
+        });
+        
+        // 주기적인 높이 체크 (Giscus 댓글 수 변화 대응)
+        setInterval(function() {
+            const giscusFrame = giscusContainer.querySelector('.giscus-frame');
+            if (giscusFrame && giscusFrame.offsetHeight > 0) {
+                updateMainContentHeight();
+            }
+        }, 3000); // 3초마다 체크
     }
 });
 </script>
